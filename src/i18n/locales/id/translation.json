@@ -149,7 +149,6 @@
     "pathLabel": "Simpan berkas sebagai",
     "cliLabel": "Atau dengan Hugging Face CLI (pip install huggingface_hub)",
     "sha256Label": "SHA-256 yang diharapkan",
-    "copied": "Disalin",
     "checkAgain": "Periksa lagi",
     "stillMissing": "Berkas belum ada di jalur tersebut.",
     "loadError": "Tidak dapat menyiapkan petunjuk pemasangan: {{error}}"
@@ -562,13 +561,11 @@
       },
       "sourceCode": {
         "title": "Kode Sumber",
-        "description": "Lihat kode sumber dan berkontribusi",
-        "button": "Lihat di GitHub"
+        "description": "Lihat kode sumber dan berkontribusi"
       },
       "supportDevelopment": {
         "title": "Dukung Pengembangan",
-        "description": "Bantu kami terus mengembangkan Handy",
-        "button": "Donasi"
+        "description": "Bantu kami terus mengembangkan Handy"
       },
       "acknowledgments": {
         "title": "Ucapan Terima Kasih",
@@ -589,6 +586,7 @@
     "close": "Tutup",
     "open": "Buka",
     "copy": "Salin",
+    "copied": "Disalin",
     "clear": "Bersihkan",
     "noOptionsFound": "Tidak ada opsi yang ditemukan"
   },

@@ -149,7 +149,6 @@
     "pathLabel": "फ़ाइल इस नाम से सहेजें",
     "cliLabel": "या Hugging Face CLI से (pip install huggingface_hub)",
     "sha256Label": "अपेक्षित SHA-256",
-    "copied": "कॉपी हो गया",
     "checkAgain": "फिर से जाँचें",
     "stillMissing": "फ़ाइल अभी उस पथ पर नहीं है।",
     "loadError": "इंस्टॉल निर्देश तैयार नहीं हो सके: {{error}}"
@@ -562,13 +561,11 @@
       },
       "sourceCode": {
         "title": "सोर्स कोड",
-        "description": "सोर्स कोड देखें और योगदान दें",
-        "button": "GitHub पर देखें"
+        "description": "सोर्स कोड देखें और योगदान दें"
       },
       "supportDevelopment": {
         "title": "डेवलपमेंट में सहयोग करें",
-        "description": "Handy को आगे बढ़ाने में हमारी मदद करें",
-        "button": "दान करें"
+        "description": "Handy को आगे बढ़ाने में हमारी मदद करें"
       },
       "acknowledgments": {
         "title": "आभार",
@@ -589,6 +586,7 @@
     "close": "बंद करें",
     "open": "खोलें",
     "copy": "कॉपी करें",
+    "copied": "कॉपी हो गया",
     "clear": "मिटाएं",
     "noOptionsFound": "कोई विकल्प नहीं मिला"
   },

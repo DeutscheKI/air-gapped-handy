@@ -149,7 +149,6 @@
     "pathLabel": "Datei speichern unter",
     "cliLabel": "Oder mit der Hugging-Face-CLI (pip install huggingface_hub)",
     "sha256Label": "Erwartete SHA-256-Prüfsumme",
-    "copied": "Kopiert",
     "checkAgain": "Erneut prüfen",
     "stillMissing": "Die Datei liegt noch nicht an diesem Pfad.",
     "loadError": "Installationsanleitung konnte nicht erstellt werden: {{error}}"
@@ -558,13 +557,11 @@
       },
       "sourceCode": {
         "title": "Quellcode",
-        "description": "Quellcode ansehen und beitragen",
-        "button": "Auf GitHub ansehen"
+        "description": "Quellcode ansehen und beitragen"
       },
       "supportDevelopment": {
         "title": "Entwicklung unterstützen",
-        "description": "Hilf uns, Handy weiterzuentwickeln",
-        "button": "Spenden"
+        "description": "Hilf uns, Handy weiterzuentwickeln"
       },
       "acknowledgments": {
         "title": "Danksagungen",
@@ -586,6 +583,7 @@
     "close": "Schließen",
     "open": "Öffnen",
     "copy": "Kopieren",
+    "copied": "Kopiert",
     "clear": "Leeren",
     "noOptionsFound": "Keine Optionen gefunden"
   },

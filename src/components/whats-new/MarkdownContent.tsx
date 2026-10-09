@@ -1,6 +1,7 @@
 import React from "react";
 import ReactMarkdown, { type Components } from "react-markdown";
-import { openUrl } from "@tauri-apps/plugin-opener";
+import { Check, Copy } from "lucide-react";
+import { useCopyToClipboard } from "@/hooks/useCopyToClipboard";
 
 interface MarkdownContentProps {
   markdown: string;
@@ -34,14 +35,34 @@ const isSafeUrl = (url: string) => {
   }
 };
 
-const openSafeUrl = async (url: string) => {
-  if (!isSafeUrl(url)) return;
+/**
+ * A release-note link rendered as its text plus the address; clicking copies
+ * the address. This fork never opens a browser, so the user takes the link
+ * to a machine that is online.
+ */
+const CopyLink: React.FC<{ href: string; children: React.ReactNode }> = ({
+  href,
+  children,
+}) => {
+  const { copied, copy } = useCopyToClipboard();
 
-  try {
-    await openUrl(url);
-  } catch (error) {
-    console.error("Failed to open release note link:", error);
-  }
+  return (
+    <button
+      type="button"
+      onClick={() => void copy(href)}
+      className="inline cursor-pointer text-start text-logo-primary underline decoration-logo-primary/40 underline-offset-2 hover:decoration-logo-primary"
+    >
+      {children}
+      <span className="ms-1 break-all font-mono text-xs text-text/60 no-underline">
+        {href}
+      </span>
+      {copied ? (
+        <Check className="ms-1 inline h-3 w-3" />
+      ) : (
+        <Copy className="ms-1 inline h-3 w-3" />
+      )}
+    </button>
+  );
 };
 
 const isSafeImageSrc = (src: string) => {
@@ -128,19 +149,7 @@ const components: Components = {
       return <>{children}</>;
     }
 
-    return (
-      <a
-        href={href}
-        rel="noreferrer"
-        onClick={(event) => {
-          event.preventDefault();
-          void openSafeUrl(href);
-        }}
-        className="text-logo-primary underline decoration-logo-primary/40 underline-offset-2 hover:decoration-logo-primary"
-      >
-        {children}
-      </a>
-    );
+    return <CopyLink href={href}>{children}</CopyLink>;
   },
 };
 

@@ -149,7 +149,6 @@
     "pathLabel": "Запазете файла като",
     "cliLabel": "Или с Hugging Face CLI (pip install huggingface_hub)",
     "sha256Label": "Очакван SHA-256",
-    "copied": "Копирано",
     "checkAgain": "Провери отново",
     "stillMissing": "Файлът още не е на този път.",
     "loadError": "Инструкциите за инсталиране не можаха да бъдат подготвени: {{error}}"
@@ -558,13 +557,11 @@
       },
       "sourceCode": {
         "title": "Изходен код",
-        "description": "Преглед на изходния код и принос",
-        "button": "Вижте в GitHub"
+        "description": "Преглед на изходния код и принос"
       },
       "supportDevelopment": {
         "title": "Подкрепете разработката",
-        "description": "Помогнете ни да продължим да развиваме Handy",
-        "button": "Дарение"
+        "description": "Помогнете ни да продължим да развиваме Handy"
       },
       "acknowledgments": {
         "title": "Благодарности",
@@ -586,6 +583,7 @@
     "close": "Затваряне",
     "open": "Отваряне",
     "copy": "Копиране",
+    "copied": "Копирано",
     "clear": "Изчистване",
     "noOptionsFound": "Няма намерени опции"
   },

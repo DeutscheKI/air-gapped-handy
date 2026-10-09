@@ -149,7 +149,6 @@
     "pathLabel": "Bestand opslaan als",
     "cliLabel": "Of met de Hugging Face-CLI (pip install huggingface_hub)",
     "sha256Label": "Verwachte SHA-256",
-    "copied": "Gekopieerd",
     "checkAgain": "Opnieuw controleren",
     "stillMissing": "Het bestand staat nog niet op dat pad.",
     "loadError": "Kon de installatie-instructies niet voorbereiden: {{error}}"
@@ -562,13 +561,11 @@
       },
       "sourceCode": {
         "title": "Broncode",
-        "description": "Bekijk de broncode en draag bij",
-        "button": "Bekijk op GitHub"
+        "description": "Bekijk de broncode en draag bij"
       },
       "supportDevelopment": {
         "title": "Ontwikkeling ondersteunen",
-        "description": "Help ons om te blijven bouwen aan Handy",
-        "button": "Doneren"
+        "description": "Help ons om te blijven bouwen aan Handy"
       },
       "acknowledgments": {
         "title": "Dankbetuigingen",
@@ -589,6 +586,7 @@
     "close": "Sluiten",
     "open": "Openen",
     "copy": "Kopiëren",
+    "copied": "Gekopieerd",
     "clear": "Wissen",
     "noOptionsFound": "Geen opties gevonden"
   },

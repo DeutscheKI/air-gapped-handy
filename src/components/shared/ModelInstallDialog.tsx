@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Check, Copy } from "lucide-react";
 import {
   commands,
   type ModelInfo,
@@ -8,52 +7,9 @@ import {
 } from "@/bindings";
 import { Dialog } from "@/components/ui";
 import { Button } from "@/components/ui/Button";
+import CopyField from "./CopyField";
 import { useModelStore } from "@/stores/modelStore";
 import { getTranslatedModelName } from "@/lib/utils/modelTranslation";
-
-interface CopyFieldProps {
-  label: string;
-  value: string;
-}
-
-const CopyField: React.FC<CopyFieldProps> = ({ label, value }) => {
-  const { t } = useTranslation();
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(value);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
-    } catch (err) {
-      console.error("Failed to copy to clipboard:", err);
-    }
-  };
-
-  return (
-    <div className="space-y-1">
-      <p className="text-xs font-medium text-text/60">{label}</p>
-      <div className="flex items-start gap-2">
-        <div className="flex-1 min-w-0 px-2 py-2 bg-mid-gray/10 border border-mid-gray/80 rounded-lg text-xs font-mono break-all select-text cursor-text">
-          {value}
-        </div>
-        <Button
-          variant="secondary"
-          size="sm"
-          onClick={handleCopy}
-          className="flex items-center gap-1.5 px-3 py-2 shrink-0"
-        >
-          {copied ? (
-            <Check className="w-3.5 h-3.5" />
-          ) : (
-            <Copy className="w-3.5 h-3.5" />
-          )}
-          <span>{copied ? t("modelInstall.copied") : t("common.copy")}</span>
-        </Button>
-      </div>
-    </div>
-  );
-};
 
 interface ModelInstallDialogProps {
   /** The model to show instructions for; `null` keeps the dialog closed. */

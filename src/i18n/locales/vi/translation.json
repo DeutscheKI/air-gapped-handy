@@ -149,7 +149,6 @@
     "pathLabel": "Lưu tệp thành",
     "cliLabel": "Hoặc dùng Hugging Face CLI (pip install huggingface_hub)",
     "sha256Label": "SHA-256 mong đợi",
-    "copied": "Đã sao chép",
     "checkAgain": "Kiểm tra lại",
     "stillMissing": "Tệp chưa có ở đường dẫn đó.",
     "loadError": "Không thể chuẩn bị hướng dẫn cài đặt: {{error}}"
@@ -558,13 +557,11 @@
       },
       "sourceCode": {
         "title": "Mã nguồn",
-        "description": "Xem mã nguồn và đóng góp",
-        "button": "Xem trên GitHub"
+        "description": "Xem mã nguồn và đóng góp"
       },
       "supportDevelopment": {
         "title": "Hỗ trợ phát triển",
-        "description": "Giúp chúng tôi tiếp tục xây dựng Handy",
-        "button": "Quyên góp"
+        "description": "Giúp chúng tôi tiếp tục xây dựng Handy"
       },
       "acknowledgments": {
         "title": "Lời cảm ơn",
@@ -586,6 +583,7 @@
     "close": "Đóng",
     "open": "Mở",
     "copy": "Sao chép",
+    "copied": "Đã sao chép",
     "clear": "Xóa",
     "noOptionsFound": "Không tìm thấy tùy chọn"
   },

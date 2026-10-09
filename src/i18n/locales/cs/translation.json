@@ -149,7 +149,6 @@
     "pathLabel": "Uložit soubor jako",
     "cliLabel": "Nebo pomocí Hugging Face CLI (pip install huggingface_hub)",
     "sha256Label": "Očekávaný SHA-256",
-    "copied": "Zkopírováno",
     "checkAgain": "Zkontrolovat znovu",
     "stillMissing": "Soubor v této cestě zatím není.",
     "loadError": "Nepodařilo se připravit pokyny k instalaci: {{error}}"
@@ -558,13 +557,11 @@
       },
       "sourceCode": {
         "title": "Zdrojový kód",
-        "description": "Zobrazit zdrojový kód a přispět",
-        "button": "Zobrazit na GitHubu"
+        "description": "Zobrazit zdrojový kód a přispět"
       },
       "supportDevelopment": {
         "title": "Podpořte vývoj",
-        "description": "Pomozte nám pokračovat ve vývoji Handy",
-        "button": "Přispět"
+        "description": "Pomozte nám pokračovat ve vývoji Handy"
       },
       "acknowledgments": {
         "title": "Poděkování",
@@ -586,6 +583,7 @@
     "close": "Zavřít",
     "open": "Otevřít",
     "copy": "Kopírovat",
+    "copied": "Zkopírováno",
     "clear": "Vymazat",
     "noOptionsFound": "Nenalezeny žádné možnosti"
   },

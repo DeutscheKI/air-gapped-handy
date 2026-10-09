@@ -149,7 +149,6 @@
     "pathLabel": "Enregistrer le fichier sous",
     "cliLabel": "Ou avec la CLI Hugging Face (pip install huggingface_hub)",
     "sha256Label": "SHA-256 attendu",
-    "copied": "Copié",
     "checkAgain": "Vérifier à nouveau",
     "stillMissing": "Le fichier n'est pas encore à cet emplacement.",
     "loadError": "Impossible de préparer les instructions d'installation : {{error}}"
@@ -558,13 +557,11 @@
       },
       "sourceCode": {
         "title": "Code source",
-        "description": "Voir le code source et contribuer",
-        "button": "Voir sur GitHub"
+        "description": "Voir le code source et contribuer"
       },
       "supportDevelopment": {
         "title": "Soutenir le développement",
-        "description": "Aidez-nous à continuer à construire Handy",
-        "button": "Faire un don"
+        "description": "Aidez-nous à continuer à construire Handy"
       },
       "acknowledgments": {
         "title": "Remerciements",
@@ -586,6 +583,7 @@
     "close": "Fermer",
     "open": "Ouvrir",
     "copy": "Copier",
+    "copied": "Copié",
     "clear": "Effacer",
     "noOptionsFound": "Aucune option trouvée"
   },

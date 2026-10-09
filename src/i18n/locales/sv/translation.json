@@ -149,7 +149,6 @@
     "pathLabel": "Spara filen som",
     "cliLabel": "Eller med Hugging Face CLI (pip install huggingface_hub)",
     "sha256Label": "Förväntad SHA-256",
-    "copied": "Kopierat",
     "checkAgain": "Kontrollera igen",
     "stillMissing": "Filen finns inte på den sökvägen ännu.",
     "loadError": "Kunde inte förbereda installationsanvisningarna: {{error}}"
@@ -558,13 +557,11 @@
       },
       "sourceCode": {
         "title": "Källkod",
-        "description": "Visa källkod och bidra",
-        "button": "Visa på GitHub"
+        "description": "Visa källkod och bidra"
       },
       "supportDevelopment": {
         "title": "Stöd utvecklingen",
-        "description": "Hjälp oss att fortsätta bygga Handy",
-        "button": "Donera"
+        "description": "Hjälp oss att fortsätta bygga Handy"
       },
       "acknowledgments": {
         "title": "Tack till",
@@ -586,6 +583,7 @@
     "close": "Stäng",
     "open": "Öppna",
     "copy": "Kopiera",
+    "copied": "Kopierat",
     "clear": "Rensa",
     "noOptionsFound": "Inga alternativ hittades"
   },

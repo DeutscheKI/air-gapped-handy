@@ -8,7 +8,6 @@ import { useSettings } from "../../hooks/useSettings";
 import { useOsType } from "../../hooks/useOsType";
 import { commands } from "@/bindings";
 import { toast } from "sonner";
-import { openUrl } from "@tauri-apps/plugin-opener";
 import { SECURE_INPUT_HELP_URL } from "../SecureInputWarning";
 
 interface HandyKeysShortcutInputProps {
@@ -222,10 +221,14 @@ export const HandyKeysShortcutInput: React.FC<HandyKeysShortcutInputProps> = ({
       const result = await commands.startHandyKeysRecording(shortcutId);
       if (result.status === "error") {
         if (String(result.error).includes("secure-input-active")) {
+          // Shown, not opened: this fork never launches a browser.
           toast.error(t("secureInput.recorderBlocked"), {
+            description: SECURE_INPUT_HELP_URL,
             action: {
-              label: t("secureInput.learnMore"),
-              onClick: () => openUrl(SECURE_INPUT_HELP_URL),
+              label: t("common.copy"),
+              onClick: () => {
+                void navigator.clipboard.writeText(SECURE_INPUT_HELP_URL);
+              },
             },
           });
         } else {

@@ -149,7 +149,6 @@
     "pathLabel": "檔案儲存為",
     "cliLabel": "或使用 Hugging Face CLI (pip install huggingface_hub)",
     "sha256Label": "預期 SHA-256",
-    "copied": "已複製",
     "checkAgain": "再次檢查",
     "stillMissing": "該路徑下尚無此檔案。",
     "loadError": "無法準備安裝說明：{{error}}"
@@ -558,13 +557,11 @@
       },
       "sourceCode": {
         "title": "原始碼",
-        "description": "檢視原始碼並參與貢獻",
-        "button": "在 GitHub 上檢視"
+        "description": "檢視原始碼並參與貢獻"
       },
       "supportDevelopment": {
         "title": "支持開發",
-        "description": "幫助我們繼續開發 Handy",
-        "button": "捐贈"
+        "description": "幫助我們繼續開發 Handy"
       },
       "acknowledgments": {
         "title": "致謝",
@@ -586,6 +583,7 @@
     "close": "關閉",
     "open": "開啟",
     "copy": "複製",
+    "copied": "已複製",
     "clear": "清除",
     "noOptionsFound": "未找到選項"
   },

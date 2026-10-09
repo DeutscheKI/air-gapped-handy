@@ -149,7 +149,6 @@
     "pathLabel": "फाइल यस नाममा सुरक्षित गर्नुहोस्",
     "cliLabel": "वा Hugging Face CLI बाट (pip install huggingface_hub)",
     "sha256Label": "अपेक्षित SHA-256",
-    "copied": "कपी भयो",
     "checkAgain": "फेरि जाँच गर्नुहोस्",
     "stillMissing": "फाइल अझै त्यो पथमा छैन।",
     "loadError": "इन्स्टल निर्देशन तयार गर्न सकिएन: {{error}}"
@@ -562,13 +561,11 @@
       },
       "sourceCode": {
         "title": "स्रोत कोड",
-        "description": "स्रोत कोड हेर्नुहोस् र योगदान गर्नुहोस्",
-        "button": "GitHub मा हेर्नुहोस्"
+        "description": "स्रोत कोड हेर्नुहोस् र योगदान गर्नुहोस्"
       },
       "supportDevelopment": {
         "title": "विकासलाई सहयोग गर्नुहोस्",
-        "description": "Handy निर्माण जारी राख्न हामीलाई सहयोग गर्नुहोस्",
-        "button": "दान गर्नुहोस्"
+        "description": "Handy निर्माण जारी राख्न हामीलाई सहयोग गर्नुहोस्"
       },
       "acknowledgments": {
         "title": "आभार",
@@ -589,6 +586,7 @@
     "close": "बन्द गर्नुहोस्",
     "open": "खोल्नुहोस्",
     "copy": "कपी गर्नुहोस्",
+    "copied": "कपी भयो",
     "clear": "खाली गर्नुहोस्",
     "noOptionsFound": "कुनै विकल्प भेटिएन"
   },

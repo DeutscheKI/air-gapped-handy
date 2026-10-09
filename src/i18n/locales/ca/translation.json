@@ -149,7 +149,6 @@
     "pathLabel": "Desa el fitxer com a",
     "cliLabel": "O amb la CLI de Hugging Face (pip install huggingface_hub)",
     "sha256Label": "SHA-256 esperat",
-    "copied": "Copiat",
     "checkAgain": "Comprova de nou",
     "stillMissing": "El fitxer encara no és en aquest camí.",
     "loadError": "No s'han pogut preparar les instruccions d'instal·lació: {{error}}"
@@ -562,13 +561,11 @@
       },
       "sourceCode": {
         "title": "Codi font",
-        "description": "Consulta el codi font i col·laboreu-hi",
-        "button": "Mostra al GitHub"
+        "description": "Consulta el codi font i col·laboreu-hi"
       },
       "supportDevelopment": {
         "title": "Dona suport al desenvolupament",
-        "description": "Ajudeu-nos a continuar desenvolupant el Handy",
-        "button": "Feu una donació"
+        "description": "Ajudeu-nos a continuar desenvolupant el Handy"
       },
       "acknowledgments": {
         "title": "Agraïments",
@@ -589,6 +586,7 @@
     "close": "Tanca",
     "open": "Obre",
     "copy": "Copia",
+    "copied": "Copiat",
     "clear": "Neteja",
     "noOptionsFound": "No s'ha trobat cap opció"
   },

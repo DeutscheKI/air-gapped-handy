@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { getVersion } from "@tauri-apps/api/app";
-import { openUrl } from "@tauri-apps/plugin-opener";
 import { SettingsGroup } from "../../ui/SettingsGroup";
 import { SettingContainer } from "../../ui/SettingContainer";
-import { Button } from "../../ui/Button";
+import { CopyField } from "../../shared";
 import { AppDataDirectory } from "../AppDataDirectory";
 import { AppLanguageSelector } from "../AppLanguageSelector";
 import { ShowWhatsNewOnUpdate } from "../ShowWhatsNewOnUpdate";
@@ -29,13 +28,10 @@ export const AboutSettings: React.FC = () => {
     fetchVersion();
   }, []);
 
-  const handleDonateClick = async () => {
-    try {
-      await openUrl("https://handy.computer/donate");
-    } catch (error) {
-      console.error("Failed to open donate link:", error);
-    }
-  };
+  // This fork never opens a browser: addresses are shown and copied, so the
+  // user carries them to a machine that is online.
+  const DONATE_URL = "https://handy.computer/donate";
+  const SOURCE_URL = "https://github.com/cjpais/Handy";
 
   return (
     <div className="max-w-3xl w-full mx-auto space-y-6">
@@ -57,24 +53,18 @@ export const AboutSettings: React.FC = () => {
           title={t("settings.about.supportDevelopment.title")}
           description={t("settings.about.supportDevelopment.description")}
           grouped={true}
+          layout="stacked"
         >
-          <Button variant="primary" size="md" onClick={handleDonateClick}>
-            {t("settings.about.supportDevelopment.button")}
-          </Button>
+          <CopyField value={DONATE_URL} />
         </SettingContainer>
 
         <SettingContainer
           title={t("settings.about.sourceCode.title")}
           description={t("settings.about.sourceCode.description")}
           grouped={true}
+          layout="stacked"
         >
-          <Button
-            variant="secondary"
-            size="md"
-            onClick={() => openUrl("https://github.com/cjpais/Handy")}
-          >
-            {t("settings.about.sourceCode.button")}
-          </Button>
+          <CopyField value={SOURCE_URL} />
         </SettingContainer>
 
         <AppDataDirectory descriptionMode="tooltip" grouped={true} />

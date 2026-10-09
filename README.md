@@ -60,6 +60,12 @@ is one divergence from upstream [cjpais/Handy](https://github.com/cjpais/Handy).
   released Handy on hosted runners and fetched ONNX Runtime from `blob.handy.computer` on
   the way. This fork is built locally and offline, so none of that runs here; the issue
   and PR templates and the funding file went with it.
+- **Links are shown and copied, never opened.** Upstream handed the donate and source
+  links on the About page, the links inside release notes and the macOS Secure Input help
+  link to the system browser through `tauri-plugin-opener`. Handy did not connect itself,
+  but it started a process that would. Every such link is now rendered as its address
+  with a copy button (the same field the model install dialog uses), so the user carries
+  it to a machine that is online.
 
 [![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/invite/WVBeWsNXK4)
 

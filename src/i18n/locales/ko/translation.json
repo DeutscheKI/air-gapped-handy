@@ -149,7 +149,6 @@
     "pathLabel": "다른 이름으로 저장",
     "cliLabel": "또는 Hugging Face CLI 사용 (pip install huggingface_hub)",
     "sha256Label": "예상 SHA-256",
-    "copied": "복사됨",
     "checkAgain": "다시 확인",
     "stillMissing": "아직 해당 경로에 파일이 없습니다.",
     "loadError": "설치 안내를 준비할 수 없습니다: {{error}}"
@@ -558,13 +557,11 @@
       },
       "sourceCode": {
         "title": "소스 코드",
-        "description": "소스 코드 보기 및 기여",
-        "button": "GitHub에서 보기"
+        "description": "소스 코드 보기 및 기여"
       },
       "supportDevelopment": {
         "title": "개발 지원",
-        "description": "Handy 개발을 계속할 수 있도록 도와주세요",
-        "button": "후원하기"
+        "description": "Handy 개발을 계속할 수 있도록 도와주세요"
       },
       "acknowledgments": {
         "title": "감사의 말",
@@ -586,6 +583,7 @@
     "close": "닫기",
     "open": "열기",
     "copy": "복사",
+    "copied": "복사됨",
     "clear": "지우기",
     "noOptionsFound": "옵션을 찾을 수 없습니다"
   },

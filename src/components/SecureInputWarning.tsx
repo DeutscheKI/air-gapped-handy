@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { listen } from "@tauri-apps/api/event";
-import { openUrl } from "@tauri-apps/plugin-opener";
-import { ExternalLink, TriangleAlert, X } from "lucide-react";
+import { TriangleAlert, X } from "lucide-react";
+import { CopyField } from "@/components/shared";
 import { commands, type SecureInputStatus } from "@/bindings";
 
 // Detailed remediation steps live in the docs rather than in the banner
@@ -95,24 +95,19 @@ const SecureInputWarning: React.FC = () => {
         <p className="min-w-0 flex-1 text-sm font-medium leading-5">
           {message}
         </p>
-        <div className="flex shrink-0 items-center gap-1">
-          <button
-            onClick={() => openUrl(SECURE_INPUT_HELP_URL)}
-            className="cursor-pointer whitespace-nowrap rounded px-2 py-1.5 text-sm font-medium text-text hover:text-warning focus:outline-none focus:ring-1 focus:ring-warning"
-          >
-            <span className="flex items-center gap-1 border-b border-current leading-4">
-              {t("secureInput.learnMore")}
-              <ExternalLink className="h-3.5 w-3.5" />
-            </span>
-          </button>
-          <button
-            onClick={() => setDismissed(true)}
-            aria-label={t("secureInput.dismiss")}
-            className="cursor-pointer rounded p-1.5 text-mid-gray hover:bg-warning/15 hover:text-warning focus:outline-none focus:ring-1 focus:ring-warning"
-          >
-            <X className="h-4 w-4" />
-          </button>
-        </div>
+        <button
+          onClick={() => setDismissed(true)}
+          aria-label={t("secureInput.dismiss")}
+          className="shrink-0 cursor-pointer rounded p-1.5 text-mid-gray hover:bg-warning/15 hover:text-warning focus:outline-none focus:ring-1 focus:ring-warning"
+        >
+          <X className="h-4 w-4" />
+        </button>
+      </div>
+      <div className="mt-2 ps-8">
+        <CopyField
+          label={t("secureInput.learnMore")}
+          value={SECURE_INPUT_HELP_URL}
+        />
       </div>
     </div>
   );
