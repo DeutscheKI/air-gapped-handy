@@ -123,13 +123,6 @@
     "streaming": "Потокове",
     "active": "Активна",
     "noModelsAvailable": "Немає доступних моделей",
-    "verifying": "Перевірка {{modelName}}...",
-    "verifyingGeneric": "Перевірка...",
-    "extracting": "Розпакування {{modelName}}...",
-    "extractingMultiple": "Розпакування {{count}} моделей...",
-    "extractingGeneric": "Розпакування...",
-    "downloading": "Завантаження {{percentage}}%",
-    "downloadingMultiple": "Завантаження {{count}} моделей...",
     "modelReady": "Модель готова",
     "loading": "Завантаження {{modelName}}...",
     "loadingGeneric": "Завантаження...",
@@ -138,7 +131,6 @@
     "noModelDownloadRequired": "Немає моделі - потрібно завантажити",
     "deleteModel": "Видалити {{modelName}}",
     "switching": "Перемикання...",
-    "downloadSpeed": "{{speed}} MB/s",
     "capabilities": {
       "languageSelection": "Підтримує кілька мов введення",
       "languageCount": "{{total}} мов",
@@ -148,8 +140,6 @@
       "languageOnly": "Лише {{language}}",
       "streaming": "Показує транскрипцію в реальному часі під час мовлення"
     },
-    "cancel": "Скасувати",
-    "cancelDownload": "Скасувати завантаження",
     "legacy": "Застаріле"
   },
   "modelInstall": {

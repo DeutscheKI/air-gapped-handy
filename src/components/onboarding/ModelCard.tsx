@@ -54,13 +54,8 @@ const getQuantLabel = (filename: string): string | null => {
 };
 
 export type ModelCardStatus =
-  | "downloadable"
-  | "downloading"
-  | "verifying"
-  | "extracting"
-  | "switching"
-  | "active"
-  | "available";
+  /** Not on disk: clicking opens the manual install instructions. */
+  "installable" | "switching" | "active" | "available";
 
 interface ModelCardProps {
   model: ModelInfo;
@@ -72,24 +67,18 @@ interface ModelCardProps {
   /** Opens the manual install instructions; this fork never downloads. */
   onInstall?: (modelId: string) => void;
   onDelete?: (modelId: string) => void;
-  onCancel?: (modelId: string) => void;
-  downloadProgress?: number;
-  downloadSpeed?: number; // MB/s
   showRecommended?: boolean;
 }
 
 const ModelCard: React.FC<ModelCardProps> = ({
   model,
   variant = "default",
-  status = "downloadable",
+  status = "installable",
   disabled = false,
   className = "",
   onSelect,
   onInstall,
   onDelete,
-  onCancel,
-  downloadProgress,
-  downloadSpeed,
   showRecommended = true,
 }) => {
   const { t } = useTranslation();
@@ -99,13 +88,13 @@ const ModelCard: React.FC<ModelCardProps> = ({
   const isFeatured = variant === "featured";
   // The active model is already loaded — re-selecting it just reloads it for no
   // gain, so it is deliberately not clickable.
-  const isClickable = status === "available" || status === "downloadable";
+  const isClickable = status === "available" || status === "installable";
 
   // Get translated model name and description
   const displayName = getTranslatedModelName(model, t);
   const displayDescription = getTranslatedModelDescription(model, t);
   const showModelSize =
-    status === "downloadable" || status === "available" || status === "active";
+    status === "installable" || status === "available" || status === "active";
   const formattedModelSize = formatModelSize(Number(model.size_mb));
   const quantLabel = getQuantLabel(model.filename);
   const capabilityLanguages = getUniqueCapabilityLanguages(
@@ -133,7 +122,7 @@ const ModelCard: React.FC<ModelCardProps> = ({
 
   const handleClick = () => {
     if (!isClickable || disabled) return;
-    if (status === "downloadable" && onInstall) {
+    if (status === "installable" && onInstall) {
       onInstall(model.id);
     } else {
       onSelect(model.id);
@@ -264,7 +253,7 @@ const ModelCard: React.FC<ModelCardProps> = ({
         )}
         {showModelSize && (
           <span className="flex items-center gap-1.5 ms-auto text-xs text-text/50">
-            {status === "downloadable" ? (
+            {status === "installable" ? (
               <Download className="w-3.5 h-3.5" />
             ) : (
               <HardDrive className="w-3.5 h-3.5" />
@@ -288,68 +277,6 @@ const ModelCard: React.FC<ModelCardProps> = ({
           </Button>
         )}
       </div>
-
-      {/* Download/extract progress */}
-      {status === "downloading" && downloadProgress !== undefined && (
-        <div className="w-full mt-3">
-          <div className="w-full h-1.5 bg-mid-gray/20 rounded-full overflow-hidden">
-            <div
-              className="h-full bg-logo-primary rounded-full transition-all duration-300"
-              style={{ width: `${downloadProgress}%` }}
-            />
-          </div>
-          <div className="flex items-center justify-between text-xs mt-1">
-            <span className="text-text/50">
-              {t("modelSelector.downloading", {
-                percentage: Math.round(downloadProgress),
-              })}
-            </span>
-            <div className="flex items-center gap-2">
-              {downloadSpeed !== undefined && downloadSpeed > 0 && (
-                <span className="tabular-nums text-text/50">
-                  {t("modelSelector.downloadSpeed", {
-                    speed: downloadSpeed.toFixed(1),
-                  })}
-                </span>
-              )}
-              {onCancel && (
-                <Button
-                  variant="danger-ghost"
-                  size="sm"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    onCancel(model.id);
-                  }}
-                  aria-label={t("modelSelector.cancelDownload")}
-                >
-                  {t("modelSelector.cancel")}
-                </Button>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
-      {status === "verifying" && (
-        <div className="w-full mt-3">
-          <div className="w-full h-1.5 bg-mid-gray/20 rounded-full overflow-hidden">
-            <div className="h-full bg-logo-primary rounded-full animate-pulse w-full" />
-          </div>
-          <p className="text-xs text-text/50 mt-1">
-            {t("modelSelector.verifyingGeneric")}
-          </p>
-        </div>
-      )}
-      {status === "extracting" && (
-        <div className="w-full mt-3">
-          <div className="w-full h-1.5 bg-mid-gray/20 rounded-full overflow-hidden">
-            <div className="h-full bg-logo-primary rounded-full animate-pulse w-full" />
-          </div>
-          <p className="text-xs text-text/50 mt-1">
-            {t("modelSelector.extractingGeneric")}
-          </p>
-        </div>
-      )}
     </div>
   );
 };

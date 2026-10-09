@@ -46,14 +46,8 @@ export const ModelsSettings: React.FC = () => {
   const {
     models,
     currentModel,
-    downloadingModels,
-    downloadProgress,
-    downloadStats,
-    verifyingModels,
-    extractingModels,
     loading,
     isRescanning,
-    cancelDownload,
     selectModel,
     deleteModel,
     rescanLocalModels,
@@ -97,15 +91,6 @@ export const ModelsSettings: React.FC = () => {
   }, [languageFilter, t]);
 
   const getModelStatus = (modelId: string): ModelCardStatus => {
-    if (modelId in extractingModels) {
-      return "extracting";
-    }
-    if (modelId in verifyingModels) {
-      return "verifying";
-    }
-    if (modelId in downloadingModels) {
-      return "downloading";
-    }
     if (switchingModelId === modelId) {
       return "switching";
     }
@@ -113,22 +98,12 @@ export const ModelsSettings: React.FC = () => {
     // A stale persisted selection must never make a missing model look Active.
     // Catalog models without files should offer their recovery action instead.
     if (!model?.is_downloaded) {
-      return "downloadable";
+      return "installable";
     }
     if (modelId === currentModel) {
       return "active";
     }
     return "available";
-  };
-
-  const getDownloadProgress = (modelId: string): number | undefined => {
-    const progress = downloadProgress[modelId];
-    return progress?.percentage;
-  };
-
-  const getDownloadSpeed = (modelId: string): number | undefined => {
-    const stats = downloadStats[modelId];
-    return stats?.speed;
   };
 
   const handleModelSelect = async (modelId: string) => {
@@ -175,14 +150,6 @@ export const ModelsSettings: React.FC = () => {
     }
   };
 
-  const handleModelCancel = async (modelId: string) => {
-    try {
-      await cancelDownload(modelId);
-    } catch (err) {
-      console.error(`Failed to cancel download for ${modelId}:`, err);
-    }
-  };
-
   // Filter models by search query (name + description), language filter, and toggles
   const filteredModels = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
@@ -203,18 +170,13 @@ export const ModelsSettings: React.FC = () => {
     });
   }, [models, languageFilter, filterStreaming, filterTranslation, searchQuery]);
 
-  // Split filtered models into downloaded (including custom) and available sections
+  // Split filtered models into installed (including custom) and available sections
   const { downloadedModels, availableModels } = useMemo(() => {
     const downloaded: ModelInfo[] = [];
     const available: ModelInfo[] = [];
 
     for (const model of filteredModels) {
-      if (
-        model.is_custom ||
-        model.is_downloaded ||
-        model.id in downloadingModels ||
-        model.id in extractingModels
-      ) {
+      if (model.is_custom || model.is_downloaded) {
         downloaded.push(model);
       } else {
         available.push(model);
@@ -233,7 +195,7 @@ export const ModelsSettings: React.FC = () => {
       downloadedModels: downloaded,
       availableModels: available,
     };
-  }, [filteredModels, downloadingModels, extractingModels, currentModel]);
+  }, [filteredModels, currentModel]);
 
   if (loading) {
     return (
@@ -422,9 +384,6 @@ export const ModelsSettings: React.FC = () => {
               onSelect={handleModelSelect}
               onInstall={handleModelInstall}
               onDelete={handleModelDelete}
-              onCancel={handleModelCancel}
-              downloadProgress={getDownloadProgress(model.id)}
-              downloadSpeed={getDownloadSpeed(model.id)}
               showRecommended={false}
             />
           ))}
@@ -444,9 +403,6 @@ export const ModelsSettings: React.FC = () => {
                 onSelect={handleModelSelect}
                 onInstall={handleModelInstall}
                 onDelete={handleModelDelete}
-                onCancel={handleModelCancel}
-                downloadProgress={getDownloadProgress(model.id)}
-                downloadSpeed={getDownloadSpeed(model.id)}
                 showRecommended={true}
               />
             ))}

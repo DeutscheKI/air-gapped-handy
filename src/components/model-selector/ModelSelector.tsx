@@ -6,19 +6,10 @@ import { getTranslatedModelName } from "../../lib/utils/modelTranslation";
 import { useModelStore } from "../../stores/modelStore";
 import ModelStatusButton from "./ModelStatusButton";
 import ModelDropdown from "./ModelDropdown";
-import DownloadProgressDisplay from "./DownloadProgressDisplay";
 
 import { ModelStateEvent } from "@/lib/types/events";
 
-type ModelStatus =
-  | "ready"
-  | "loading"
-  | "downloading"
-  | "verifying"
-  | "extracting"
-  | "error"
-  | "unloaded"
-  | "none";
+type ModelStatus = "ready" | "loading" | "error" | "unloaded" | "none";
 
 interface ModelSelectorProps {
   onError?: (error: string) => void;
@@ -26,15 +17,7 @@ interface ModelSelectorProps {
 
 const ModelSelector: React.FC<ModelSelectorProps> = ({ onError }) => {
   const { t } = useTranslation();
-  const {
-    models,
-    currentModel,
-    downloadProgress,
-    downloadStats,
-    verifyingModels,
-    extractingModels,
-    selectModel,
-  } = useModelStore();
+  const { models, currentModel, selectModel } = useModelStore();
 
   const [modelStatus, setModelStatus] = useState<ModelStatus>("unloaded");
   const [modelError, setModelError] = useState<string | null>(null);
@@ -97,30 +80,6 @@ const ModelSelector: React.FC<ModelSelectorProps> = ({ onError }) => {
       },
     );
 
-    // Auto-select model when download completes (fires after extraction too)
-    const downloadCompleteUnlisten = listen<string>(
-      "model-download-complete",
-      (event) => {
-        const modelId = event.payload;
-        setTimeout(async () => {
-          try {
-            const isRecording = await commands.isRecording();
-            if (!isRecording) {
-              setPendingModelId(modelId);
-              setModelError(null);
-              setShowModelDropdown(false);
-              const success = await selectModel(modelId);
-              if (!success) {
-                setPendingModelId(null);
-              }
-            }
-          } catch {
-            // Ignore errors in auto-select
-          }
-        }, 500);
-      },
-    );
-
     // Click outside to close dropdown
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -136,9 +95,8 @@ const ModelSelector: React.FC<ModelSelectorProps> = ({ onError }) => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
       modelStateUnlisten.then((fn) => fn());
-      downloadCompleteUnlisten.then((fn) => fn());
     };
-  }, [selectModel]);
+  }, []);
 
   const handleModelSelect = async (modelId: string) => {
     setPendingModelId(modelId);
@@ -154,52 +112,6 @@ const ModelSelector: React.FC<ModelSelectorProps> = ({ onError }) => {
   };
 
   const getModelDisplayText = (): string => {
-    const verifyingKeys = Object.keys(verifyingModels);
-    if (verifyingKeys.length > 0) {
-      if (verifyingKeys.length === 1) {
-        const modelId = verifyingKeys[0];
-        const model = models.find((m) => m.id === modelId);
-        const modelName = model
-          ? getTranslatedModelName(model, t)
-          : t("modelSelector.verifyingGeneric").replace("...", "");
-        return t("modelSelector.verifying", { modelName });
-      } else {
-        return t("modelSelector.verifyingGeneric");
-      }
-    }
-
-    const extractingKeys = Object.keys(extractingModels);
-    if (extractingKeys.length > 0) {
-      if (extractingKeys.length === 1) {
-        const modelId = extractingKeys[0];
-        const model = models.find((m) => m.id === modelId);
-        const modelName = model
-          ? getTranslatedModelName(model, t)
-          : t("modelSelector.extractingGeneric").replace("...", "");
-        return t("modelSelector.extracting", { modelName });
-      } else {
-        return t("modelSelector.extractingMultiple", {
-          count: extractingKeys.length,
-        });
-      }
-    }
-
-    const progressValues = Object.values(downloadProgress);
-    if (progressValues.length > 0) {
-      if (progressValues.length === 1) {
-        const progress = progressValues[0];
-        const percentage = Math.max(
-          0,
-          Math.min(100, Math.round(progress.percentage)),
-        );
-        return t("modelSelector.downloading", { percentage });
-      } else {
-        return t("modelSelector.downloadingMultiple", {
-          count: progressValues.length,
-        });
-      }
-    }
-
     const currentModelInfo = models.find((m) => m.id === displayModelId);
 
     switch (modelStatus) {
@@ -213,12 +125,6 @@ const ModelSelector: React.FC<ModelSelectorProps> = ({ onError }) => {
               modelName: getTranslatedModelName(currentModelInfo, t),
             })
           : t("modelSelector.loadingGeneric");
-      case "extracting":
-        return currentModelInfo
-          ? t("modelSelector.extracting", {
-              modelName: getTranslatedModelName(currentModelInfo, t),
-            })
-          : t("modelSelector.extractingGeneric");
       case "error":
         return modelError || t("modelSelector.modelError");
       case "unloaded":
@@ -234,20 +140,12 @@ const ModelSelector: React.FC<ModelSelectorProps> = ({ onError }) => {
     }
   };
 
-  // Derive display status from model status + store state
-  const getDisplayStatus = (): ModelStatus => {
-    if (Object.keys(verifyingModels).length > 0) return "verifying";
-    if (Object.keys(extractingModels).length > 0) return "extracting";
-    if (Object.keys(downloadProgress).length > 0) return "downloading";
-    return modelStatus;
-  };
-
   return (
     <>
       {/* Model Status and Switcher */}
       <div className="relative" ref={dropdownRef}>
         <ModelStatusButton
-          status={getDisplayStatus()}
+          status={modelStatus}
           displayText={getModelDisplayText()}
           isDropdownOpen={showModelDropdown}
           onClick={() => setShowModelDropdown(!showModelDropdown)}
@@ -262,12 +160,6 @@ const ModelSelector: React.FC<ModelSelectorProps> = ({ onError }) => {
           />
         )}
       </div>
-
-      {/* Download Progress Bar for Models */}
-      <DownloadProgressDisplay
-        downloadProgress={downloadProgress}
-        downloadStats={downloadStats}
-      />
     </>
   );
 };

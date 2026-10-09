@@ -123,13 +123,6 @@
     "streaming": "Streaming",
     "active": "Aktivní",
     "noModelsAvailable": "Nejsou dostupné žádné modely",
-    "verifying": "Ověřování {{modelName}}...",
-    "verifyingGeneric": "Ověřování...",
-    "extracting": "Rozbaluji {{modelName}}...",
-    "extractingMultiple": "Rozbaluji {{count}} modelů...",
-    "extractingGeneric": "Rozbalování...",
-    "downloading": "Stahování {{percentage}}%",
-    "downloadingMultiple": "Stahování {{count}} modelů...",
     "modelReady": "Model připraven",
     "loading": "Načítám {{modelName}}...",
     "loadingGeneric": "Načítání...",
@@ -138,7 +131,6 @@
     "noModelDownloadRequired": "Žádný model - je nutné stáhnout",
     "deleteModel": "Smazat {{modelName}}",
     "switching": "Přepínání...",
-    "downloadSpeed": "{{speed}} MB/s",
     "capabilities": {
       "languageSelection": "Podporuje více vstupních jazyků",
       "languageCount": "{{total}} jazyků",
@@ -148,8 +140,6 @@
       "languageOnly": "Pouze {{language}}",
       "streaming": "Zobrazuje přepis živě, jak mluvíte"
     },
-    "cancel": "Zrušit",
-    "cancelDownload": "Zrušit stahování",
     "legacy": "Zastaralé"
   },
   "modelInstall": {

@@ -19,15 +19,7 @@ const Onboarding: React.FC<OnboardingProps> = ({
   preview = false,
 }) => {
   const { t } = useTranslation();
-  const {
-    models,
-    selectModel,
-    downloadingModels,
-    verifyingModels,
-    extractingModels,
-    downloadProgress,
-    downloadStats,
-  } = useModelStore();
+  const { models, selectModel } = useModelStore();
   const [selectedModelId, setSelectedModelId] = useState<string | null>(null);
   const [installModel, setInstallModel] = useState<ModelInfo | null>(null);
   const [showAll, setShowAll] = useState(false);
@@ -62,7 +54,7 @@ const Onboarding: React.FC<OnboardingProps> = ({
   // there is no curated subset to collapse, so just show the full list.
   const showRest = showAll || !hasRecommended;
 
-  // Watch for the selected model to finish downloading + verifying + extracting
+  // Select the chosen model once it is on disk, then leave onboarding
   useEffect(() => {
     // Debug previews are inert: never switch the user's active model. Guarded
     // here as well as in the handlers because this is where the backend call
@@ -75,17 +67,8 @@ const Onboarding: React.FC<OnboardingProps> = ({
     }
 
     const model = models.find((m) => m.id === selectedModelId);
-    const stillDownloading = selectedModelId in downloadingModels;
-    const stillVerifying = selectedModelId in verifyingModels;
-    const stillExtracting = selectedModelId in extractingModels;
 
-    if (
-      model?.is_downloaded &&
-      !stillDownloading &&
-      !stillVerifying &&
-      !stillExtracting &&
-      !hasStartedSelection.current
-    ) {
+    if (model?.is_downloaded && !hasStartedSelection.current) {
       hasStartedSelection.current = true;
 
       // Model is ready — select it and transition
@@ -99,17 +82,7 @@ const Onboarding: React.FC<OnboardingProps> = ({
         }
       });
     }
-  }, [
-    selectedModelId,
-    models,
-    downloadingModels,
-    verifyingModels,
-    extractingModels,
-    selectModel,
-    onModelSelected,
-    preview,
-    t,
-  ]);
+  }, [selectedModelId, models, selectModel, onModelSelected, preview, t]);
 
   const handleInstallModel = (modelId: string) => {
     if (preview) return;
@@ -130,24 +103,11 @@ const Onboarding: React.FC<OnboardingProps> = ({
     handleSelectExistingModel(modelId);
   };
 
-  const getModelStatus = (modelId: string): ModelCardStatus => {
-    if (modelId in extractingModels) return "extracting";
-    if (modelId in verifyingModels) return "verifying";
-    if (modelId in downloadingModels) return "downloading";
-    return "downloadable";
-  };
+  const getModelStatus = (): ModelCardStatus => "installable";
 
   const getExistingModelStatus = (modelId: string): ModelCardStatus => {
     if (selectedModelId === modelId) return "switching";
     return "available";
-  };
-
-  const getModelDownloadProgress = (modelId: string): number | undefined => {
-    return downloadProgress[modelId]?.percentage;
-  };
-
-  const getModelDownloadSpeed = (modelId: string): number | undefined => {
-    return downloadStats[modelId]?.speed;
   };
 
   return (
@@ -196,12 +156,10 @@ const Onboarding: React.FC<OnboardingProps> = ({
                   key={model.id}
                   model={model}
                   variant="featured"
-                  status={getModelStatus(model.id)}
+                  status={getModelStatus()}
                   disabled={isBusy}
                   onSelect={handleInstallModel}
                   onInstall={handleInstallModel}
-                  downloadProgress={getModelDownloadProgress(model.id)}
-                  downloadSpeed={getModelDownloadSpeed(model.id)}
                   showRecommended={false}
                 />
               ))}
@@ -210,12 +168,10 @@ const Onboarding: React.FC<OnboardingProps> = ({
                 <ModelCard
                   key={model.id}
                   model={model}
-                  status={getModelStatus(model.id)}
+                  status={getModelStatus()}
                   disabled={isBusy}
                   onSelect={handleInstallModel}
                   onInstall={handleInstallModel}
-                  downloadProgress={getModelDownloadProgress(model.id)}
-                  downloadSpeed={getModelDownloadSpeed(model.id)}
                   showRecommended={false}
                 />
               ))}
@@ -244,12 +200,10 @@ const Onboarding: React.FC<OnboardingProps> = ({
                   <ModelCard
                     key={model.id}
                     model={model}
-                    status={getModelStatus(model.id)}
+                    status={getModelStatus()}
                     disabled={isBusy}
                     onSelect={handleInstallModel}
                     onInstall={handleInstallModel}
-                    downloadProgress={getModelDownloadProgress(model.id)}
-                    downloadSpeed={getModelDownloadSpeed(model.id)}
                     showRecommended={false}
                   />
                 ))}

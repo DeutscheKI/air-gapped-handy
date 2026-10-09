@@ -124,13 +124,6 @@
     "active": "Aktywny",
     "switching": "Przełączanie...",
     "noModelsAvailable": "Brak dostępnych modeli",
-    "verifying": "Weryfikacja {{modelName}}...",
-    "verifyingGeneric": "Weryfikacja...",
-    "extracting": "Rozpakowywanie {{modelName}}...",
-    "extractingMultiple": "Rozpakowywanie {{count}} modeli...",
-    "extractingGeneric": "Rozpakowywanie...",
-    "downloading": "Pobieranie {{percentage}}%",
-    "downloadingMultiple": "Pobieranie {{count}} modeli...",
     "modelReady": "Model gotowy",
     "loading": "Wczytywanie {{modelName}}...",
     "loadingGeneric": "Wczytywanie...",
@@ -138,7 +131,6 @@
     "modelUnloaded": "Model wyładowany",
     "noModelDownloadRequired": "Brak modelu – wymagane pobranie",
     "deleteModel": "Usuń {{modelName}}",
-    "downloadSpeed": "{{speed}} MB/s",
     "capabilities": {
       "languageSelection": "Obsługuje wiele języków wejściowych",
       "languageCount": "{{total}} języków",
@@ -148,8 +140,6 @@
       "languageOnly": "Tylko {{language}}",
       "streaming": "Pokazuje transkrypcję na żywo podczas mówienia"
     },
-    "cancel": "Anuluj",
-    "cancelDownload": "Anuluj pobieranie",
     "legacy": "Przestarzałe"
   },
   "modelInstall": {

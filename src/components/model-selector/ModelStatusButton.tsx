@@ -1,14 +1,6 @@
 import React from "react";
 
-type ModelStatus =
-  | "ready"
-  | "loading"
-  | "downloading"
-  | "verifying"
-  | "extracting"
-  | "error"
-  | "unloaded"
-  | "none";
+type ModelStatus = "ready" | "loading" | "error" | "unloaded" | "none";
 
 interface ModelStatusButtonProps {
   status: ModelStatus;
@@ -31,12 +23,6 @@ const ModelStatusButton: React.FC<ModelStatusButtonProps> = ({
         return "bg-green-400";
       case "loading":
         return "bg-yellow-400 animate-pulse";
-      case "downloading":
-        return "bg-logo-primary animate-pulse";
-      case "verifying":
-        return "bg-orange-400 animate-pulse";
-      case "extracting":
-        return "bg-orange-400 animate-pulse";
       case "error":
         return "bg-red-400";
       case "unloaded":
