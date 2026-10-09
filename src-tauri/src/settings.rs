@@ -1000,21 +1000,6 @@ impl AppSettings {
             .iter()
             .find(|provider| provider.id == self.post_process_provider_id)
     }
-
-    pub fn post_process_provider(&self, provider_id: &str) -> Option<&PostProcessProvider> {
-        self.post_process_providers
-            .iter()
-            .find(|provider| provider.id == provider_id)
-    }
-
-    pub fn post_process_provider_mut(
-        &mut self,
-        provider_id: &str,
-    ) -> Option<&mut PostProcessProvider> {
-        self.post_process_providers
-            .iter_mut()
-            .find(|provider| provider.id == provider_id)
-    }
 }
 
 /// Startup entry point. Same load-or-create/salvage/migrate behavior as
