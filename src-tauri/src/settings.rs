@@ -994,14 +994,6 @@ impl Default for AppSettings {
     }
 }
 
-impl AppSettings {
-    pub fn active_post_process_provider(&self) -> Option<&PostProcessProvider> {
-        self.post_process_providers
-            .iter()
-            .find(|provider| provider.id == self.post_process_provider_id)
-    }
-}
-
 /// Startup entry point. Same load-or-create/salvage/migrate behavior as
 /// `get_settings`; kept as a named alias for call-site clarity, plus a
 /// one-time debug dump of the loaded settings.

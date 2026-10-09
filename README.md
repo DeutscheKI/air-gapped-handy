@@ -30,6 +30,14 @@ is one divergence from upstream [cjpais/Handy](https://github.com/cjpais/Handy).
   checker, the tray "Check for Updates" entry, the "Check for Updates" setting and the
   `HANDY_DISABLE_UPDATER` override are all removed. Release artifacts are no longer
   signed with Tauri's updater key.
+- **LLM post-processing is gone.** Upstream could send each transcript to an OpenAI-style
+  chat API (OpenAI, Anthropic, OpenRouter, Groq, a local Ollama, Apple Intelligence on
+  macOS) for cleanup. Even the local variants are HTTP connections, so the client, the
+  dedicated post-processing hotkey with its `--toggle-post-process` flag, the provider,
+  API-key and prompt settings, the settings page and the overlay's "polishing" state are
+  all removed. The transcript is pasted as the model produced it. History keeps its
+  three post-processing columns so existing databases open unchanged; they are no
+  longer written.
 - **The Rust toolchain is pinned to 1.99.0 in `rust-toolchain.toml`.** The vendored
   crates were built against it, and an offline machine cannot download a newer stable.
   Install it once with
