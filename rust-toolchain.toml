@@ -1,0 +1,7 @@
+# Pin the exact Rust release the vendored crates were built against. An
+# offline machine cannot download a newer stable, and a toolchain that
+# silently drifts between builds would undermine the reproducibility the
+# vendored tree is meant to give. Only the channel is pinned: listing
+# components here would make rustup try to download any that are missing.
+[toolchain]
+channel = "1.99.0"
