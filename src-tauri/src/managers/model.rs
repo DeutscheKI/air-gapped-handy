@@ -55,8 +55,6 @@ pub struct ModelInfo {
     pub source: ModelSource,
     pub size_mb: u64,
     pub is_downloaded: bool,
-    pub is_downloading: bool,
-    pub partial_size: u64,
     pub is_directory: bool,
     pub engine_type: EngineType,
     pub accuracy_score: f32,        // 0.0 to 1.0, higher is more accurate
@@ -144,8 +142,6 @@ pub(crate) fn default_quant_file<'a>(
 #[derive(Debug, Clone, Default)]
 pub struct DiskStatus {
     pub is_downloaded: bool,
-    pub is_downloading: bool,
-    pub partial_size: u64,
 }
 
 /// The spec of a bundled catalog model: everything in `catalog.json` normalised
@@ -228,8 +224,6 @@ impl ModelDescriptor {
             source: self.source.clone(),
             size_mb: file.map(|f| f.size_bytes / (1024 * 1024)).unwrap_or(0),
             is_downloaded: status.is_downloaded,
-            is_downloading: status.is_downloading,
-            partial_size: status.partial_size,
             is_directory: false,
             engine_type: self.engine_type.clone(),
             accuracy_score: self.accuracy_score,
@@ -473,8 +467,6 @@ impl ModelManager {
                 source: ModelSource::Legacy,
                 size_mb: 465,
                 is_downloaded: false,
-                is_downloading: false,
-                partial_size: 0,
                 is_directory: false,
                 engine_type: EngineType::TranscribeCpp,
                 accuracy_score: 0.60,
@@ -500,8 +492,6 @@ impl ModelManager {
                 source: ModelSource::Legacy,
                 size_mb: 469,
                 is_downloaded: false,
-                is_downloading: false,
-                partial_size: 0,
                 is_directory: false,
                 engine_type: EngineType::TranscribeCpp,
                 accuracy_score: 0.75,
@@ -526,8 +516,6 @@ impl ModelManager {
                 source: ModelSource::Legacy,
                 size_mb: 1549,
                 is_downloaded: false,
-                is_downloading: false,
-                partial_size: 0,
                 is_directory: false,
                 engine_type: EngineType::TranscribeCpp,
                 accuracy_score: 0.80,
@@ -552,8 +540,6 @@ impl ModelManager {
                 source: ModelSource::Legacy,
                 size_mb: 1031,
                 is_downloaded: false,
-                is_downloading: false,
-                partial_size: 0,
                 is_directory: false,
                 engine_type: EngineType::TranscribeCpp,
                 accuracy_score: 0.85,
@@ -579,8 +565,6 @@ impl ModelManager {
                 source: ModelSource::Legacy,
                 size_mb: 1030,
                 is_downloaded: false,
-                is_downloading: false,
-                partial_size: 0,
                 is_directory: false,
                 engine_type: EngineType::TranscribeCpp,
                 accuracy_score: 0.85,
@@ -606,8 +590,6 @@ impl ModelManager {
                 source: ModelSource::Legacy,
                 size_mb: 451,
                 is_downloaded: false,
-                is_downloading: false,
-                partial_size: 0,
                 is_directory: true,
                 engine_type: EngineType::Parakeet,
                 accuracy_score: 0.85,
@@ -642,8 +624,6 @@ impl ModelManager {
                 source: ModelSource::Legacy,
                 size_mb: 456,
                 is_downloaded: false,
-                is_downloading: false,
-                partial_size: 0,
                 is_directory: true,
                 engine_type: EngineType::Parakeet,
                 accuracy_score: 0.80,
@@ -668,8 +648,6 @@ impl ModelManager {
                 source: ModelSource::Legacy,
                 size_mb: 55,
                 is_downloaded: false,
-                is_downloading: false,
-                partial_size: 0,
                 is_directory: true,
                 engine_type: EngineType::Moonshine,
                 accuracy_score: 0.70,
@@ -694,8 +672,6 @@ impl ModelManager {
                 source: ModelSource::Legacy,
                 size_mb: 31,
                 is_downloaded: false,
-                is_downloading: false,
-                partial_size: 0,
                 is_directory: true,
                 engine_type: EngineType::MoonshineStreaming,
                 accuracy_score: 0.55,
@@ -720,8 +696,6 @@ impl ModelManager {
                 source: ModelSource::Legacy,
                 size_mb: 99,
                 is_downloaded: false,
-                is_downloading: false,
-                partial_size: 0,
                 is_directory: true,
                 engine_type: EngineType::MoonshineStreaming,
                 accuracy_score: 0.65,
@@ -746,8 +720,6 @@ impl ModelManager {
                 source: ModelSource::Legacy,
                 size_mb: 192,
                 is_downloaded: false,
-                is_downloading: false,
-                partial_size: 0,
                 is_directory: true,
                 engine_type: EngineType::MoonshineStreaming,
                 accuracy_score: 0.75,
@@ -779,8 +751,6 @@ impl ModelManager {
                 source: ModelSource::Legacy,
                 size_mb: 152,
                 is_downloaded: false,
-                is_downloading: false,
-                partial_size: 0,
                 is_directory: true,
                 engine_type: EngineType::SenseVoice,
                 accuracy_score: 0.65,
@@ -808,8 +778,6 @@ impl ModelManager {
                 source: ModelSource::Legacy,
                 size_mb: 151,
                 is_downloaded: false,
-                is_downloading: false,
-                partial_size: 0,
                 is_directory: true,
                 engine_type: EngineType::GigaAM,
                 accuracy_score: 0.85,
@@ -841,8 +809,6 @@ impl ModelManager {
                 source: ModelSource::Legacy,
                 size_mb: 146,
                 is_downloaded: false,
-                is_downloading: false,
-                partial_size: 0,
                 is_directory: true,
                 engine_type: EngineType::Canary,
                 accuracy_score: 0.75,
@@ -878,8 +844,6 @@ impl ModelManager {
                 source: ModelSource::Legacy,
                 size_mb: 691,
                 is_downloaded: false,
-                is_downloading: false,
-                partial_size: 0,
                 is_directory: true,
                 engine_type: EngineType::Canary,
                 accuracy_score: 0.85,
@@ -912,8 +876,6 @@ impl ModelManager {
                 source: ModelSource::Legacy,
                 size_mb: 1708,
                 is_downloaded: false,
-                is_downloading: false,
-                partial_size: 0,
                 is_directory: true,
                 engine_type: EngineType::Cohere,
                 accuracy_score: 0.90,
@@ -1022,9 +984,7 @@ impl ModelManager {
     /// The merge is additive: only new ids are inserted, so existing entries keep
     /// their values — including runtime-probed capabilities from
     /// [`Self::set_runtime_capabilities`]. It then runs [`Self::update_download_status`],
-    /// which recomputes disk-derived flags for *every* entry; a rescan racing an
-    /// in-flight download can briefly clear its `is_downloading`, but the download
-    /// continues and the event-driven UI self-corrects.
+    /// which recomputes disk-derived flags for *every* entry.
     ///
     /// The disk walk and 64 KiB header probes run against a cloned snapshot
     /// *off-lock* so readers never block on I/O; only the brief merge takes the
@@ -1225,11 +1185,8 @@ impl ModelManager {
                 // A models-dir copy counts too: that is where the install
                 // dialog tells users to put the file.
                 let local_path = self.models_dir.join(&model.filename);
-                let partial_path = self.models_dir.join(format!("{}.partial", &model.filename));
                 model.is_downloaded = hf_cached_path(repo_id, revision, &model.filename).is_some()
                     || local_path.exists();
-                model.is_downloading = false;
-                model.partial_size = partial_path.metadata().map(|m| m.len()).unwrap_or(0);
                 // Alternate-quant entries exist only because their file was
                 // discovered on disk — the catalog offers just the default
                 // quant, so they are never presented for download. When the
@@ -1239,34 +1196,12 @@ impl ModelManager {
                 }
                 continue;
             }
-            if model.is_directory {
-                // For directory-based models, check if the directory exists
-                let model_path = self.models_dir.join(&model.filename);
-                let partial_path = self.models_dir.join(format!("{}.partial", &model.filename));
-                model.is_downloaded = model_path.exists() && model_path.is_dir();
-                model.is_downloading = false;
-
-                // Get partial file size if it exists (for the .tar.gz being downloaded)
-                if partial_path.exists() {
-                    model.partial_size = partial_path.metadata().map(|m| m.len()).unwrap_or(0);
-                } else {
-                    model.partial_size = 0;
-                }
+            let model_path = self.models_dir.join(&model.filename);
+            model.is_downloaded = if model.is_directory {
+                model_path.is_dir()
             } else {
-                // For file-based models (existing logic)
-                let model_path = self.models_dir.join(&model.filename);
-                let partial_path = self.models_dir.join(format!("{}.partial", &model.filename));
-
-                model.is_downloaded = model_path.exists();
-                model.is_downloading = false;
-
-                // Get partial file size if it exists
-                if partial_path.exists() {
-                    model.partial_size = partial_path.metadata().map(|m| m.len()).unwrap_or(0);
-                } else {
-                    model.partial_size = 0;
-                }
-            }
+                model_path.exists()
+            };
 
             // Custom entries are discovered from files and have no download
             // source. Once their file is gone, keeping the entry would offer a
@@ -1529,8 +1464,6 @@ impl ModelManager {
                     source: ModelSource::Local, // already on disk; nothing to download
                     size_mb,
                     is_downloaded: true, // Already present on disk
-                    is_downloading: false,
-                    partial_size: 0,
                     is_directory: false,
                     engine_type: EngineType::TranscribeCpp,
                     accuracy_score: 0.0, // Sentinel: UI hides score bars when both are 0
@@ -1675,8 +1608,6 @@ impl ModelManager {
                         },
                         size_mb,
                         is_downloaded: true,
-                        is_downloading: false,
-                        partial_size: 0,
                         is_directory: false,
                         engine_type: EngineType::TranscribeCpp,
                         accuracy_score: 0.0,
@@ -1883,14 +1814,6 @@ impl ModelManager {
             return Err(anyhow::anyhow!("Model not available: {}", model_id));
         }
 
-        // Ensure we don't return partial files/directories
-        if model_info.is_downloading {
-            return Err(anyhow::anyhow!(
-                "Model is currently downloading: {}",
-                model_id
-            ));
-        }
-
         if let ModelSource::HuggingFace { repo_id, revision } = &model_info.source {
             if let Some(path) = hf_cached_path(repo_id, revision, &model_info.filename) {
                 return Ok(path);
@@ -1915,22 +1838,14 @@ impl ModelManager {
             ));
         }
 
+        // Nothing writes `.partial` files any more, so a leftover one from an
+        // upstream download is no reason to refuse a complete file next to it.
         let model_path = self.models_dir.join(&model_info.filename);
-        let partial_path = self
-            .models_dir
-            .join(format!("{}.partial", &model_info.filename));
-
         if model_info.is_directory {
-            if !model_path.exists() || !model_path.is_dir() {
+            if !model_path.is_dir() {
                 self.mark_model_unavailable(model_id);
                 return Err(anyhow::anyhow!(
                     "Complete model directory not found: {}",
-                    model_id
-                ));
-            }
-            if partial_path.exists() {
-                return Err(anyhow::anyhow!(
-                    "Model directory is incomplete: {}",
                     model_id
                 ));
             }
@@ -1942,9 +1857,6 @@ impl ModelManager {
                     "Complete model file not found: {}",
                     model_id
                 ));
-            }
-            if partial_path.exists() {
-                return Err(anyhow::anyhow!("Model file is incomplete: {}", model_id));
             }
             Ok(model_path)
         }
@@ -2147,8 +2059,6 @@ mod tests {
                 source: ModelSource::Legacy,
                 size_mb: 100,
                 is_downloaded: false,
-                is_downloading: false,
-                partial_size: 0,
                 is_directory: false,
                 engine_type: EngineType::TranscribeCpp,
                 accuracy_score: 0.5,
