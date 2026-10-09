@@ -12,7 +12,6 @@
     "general": "Umum",
     "models": "Model",
     "advanced": "Lanjutan",
-    "postProcessing": "Pascaproses",
     "history": "Riwayat",
     "debug": "Debug",
     "about": "Tentang"
@@ -408,60 +407,6 @@
         }
       }
     },
-    "postProcessing": {
-      "hotkey": {
-        "title": "Pintasan"
-      },
-      "api": {
-        "title": "API (Kompatibel dengan OpenAI)",
-        "provider": {
-          "title": "Penyedia",
-          "description": "Pilih penyedia yang kompatibel dengan OpenAI."
-        },
-        "appleIntelligence": {
-          "unavailable": "Apple Intelligence tidak tersedia di perangkat ini. Memerlukan Mac Apple Silicon yang menjalankan macOS Tahoe (26.0) atau yang lebih baru dengan Apple Intelligence diaktifkan di Pengaturan Sistem."
-        },
-        "baseUrl": {
-          "title": "URL Dasar",
-          "description": "URL dasar API untuk penyedia yang dipilih. Hanya penyedia kustom yang dapat diedit.",
-          "placeholder": "https://api.openai.com/v1"
-        },
-        "apiKey": {
-          "title": "Kunci API",
-          "description": "Kunci API untuk penyedia yang dipilih.",
-          "placeholder": "sk-..."
-        },
-        "model": {
-          "title": "Model",
-          "descriptionCustom": "Masukkan pengenal model yang diharapkan oleh endpoint kustom Anda.",
-          "descriptionDefault": "Pilih model yang disediakan oleh penyedia yang dipilih.",
-          "placeholderWithOptions": "Cari atau pilih model",
-          "placeholderNoOptions": "Ketik nama model",
-          "refreshModels": "Segarkan model"
-        }
-      },
-      "prompts": {
-        "title": "Prompt",
-        "selectedPrompt": {
-          "title": "Prompt Terpilih",
-          "description": "Pilih templat untuk menyempurnakan transkripsi atau buat yang baru. Gunakan ${output} dalam teks prompt untuk merujuk ke hasil transkripsi."
-        },
-        "noPrompts": "Tidak ada prompt yang tersedia",
-        "selectPrompt": "Pilih prompt",
-        "createNew": "Buat Prompt Baru",
-        "promptLabel": "Label Prompt",
-        "promptLabelPlaceholder": "Masukkan nama prompt",
-        "promptInstructions": "Instruksi Prompt",
-        "promptInstructionsPlaceholder": "Tulis instruksi yang dijalankan setelah transkripsi. Contoh: Perbaiki tata bahasa dan kejelasan teks berikut: ${output}",
-        "promptTip": "Tips: Gunakan <code>${output}</code> untuk menyisipkan teks hasil transkripsi ke prompt Anda.",
-        "updatePrompt": "Perbarui Prompt",
-        "deletePrompt": "Hapus Prompt",
-        "createPrompt": "Buat Prompt",
-        "cancel": "Batal",
-        "selectToEdit": "Pilih prompt di atas untuk melihat dan mengedit detailnya.",
-        "createFirst": "Klik 'Buat Prompt Baru' di atas untuk membuat prompt pascaproses pertama Anda."
-      }
-    },
     "history": {
       "title": "Riwayat",
       "openFolder": "Buka Folder Rekaman",
@@ -543,10 +488,6 @@
       "clamshellMicrophone": {
         "title": "Mikrofon Saat Laptop Ditutup",
         "description": "Mikrofon yang digunakan saat laptop ditutup"
-      },
-      "postProcessingToggle": {
-        "label": "Pascaproses",
-        "description": "Aktifkan penyempurnaan teks berbasis AI setelah transkripsi"
       },
       "muteWhileRecording": {
         "label": "Bisukan Saat Merekam",

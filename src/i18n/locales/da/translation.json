@@ -12,7 +12,6 @@
     "general": "Generelt",
     "models": "Modeller",
     "advanced": "Avanceret",
-    "postProcessing": "Efterbehandling",
     "history": "Historik",
     "debug": "Fejlfinding",
     "about": "Om"
@@ -408,60 +407,6 @@
         }
       }
     },
-    "postProcessing": {
-      "hotkey": {
-        "title": "Genvejstast"
-      },
-      "api": {
-        "title": "API (OpenAI-kompatibel)",
-        "provider": {
-          "title": "Udbyder",
-          "description": "Vælg en OpenAI-kompatibel udbyder."
-        },
-        "appleIntelligence": {
-          "unavailable": "Apple Intelligence er ikke tilgængelig på denne enhed. Kræver en Apple Silicon Mac med macOS Tahoe (26.0) eller nyere med Apple Intelligence aktiveret i Systemindstillinger."
-        },
-        "baseUrl": {
-          "title": "Basis-URL",
-          "description": "API-basis-URL for den valgte udbyder. Kun den brugerdefinerede udbyder kan redigeres.",
-          "placeholder": "https://api.openai.com/v1"
-        },
-        "apiKey": {
-          "title": "API-nøgle",
-          "description": "API-nøgle til den valgte udbyder.",
-          "placeholder": "sk-..."
-        },
-        "model": {
-          "title": "Model",
-          "descriptionCustom": "Angiv den modelidentifikator, som det brugerdefinerede endpoint forventer.",
-          "descriptionDefault": "Vælg en model, der udbydes af den valgte udbyder.",
-          "placeholderWithOptions": "Søg eller vælg en model",
-          "placeholderNoOptions": "Skriv et modelnavn",
-          "refreshModels": "Opdater modeller"
-        }
-      },
-      "prompts": {
-        "title": "Prompt",
-        "selectedPrompt": {
-          "title": "Valgt prompt",
-          "description": "Vælg en skabelon til at forfine transskriptioner, eller opret en ny. Brug ${output} i promptteksten for at referere til den fangede transskription."
-        },
-        "noPrompts": "Ingen prompts tilgængelige",
-        "selectPrompt": "Vælg en prompt",
-        "createNew": "Opret ny prompt",
-        "promptLabel": "Promptnavn",
-        "promptLabelPlaceholder": "Indtast promptnavn",
-        "promptInstructions": "Promptinstruktioner",
-        "promptInstructionsPlaceholder": "Skriv de instruktioner, der skal køres efter transskription. Eksempel: Forbedr grammatik og klarhed for følgende tekst: ${output}",
-        "promptTip": "Tip: Brug <code>${output}</code> til at indsætte den transskriberede tekst i din prompt.",
-        "updatePrompt": "Opdater prompt",
-        "deletePrompt": "Slet prompt",
-        "createPrompt": "Opret prompt",
-        "cancel": "Annuller",
-        "selectToEdit": "Vælg en prompt ovenfor for at se og redigere dens detaljer.",
-        "createFirst": "Klik på 'Opret ny prompt' ovenfor for at oprette din første efterbehandlingsprompt."
-      }
-    },
     "history": {
       "title": "Historik",
       "openFolder": "Åbn optagelsesmappe",
@@ -543,10 +488,6 @@
       "clamshellMicrophone": {
         "title": "Clamshell-mikrofon",
         "description": "Mikrofon, der skal bruges, når den bærbares låg er lukket"
-      },
-      "postProcessingToggle": {
-        "label": "Efterbehandling",
-        "description": "Aktivér AI-drevet tekstforbedring efter transskription"
       },
       "muteWhileRecording": {
         "label": "Mute under optagelse",

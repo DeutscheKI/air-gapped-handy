@@ -12,7 +12,6 @@
     "general": "General",
     "models": "Modelos",
     "advanced": "Avanzado",
-    "postProcessing": "Post proceso",
     "history": "Historial",
     "debug": "Depuración",
     "about": "Acerca de"
@@ -408,60 +407,6 @@
         }
       }
     },
-    "postProcessing": {
-      "hotkey": {
-        "title": "Tecla de acceso rápido"
-      },
-      "api": {
-        "title": "API (compatible con OpenAI)",
-        "provider": {
-          "title": "Proveedor",
-          "description": "Selecciona un proveedor compatible con OpenAI."
-        },
-        "appleIntelligence": {
-          "unavailable": "Apple Intelligence no está disponible en este dispositivo. Requiere un Mac con Apple Silicon ejecutando macOS Tahoe (26.0) o posterior con Apple Intelligence habilitado en Ajustes del Sistema."
-        },
-        "baseUrl": {
-          "title": "URL base",
-          "description": "URL base de la API para el proveedor seleccionado. Solo se puede editar el proveedor personalizado.",
-          "placeholder": "https://api.openai.com/v1"
-        },
-        "apiKey": {
-          "title": "Clave API",
-          "description": "Clave API para el proveedor seleccionado.",
-          "placeholder": "sk-..."
-        },
-        "model": {
-          "title": "Modelo",
-          "descriptionCustom": "Proporciona el identificador del modelo esperado por tu endpoint personalizado.",
-          "descriptionDefault": "Elige un modelo expuesto por el proveedor seleccionado.",
-          "placeholderWithOptions": "Buscar o seleccionar un modelo",
-          "placeholderNoOptions": "Escribe un nombre de modelo",
-          "refreshModels": "Actualizar modelos"
-        }
-      },
-      "prompts": {
-        "title": "Prompt",
-        "selectedPrompt": {
-          "title": "Prompt seleccionado",
-          "description": "Selecciona una plantilla para refinar las transcripciones o crea una nueva. Usa ${output} dentro del texto del prompt para hacer referencia a la transcripción capturada."
-        },
-        "noPrompts": "No hay prompts disponibles",
-        "selectPrompt": "Seleccionar un prompt",
-        "createNew": "Crear nuevo prompt",
-        "promptLabel": "Etiqueta del prompt",
-        "promptLabelPlaceholder": "Ingresa el nombre del prompt",
-        "promptInstructions": "Instrucciones del prompt",
-        "promptInstructionsPlaceholder": "Escribe las instrucciones para ejecutar después de la transcripción. Ejemplo: Mejora la gramática y claridad del siguiente texto: ${output}",
-        "promptTip": "Consejo: Usa <code>${output}</code> para insertar el texto transcrito en tu prompt.",
-        "updatePrompt": "Actualizar prompt",
-        "deletePrompt": "Eliminar prompt",
-        "createPrompt": "Crear prompt",
-        "cancel": "Cancelar",
-        "selectToEdit": "Selecciona un prompt arriba para ver y editar sus detalles.",
-        "createFirst": "Haz clic en 'Crear nuevo prompt' arriba para crear tu primer prompt de post procesamiento."
-      }
-    },
     "history": {
       "title": "Historial",
       "openFolder": "Abrir carpeta de grabaciones",
@@ -529,10 +474,6 @@
       "clamshellMicrophone": {
         "title": "Micrófono en modo clamshell",
         "description": "Micrófono a usar cuando la tapa del portátil está cerrada"
-      },
-      "postProcessingToggle": {
-        "label": "Post procesamiento",
-        "description": "Habilitar refinamiento de texto impulsado por IA después de la transcripción"
       },
       "muteWhileRecording": {
         "label": "Silenciar durante la grabación",

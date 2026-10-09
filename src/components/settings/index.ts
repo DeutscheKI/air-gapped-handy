@@ -5,7 +5,6 @@ export { DebugSettings } from "./debug/DebugSettings";
 export type { OnboardingPreviewStep } from "./debug/OnboardingPreview";
 export { HistorySettings } from "./history/HistorySettings";
 export { AboutSettings } from "./about/AboutSettings";
-export { PostProcessingSettings } from "./post-processing/PostProcessingSettings";
 export { ModelsSettings } from "./models/ModelsSettings";
 
 // Individual setting components
@@ -22,9 +21,6 @@ export { HandyKeysShortcutInput } from "./HandyKeysShortcutInput";
 export { ShortcutInput } from "./ShortcutInput";
 export { TranslateToEnglish } from "./TranslateToEnglish";
 export { CustomWords } from "./CustomWords";
-export { PostProcessingToggle } from "./PostProcessingToggle";
-export { PostProcessingSettingsApi } from "./PostProcessingSettingsApi";
-export { PostProcessingSettingsPrompts } from "./PostProcessingSettingsPrompts";
 export { FillerWordRemoval } from "./FillerWordRemoval";
 export { ChineseScriptSetting } from "./ChineseScript";
 export { AppDataDirectory } from "./AppDataDirectory";
