@@ -647,21 +647,6 @@
       }
     }
   },
-  "footer": {
-    "checkingUpdates": "Güncellemeler kontrol ediliyor...",
-    "updateAvailableShort": "Güncelleme mevcut",
-    "upToDate": "Güncel",
-    "updateCheckingDisabled": "Güncelleme Kontrolü Devre Dışı",
-    "downloading": "İndiriliyor... %{{progress}}",
-    "installing": "Yükleniyor...",
-    "preparing": "Hazırlanıyor...",
-    "checkForUpdates": "Güncellemeleri kontrol et",
-    "portableUpdateTitle": "Manuel güncelleme gerekli",
-    "portableUpdateMessage": "Taşınabilir kurulumlar otomatik olarak güncellenemez. Aşağıdan sisteminize uygun yükleyiciyi indirin, çalıştırın ve aynı klasöre kurun — Data/ klasörünüz (ayarlar, modeller, kayıtlar) yerinde kalır.",
-    "portableUpdateButton": "Yükleyiciyi indir",
-    "portableUpdateBrowseMessage": "Taşınabilir kurulumlar otomatik olarak güncellenemez. Sisteminize uygun en son sürümü GitHub Releases’ten indirin ve aynı klasöre kurun — Data/ klasörünüz (ayarlar, modeller, kayıtlar) yerinde kalır.",
-    "portableUpdateBrowseButton": "GitHub Releases’i aç"
-  },
   "common": {
     "loading": "Yükleniyor...",
     "delete": "Sil",

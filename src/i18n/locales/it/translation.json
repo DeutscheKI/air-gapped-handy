@@ -647,21 +647,6 @@
       }
     }
   },
-  "footer": {
-    "checkingUpdates": "Controllo aggiornamenti...",
-    "updateAvailableShort": "Aggiornamento disponibile",
-    "upToDate": "Aggiornato",
-    "updateCheckingDisabled": "Controllo Aggiornamenti Disabilitato",
-    "downloading": "Download... {{progress}}%",
-    "installing": "Installazione...",
-    "preparing": "Preparazione...",
-    "checkForUpdates": "Controlla aggiornamenti",
-    "portableUpdateTitle": "Aggiornamento manuale necessario",
-    "portableUpdateMessage": "Le installazioni portatili non possono essere aggiornate automaticamente. Scarica qui sotto il programma di installazione per il tuo sistema, eseguilo e installalo nella stessa cartella: la cartella Data/ (impostazioni, modelli, registrazioni) viene mantenuta.",
-    "portableUpdateButton": "Scarica il programma di installazione",
-    "portableUpdateBrowseMessage": "Le installazioni portatili non possono essere aggiornate automaticamente. Scarica da GitHub Releases la versione più recente per il tuo sistema e installala nella stessa cartella: la cartella Data/ (impostazioni, modelli, registrazioni) viene mantenuta.",
-    "portableUpdateBrowseButton": "Apri i rilasci su GitHub"
-  },
   "common": {
     "loading": "Caricamento...",
     "delete": "Elimina",

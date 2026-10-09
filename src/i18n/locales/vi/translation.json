@@ -647,21 +647,6 @@
       }
     }
   },
-  "footer": {
-    "checkingUpdates": "Đang kiểm tra cập nhật...",
-    "updateAvailableShort": "Có bản cập nhật",
-    "upToDate": "Đã cập nhật",
-    "updateCheckingDisabled": "Đã tắt kiểm tra cập nhật",
-    "downloading": "Đang tải... {{progress}}%",
-    "installing": "Đang cài đặt...",
-    "preparing": "Đang chuẩn bị...",
-    "checkForUpdates": "Kiểm tra cập nhật",
-    "portableUpdateTitle": "Cần cập nhật thủ công",
-    "portableUpdateMessage": "Bản cài đặt di động không thể cập nhật tự động. Hãy tải trình cài đặt phù hợp với hệ thống của bạn bên dưới, chạy nó và cài vào cùng thư mục — thư mục Data/ (cài đặt, mô hình, bản ghi) của bạn được giữ nguyên.",
-    "portableUpdateButton": "Tải trình cài đặt",
-    "portableUpdateBrowseMessage": "Bản cài đặt di động không thể cập nhật tự động. Hãy tải phiên bản mới nhất phù hợp với hệ thống của bạn từ GitHub Releases và cài vào cùng thư mục — thư mục Data/ (cài đặt, mô hình, bản ghi) của bạn được giữ nguyên.",
-    "portableUpdateBrowseButton": "Mở GitHub Releases"
-  },
   "common": {
     "loading": "Đang tải...",
     "delete": "Xóa",

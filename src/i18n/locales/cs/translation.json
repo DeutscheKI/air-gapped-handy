@@ -647,21 +647,6 @@
       }
     }
   },
-  "footer": {
-    "checkingUpdates": "Kontroluji aktualizace...",
-    "updateAvailableShort": "Dostupná aktualizace",
-    "upToDate": "Vše aktuální",
-    "updateCheckingDisabled": "Kontrola aktualizací vypnuta",
-    "downloading": "Stahování... {{progress}}%",
-    "installing": "Instalace...",
-    "preparing": "Příprava...",
-    "checkForUpdates": "Zkontrolovat aktualizace",
-    "portableUpdateTitle": "Vyžadována ruční aktualizace",
-    "portableUpdateMessage": "Přenosné instalace nelze aktualizovat automaticky. Níže stáhněte instalátor pro svůj systém, spusťte jej a nainstalujte do stejné složky — vaše složka Data/ (nastavení, modely, nahrávky) zůstane na místě.",
-    "portableUpdateButton": "Stáhnout instalátor",
-    "portableUpdateBrowseMessage": "Přenosné instalace nelze aktualizovat automaticky. Stáhněte nejnovější verzi pro svůj systém z GitHub Releases a nainstalujte ji do stejné složky — vaše složka Data/ (nastavení, modely, nahrávky) zůstane na místě.",
-    "portableUpdateBrowseButton": "Otevřít GitHub Releases"
-  },
   "common": {
     "loading": "Načítání...",
     "delete": "Smazat",
