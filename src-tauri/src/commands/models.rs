@@ -1,4 +1,6 @@
-use crate::managers::model::{ModelInfo, ModelInstallInstructions, ModelManager};
+use crate::managers::model::{
+    ModelFileVerification, ModelInfo, ModelInstallInstructions, ModelManager,
+};
 use crate::managers::transcription::{ModelStateEvent, TranscriptionManager};
 use crate::settings::{get_settings, write_settings, ModelUnloadTimeout};
 use std::sync::Arc;
@@ -30,6 +32,21 @@ pub async fn get_model_install_instructions(
 ) -> Result<ModelInstallInstructions, String> {
     model_manager
         .install_instructions(&model_id)
+        .map_err(|e| e.to_string())
+}
+
+/// Hash an installed catalog file against the catalog's SHA-256, so a
+/// hand-copied model that fails to load can be told apart from a bad build.
+#[tauri::command]
+#[specta::specta]
+pub async fn verify_model_file(
+    model_manager: State<'_, Arc<ModelManager>>,
+    model_id: String,
+) -> Result<ModelFileVerification, String> {
+    let manager = Arc::clone(&model_manager);
+    tauri::async_runtime::spawn_blocking(move || manager.verify_model_file(&model_id))
+        .await
+        .map_err(|e| e.to_string())?
         .map_err(|e| e.to_string())
 }
 

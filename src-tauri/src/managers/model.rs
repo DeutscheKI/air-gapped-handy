@@ -307,6 +307,50 @@ pub struct ModelInstallInstructions {
     pub hf_cli_command: String,
     /// Expected SHA-256 of the file, when the catalog records one.
     pub sha256: Option<String>,
+    /// Expected size in bytes, when the catalog records one.
+    pub expected_size_bytes: Option<u64>,
+    /// The file Handy found for this model, if any. A size that differs
+    /// from `expected_size_bytes` means a truncated or wrong download, which
+    /// is the common reason an "installed" model fails to load.
+    pub on_disk: Option<ModelFileOnDisk>,
+}
+
+/// Where an installed model file lives and how large it is.
+#[derive(Debug, Clone, Serialize, Deserialize, Type)]
+pub struct ModelFileOnDisk {
+    pub path: String,
+    pub size_bytes: u64,
+}
+
+/// Outcome of hashing an installed model file against the catalog.
+#[derive(Debug, Clone, Serialize, Deserialize, Type)]
+pub struct ModelFileVerification {
+    pub path: String,
+    pub size_bytes: u64,
+    pub sha256: String,
+    /// `None` when the catalog records no hash for this file.
+    pub expected_sha256: Option<String>,
+    /// `None` when there is nothing to compare against.
+    pub matches: Option<bool>,
+}
+
+/// Stream a file through SHA-256; model files run to gigabytes, so this
+/// never loads one into memory.
+fn sha256_file(path: &Path) -> Result<String> {
+    use sha2::{Digest, Sha256};
+    use std::io::Read;
+
+    let mut file = fs::File::open(path)?;
+    let mut hasher = Sha256::new();
+    let mut buf = vec![0u8; 1 << 20];
+    loop {
+        let n = file.read(&mut buf)?;
+        if n == 0 {
+            break;
+        }
+        hasher.update(&buf[..n]);
+    }
+    Ok(format!("{:x}", hasher.finalize()))
 }
 
 /// Quote `arg` for a POSIX shell only when it needs it, so the common
@@ -1088,6 +1132,15 @@ impl ModelManager {
         };
         let filename = &model_info.filename;
         let models_dir = self.models_dir.to_string_lossy();
+        let catalog_file =
+            crate::catalog::file_in_catalog(filename, Some(repo_id)).map(|(_, file)| file);
+        let on_disk = self.installed_file_path(&model_info).and_then(|path| {
+            let size_bytes = fs::metadata(&path).ok()?.len();
+            Some(ModelFileOnDisk {
+                path: path.to_string_lossy().to_string(),
+                size_bytes,
+            })
+        });
         Ok(ModelInstallInstructions {
             url: format!(
                 "https://huggingface.co/{}/resolve/{}/{}",
@@ -1101,8 +1154,52 @@ impl ModelManager {
                 revision,
                 shell_quote(&models_dir)
             ),
-            sha256: crate::catalog::file_in_catalog(filename, Some(repo_id))
-                .and_then(|(_, file)| file.sha256.clone()),
+            sha256: catalog_file.and_then(|file| file.sha256.clone()),
+            expected_size_bytes: catalog_file.map(|file| file.size_bytes),
+            on_disk,
+        })
+    }
+
+    /// The file a Hugging Face catalog model is loaded from: the models
+    /// directory copy wins, then the shared Hugging Face cache.
+    fn installed_file_path(&self, model: &ModelInfo) -> Option<PathBuf> {
+        let ModelSource::HuggingFace { repo_id, revision } = &model.source else {
+            return None;
+        };
+        let local = self.models_dir.join(&model.filename);
+        if local.is_file() {
+            return Some(local);
+        }
+        hf_cached_path(repo_id, revision, &model.filename)
+    }
+
+    /// Hash the installed file and compare it with the catalog. Slow for
+    /// gigabyte models; callers run it off the UI thread.
+    pub fn verify_model_file(&self, model_id: &str) -> Result<ModelFileVerification> {
+        let model_info = self
+            .get_model_info(model_id)
+            .ok_or_else(|| anyhow::anyhow!("Model not found: {}", model_id))?;
+        let path = self
+            .installed_file_path(&model_info)
+            .ok_or_else(|| anyhow::anyhow!("Model {} is not on disk", model_id))?;
+        let size_bytes = fs::metadata(&path)?.len();
+        let sha256 = sha256_file(&path)?;
+        let expected_sha256 = match &model_info.source {
+            ModelSource::HuggingFace { repo_id, .. } => {
+                crate::catalog::file_in_catalog(&model_info.filename, Some(repo_id))
+                    .and_then(|(_, file)| file.sha256.clone())
+            }
+            _ => None,
+        };
+        let matches = expected_sha256
+            .as_ref()
+            .map(|expected| expected.eq_ignore_ascii_case(&sha256));
+        Ok(ModelFileVerification {
+            path: path.to_string_lossy().to_string(),
+            size_bytes,
+            sha256,
+            expected_sha256,
+            matches,
         })
     }
 
@@ -1973,6 +2070,29 @@ mod tests {
                 "model.gguf"
             ),
             Some(expected)
+        );
+    }
+
+    #[test]
+    fn test_sha256_file_streams_the_whole_file() {
+        let dir = TempDir::new().unwrap();
+        let path = dir.path().join("abc.bin");
+        File::create(&path).unwrap().write_all(b"abc").unwrap();
+
+        assert_eq!(
+            sha256_file(&path).unwrap(),
+            "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+        );
+
+        // Larger than the read buffer, so the loop has to run more than once.
+        let big = dir.path().join("big.bin");
+        File::create(&big)
+            .unwrap()
+            .write_all(&vec![0u8; (1 << 20) + 1])
+            .unwrap();
+        assert_eq!(
+            sha256_file(&big).unwrap(),
+            "2cb74edba754a81d121c9db6833704a8e7d417e5b13d1a19f4a52f007d644264"
         );
     }
 

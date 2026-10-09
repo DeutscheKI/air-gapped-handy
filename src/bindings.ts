@@ -561,6 +561,18 @@ async getModelInstallInstructions(modelId: string) : Promise<Result<ModelInstall
     else return { status: "error", error: e  as any };
 }
 },
+/**
+ * Hash an installed catalog file against the catalog's SHA-256, so a
+ * hand-copied model that fails to load can be told apart from a bad build.
+ */
+async verifyModelFile(modelId: string) : Promise<Result<ModelFileVerification, string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("verify_model_file", { modelId }) };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
+},
 async deleteModel(modelId: string) : Promise<Result<null, string>> {
     try {
     return { status: "ok", data: await TAURI_INVOKE("delete_model", { modelId }) };
@@ -970,7 +982,33 @@ hf_cli_command: string;
 /**
  * Expected SHA-256 of the file, when the catalog records one.
  */
-sha256: string | null }
+sha256: string | null; 
+/**
+ * Expected size in bytes, when the catalog records one.
+ */
+expected_size_bytes: number | null; 
+/**
+ * The file Handy found for this model, if any. A size that differs
+ * from `expected_size_bytes` means a truncated or wrong download, which
+ * is the common reason an "installed" model fails to load.
+ */
+on_disk: ModelFileOnDisk | null }
+/**
+ * Where an installed model file lives and how large it is.
+ */
+export type ModelFileOnDisk = { path: string; size_bytes: number }
+/**
+ * Outcome of hashing an installed model file against the catalog.
+ */
+export type ModelFileVerification = { path: string; size_bytes: number; sha256: string; 
+/**
+ * `None` when the catalog records no hash for this file.
+ */
+expected_sha256: string | null; 
+/**
+ * `None` when there is nothing to compare against.
+ */
+matches: boolean | null }
 export type ModelLoadStatus = { is_loaded: boolean; current_model: string | null }
 /**
  * Where a model comes from — the routing discriminant for on-disk resolution
