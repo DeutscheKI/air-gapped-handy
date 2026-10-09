@@ -24,6 +24,12 @@ is one divergence from upstream [cjpais/Handy](https://github.com/cjpais/Handy).
   `bun install` either succeeds from the cache or fails with "not in the cache"; it never
   fetches. Regenerate with `scripts/vendor-bun.sh` after changing `package.json` or
   `bun.lock`.
+- **The self-updater is gone.** Upstream checked GitHub for a new release on every
+  launch and could download and install it. The `tauri-plugin-updater` dependency, its
+  `plugins.updater` endpoint and signing key, the `updater` capability, the footer update
+  checker, the tray "Check for Updates" entry, the "Check for Updates" setting and the
+  `HANDY_DISABLE_UPDATER` override are all removed. Release artifacts are no longer
+  signed with Tauri's updater key.
 - **The Rust toolchain is pinned to 1.99.0 in `rust-toolchain.toml`.** The vendored
   crates were built against it, and an offline machine cannot download a newer stable.
   Install it once with `rustup toolchain install 1.99.0 --profile minimal -c rust-src`.
