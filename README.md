@@ -66,6 +66,11 @@ is one divergence from upstream [cjpais/Handy](https://github.com/cjpais/Handy).
   but it started a process that would. Every such link is now rendered as its address
   with a copy button (the same field the model install dialog uses), so the user carries
   it to a machine that is online.
+- **The webview can no longer reach the opener plugin.** With every `openUrl` call gone,
+  the `opener:default` permission leaves `src-tauri/capabilities/default.json` and
+  `@tauri-apps/plugin-opener` leaves `package.json`, `bun.lock`, the nix mirror and the
+  bun vendor cache. The Rust side keeps `tauri-plugin-opener` only to open local folders
+  (recordings, logs, app data) from its own commands.
 
 [![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/invite/WVBeWsNXK4)
 
