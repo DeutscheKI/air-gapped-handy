@@ -152,6 +152,18 @@
     "cancelDownload": "Cancelar download",
     "legacy": "Legado"
   },
+  "modelInstall": {
+    "title": "Instalar {{modelName}}",
+    "intro": "O Handy nunca se conecta à Internet. Baixe o arquivo em uma máquina com acesso à rede e copie-o para o caminho abaixo. O Handy o detecta sem reiniciar.",
+    "linkLabel": "Link de download",
+    "pathLabel": "Salvar o arquivo como",
+    "cliLabel": "Ou com a CLI do Hugging Face (pip install huggingface_hub)",
+    "sha256Label": "SHA-256 esperado",
+    "copied": "Copiado",
+    "checkAgain": "Verificar novamente",
+    "stillMissing": "O arquivo ainda não está nesse caminho.",
+    "loadError": "Não foi possível preparar as instruções de instalação: {{error}}"
+  },
   "settings": {
     "modelSettings": {
       "title": "Configurações de {{model}}"

@@ -152,6 +152,18 @@
       "streaming": "Toont live transcriptie tijdens het spreken"
     }
   },
+  "modelInstall": {
+    "title": "{{modelName}} installeren",
+    "intro": "Handy maakt nooit verbinding met internet. Download het bestand op een computer met internet en kopieer het naar het onderstaande pad. Handy herkent het zonder herstart.",
+    "linkLabel": "Downloadlink",
+    "pathLabel": "Bestand opslaan als",
+    "cliLabel": "Of met de Hugging Face-CLI (pip install huggingface_hub)",
+    "sha256Label": "Verwachte SHA-256",
+    "copied": "Gekopieerd",
+    "checkAgain": "Opnieuw controleren",
+    "stillMissing": "Het bestand staat nog niet op dat pad.",
+    "loadError": "Kon de installatie-instructies niet voorbereiden: {{error}}"
+  },
   "settings": {
     "modelSettings": {
       "title": "Instellingen voor {{model}}"

@@ -152,6 +152,18 @@
       "streaming": "Mostra la transcripció en temps real mentre parleu"
     }
   },
+  "modelInstall": {
+    "title": "Instal·la {{modelName}}",
+    "intro": "Handy mai es connecta a Internet. Descarrega el fitxer en un ordinador amb connexió i copia'l al camí de sota. Handy el detecta sense reiniciar.",
+    "linkLabel": "Enllaç de descàrrega",
+    "pathLabel": "Desa el fitxer com a",
+    "cliLabel": "O amb la CLI de Hugging Face (pip install huggingface_hub)",
+    "sha256Label": "SHA-256 esperat",
+    "copied": "Copiat",
+    "checkAgain": "Comprova de nou",
+    "stillMissing": "El fitxer encara no és en aquest camí.",
+    "loadError": "No s'han pogut preparar les instruccions d'instal·lació: {{error}}"
+  },
   "settings": {
     "modelSettings": {
       "title": "Configuració de {{model}}"

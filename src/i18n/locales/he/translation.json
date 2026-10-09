@@ -152,6 +152,18 @@
     },
     "legacy": "מדור קודם"
   },
+  "modelInstall": {
+    "title": "התקנת {{modelName}}",
+    "intro": "Handy לעולם אינו מתחבר לאינטרנט. הורידו את הקובץ במחשב מחובר והעתיקו אותו לנתיב שלמטה. Handy יזהה אותו ללא הפעלה מחדש.",
+    "linkLabel": "קישור להורדה",
+    "pathLabel": "שמירת הקובץ בשם",
+    "cliLabel": "או באמצעות Hugging Face CLI ‏(pip install huggingface_hub)",
+    "sha256Label": "SHA-256 צפוי",
+    "copied": "הועתק",
+    "checkAgain": "בדיקה חוזרת",
+    "stillMissing": "הקובץ עדיין אינו בנתיב הזה.",
+    "loadError": "לא ניתן להכין את הוראות ההתקנה: {{error}}"
+  },
   "settings": {
     "modelSettings": {
       "title": "הגדרות עבור {{model}}"

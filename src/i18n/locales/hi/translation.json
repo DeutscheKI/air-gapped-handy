@@ -152,6 +152,18 @@
       "streaming": "बोलते समय लाइव ट्रांसक्रिप्शन दिखाता है"
     }
   },
+  "modelInstall": {
+    "title": "{{modelName}} इंस्टॉल करें",
+    "intro": "Handy कभी इंटरनेट से नहीं जुड़ता। फ़ाइल को इंटरनेट वाले कंप्यूटर पर डाउनलोड करें और नीचे दिए पथ पर कॉपी करें। Handy इसे बिना रीस्टार्ट पहचान लेता है।",
+    "linkLabel": "डाउनलोड लिंक",
+    "pathLabel": "फ़ाइल इस नाम से सहेजें",
+    "cliLabel": "या Hugging Face CLI से (pip install huggingface_hub)",
+    "sha256Label": "अपेक्षित SHA-256",
+    "copied": "कॉपी हो गया",
+    "checkAgain": "फिर से जाँचें",
+    "stillMissing": "फ़ाइल अभी उस पथ पर नहीं है।",
+    "loadError": "इंस्टॉल निर्देश तैयार नहीं हो सके: {{error}}"
+  },
   "settings": {
     "modelSettings": {
       "title": "{{model}} सेटिंग"

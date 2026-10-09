@@ -6,6 +6,7 @@ import type { ModelInfo } from "@/bindings";
 import type { ModelCardStatus } from "./ModelCard";
 import ModelCard, { isLegacySource } from "./ModelCard";
 import HandyTextLogo from "../icons/HandyTextLogo";
+import { ModelInstallDialog } from "../shared";
 import { useModelStore } from "../../stores/modelStore";
 
 interface OnboardingProps {
@@ -20,16 +21,15 @@ const Onboarding: React.FC<OnboardingProps> = ({
   const { t } = useTranslation();
   const {
     models,
-    downloadModel,
     selectModel,
     downloadingModels,
     verifyingModels,
     extractingModels,
     downloadProgress,
     downloadStats,
-    cancelDownload,
   } = useModelStore();
   const [selectedModelId, setSelectedModelId] = useState<string | null>(null);
+  const [installModel, setInstallModel] = useState<ModelInfo | null>(null);
   const [showAll, setShowAll] = useState(false);
   const hasStartedSelection = useRef(false);
 
@@ -111,32 +111,23 @@ const Onboarding: React.FC<OnboardingProps> = ({
     t,
   ]);
 
-  const handleDownloadModel = async (modelId: string) => {
+  const handleInstallModel = (modelId: string) => {
     if (preview) return;
 
-    setSelectedModelId(modelId);
-
-    // Error toast is handled centrally by the model-download-failed event listener
-    // in modelStore — no toast here to avoid duplicates.
-    const success = await downloadModel(modelId);
-    if (!success) {
-      setSelectedModelId(null);
-    }
-  };
-
-  const handleCancelDownload = async (modelId: string) => {
-    if (preview) return;
-
-    const success = await cancelDownload(modelId);
-    if (success) {
-      setSelectedModelId(null);
-    }
+    setInstallModel(models.find((m) => m.id === modelId) ?? null);
   };
 
   const handleSelectExistingModel = (modelId: string) => {
     if (preview) return;
 
     setSelectedModelId(modelId);
+  };
+
+  // The file showed up on disk: select it exactly like an already-present
+  // model, which finishes onboarding through the effect above.
+  const handleModelInstalled = (modelId: string) => {
+    setInstallModel(null);
+    handleSelectExistingModel(modelId);
   };
 
   const getModelStatus = (modelId: string): ModelCardStatus => {
@@ -207,9 +198,8 @@ const Onboarding: React.FC<OnboardingProps> = ({
                   variant="featured"
                   status={getModelStatus(model.id)}
                   disabled={isBusy}
-                  onSelect={handleDownloadModel}
-                  onDownload={handleDownloadModel}
-                  onCancel={handleCancelDownload}
+                  onSelect={handleInstallModel}
+                  onInstall={handleInstallModel}
                   downloadProgress={getModelDownloadProgress(model.id)}
                   downloadSpeed={getModelDownloadSpeed(model.id)}
                   showRecommended={false}
@@ -222,9 +212,8 @@ const Onboarding: React.FC<OnboardingProps> = ({
                   model={model}
                   status={getModelStatus(model.id)}
                   disabled={isBusy}
-                  onSelect={handleDownloadModel}
-                  onDownload={handleDownloadModel}
-                  onCancel={handleCancelDownload}
+                  onSelect={handleInstallModel}
+                  onInstall={handleInstallModel}
                   downloadProgress={getModelDownloadProgress(model.id)}
                   downloadSpeed={getModelDownloadSpeed(model.id)}
                   showRecommended={false}
@@ -257,9 +246,8 @@ const Onboarding: React.FC<OnboardingProps> = ({
                     model={model}
                     status={getModelStatus(model.id)}
                     disabled={isBusy}
-                    onSelect={handleDownloadModel}
-                    onDownload={handleDownloadModel}
-                    onCancel={handleCancelDownload}
+                    onSelect={handleInstallModel}
+                    onInstall={handleInstallModel}
                     downloadProgress={getModelDownloadProgress(model.id)}
                     downloadSpeed={getModelDownloadSpeed(model.id)}
                     showRecommended={false}
@@ -269,6 +257,11 @@ const Onboarding: React.FC<OnboardingProps> = ({
           )}
         </div>
       </div>
+      <ModelInstallDialog
+        model={installModel}
+        onClose={() => setInstallModel(null)}
+        onInstalled={handleModelInstalled}
+      />
     </div>
   );
 };

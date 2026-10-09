@@ -152,6 +152,18 @@
       "streaming": "Menampilkan transkripsi langsung saat Anda berbicara"
     }
   },
+  "modelInstall": {
+    "title": "Pasang {{modelName}}",
+    "intro": "Handy tidak pernah terhubung ke internet. Unduh berkas di komputer yang terhubung jaringan, lalu salin ke jalur di bawah. Handy mendeteksinya tanpa mulai ulang.",
+    "linkLabel": "Tautan unduhan",
+    "pathLabel": "Simpan berkas sebagai",
+    "cliLabel": "Atau dengan Hugging Face CLI (pip install huggingface_hub)",
+    "sha256Label": "SHA-256 yang diharapkan",
+    "copied": "Disalin",
+    "checkAgain": "Periksa lagi",
+    "stillMissing": "Berkas belum ada di jalur tersebut.",
+    "loadError": "Tidak dapat menyiapkan petunjuk pemasangan: {{error}}"
+  },
   "settings": {
     "modelSettings": {
       "title": "Pengaturan {{model}}"

@@ -152,6 +152,18 @@
     "cancelDownload": "Anuluj pobieranie",
     "legacy": "Przestarzałe"
   },
+  "modelInstall": {
+    "title": "Zainstaluj {{modelName}}",
+    "intro": "Handy nigdy nie łączy się z internetem. Pobierz plik na komputerze z dostępem do sieci i skopiuj go do poniższej ścieżki. Handy wykryje go bez ponownego uruchamiania.",
+    "linkLabel": "Link do pobrania",
+    "pathLabel": "Zapisz plik jako",
+    "cliLabel": "Lub za pomocą Hugging Face CLI (pip install huggingface_hub)",
+    "sha256Label": "Oczekiwany SHA-256",
+    "copied": "Skopiowano",
+    "checkAgain": "Sprawdź ponownie",
+    "stillMissing": "Pliku nie ma jeszcze w tej ścieżce.",
+    "loadError": "Nie udało się przygotować instrukcji instalacji: {{error}}"
+  },
   "settings": {
     "modelSettings": {
       "title": "Ustawienia {{model}}"

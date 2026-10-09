@@ -152,6 +152,18 @@
     },
     "legacy": "레거시"
   },
+  "modelInstall": {
+    "title": "{{modelName}} 설치",
+    "intro": "Handy는 인터넷에 연결하지 않습니다. 네트워크에 연결된 컴퓨터에서 파일을 다운로드한 뒤 아래 경로에 복사하세요. 재시작 없이 인식됩니다.",
+    "linkLabel": "다운로드 링크",
+    "pathLabel": "다른 이름으로 저장",
+    "cliLabel": "또는 Hugging Face CLI 사용 (pip install huggingface_hub)",
+    "sha256Label": "예상 SHA-256",
+    "copied": "복사됨",
+    "checkAgain": "다시 확인",
+    "stillMissing": "아직 해당 경로에 파일이 없습니다.",
+    "loadError": "설치 안내를 준비할 수 없습니다: {{error}}"
+  },
   "settings": {
     "modelSettings": {
       "title": "{{model}} 설정"

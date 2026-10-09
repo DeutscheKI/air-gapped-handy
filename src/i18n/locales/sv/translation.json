@@ -152,6 +152,18 @@
     },
     "legacy": "Äldre"
   },
+  "modelInstall": {
+    "title": "Installera {{modelName}}",
+    "intro": "Handy ansluter aldrig till internet. Ladda ner filen på en dator med nätverk och kopiera den till sökvägen nedan. Handy hittar den utan omstart.",
+    "linkLabel": "Nedladdningslänk",
+    "pathLabel": "Spara filen som",
+    "cliLabel": "Eller med Hugging Face CLI (pip install huggingface_hub)",
+    "sha256Label": "Förväntad SHA-256",
+    "copied": "Kopierat",
+    "checkAgain": "Kontrollera igen",
+    "stillMissing": "Filen finns inte på den sökvägen ännu.",
+    "loadError": "Kunde inte förbereda installationsanvisningarna: {{error}}"
+  },
   "settings": {
     "modelSettings": {
       "title": "{{model}}-inställningar"

@@ -69,7 +69,8 @@ interface ModelCardProps {
   disabled?: boolean;
   className?: string;
   onSelect: (modelId: string) => void;
-  onDownload?: (modelId: string) => void;
+  /** Opens the manual install instructions; this fork never downloads. */
+  onInstall?: (modelId: string) => void;
   onDelete?: (modelId: string) => void;
   onCancel?: (modelId: string) => void;
   downloadProgress?: number;
@@ -84,7 +85,7 @@ const ModelCard: React.FC<ModelCardProps> = ({
   disabled = false,
   className = "",
   onSelect,
-  onDownload,
+  onInstall,
   onDelete,
   onCancel,
   downloadProgress,
@@ -132,8 +133,8 @@ const ModelCard: React.FC<ModelCardProps> = ({
 
   const handleClick = () => {
     if (!isClickable || disabled) return;
-    if (status === "downloadable" && onDownload) {
-      onDownload(model.id);
+    if (status === "downloadable" && onInstall) {
+      onInstall(model.id);
     } else {
       onSelect(model.id);
     }

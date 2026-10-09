@@ -38,6 +38,13 @@ is one divergence from upstream [cjpais/Handy](https://github.com/cjpais/Handy).
   all removed. The transcript is pasted as the model produced it. History keeps its
   three post-processing columns so existing databases open unchanged; they are no
   longer written.
+- **Models are installed by hand; Handy never downloads them.** Upstream fetched catalog
+  models from Hugging Face through `hf-hub`. Clicking a model that is not on disk now
+  opens a dialog instead, showing the pinned Hugging Face link, the exact path in the
+  models directory (`~/.local/share/com.pais.handy/models/<file>`) to save it as, an
+  equivalent `hf download --local-dir` command, and the catalog's SHA-256. Fetch the file
+  on a connected machine, copy it there, and press "Check again": Handy rescans and
+  selects it. Files already in the shared Hugging Face cache are still picked up.
 - **The Rust toolchain is pinned to 1.99.0 in `rust-toolchain.toml`.** The vendored
   crates were built against it, and an offline machine cannot download a newer stable.
   Install it once with

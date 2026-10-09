@@ -288,15 +288,15 @@ function App() {
   };
 
   const handleModelSelected = () => {
-    // Transition to main app - user has started a download
+    // Transition to main app - user has picked an installed model
     setOnboardingStep("done");
   };
 
   // Rendered once around every step below (including onboarding) so
   // toast.error() calls surface to the user. sonner renders via a portal, so
   // its position in the tree doesn't affect layout. Without this, errors during
-  // onboarding (e.g. a model download failing because blob.handy.computer is
-  // unreachable) are silently swallowed and the wizard just appears to "blink".
+  // onboarding (e.g. a model failing to load) are silently swallowed and the
+  // wizard just appears to "blink".
   const toaster = (
     <Toaster
       theme="system"

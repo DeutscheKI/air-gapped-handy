@@ -152,6 +152,18 @@
     "cancelDownload": "ダウンロードをキャンセル",
     "legacy": "旧式"
   },
+  "modelInstall": {
+    "title": "{{modelName}} をインストール",
+    "intro": "Handy はインターネットに接続しません。ネットワークに接続できるパソコンでファイルをダウンロードし、下のパスにコピーしてください。再起動なしで認識されます。",
+    "linkLabel": "ダウンロードリンク",
+    "pathLabel": "保存先のファイル名",
+    "cliLabel": "または Hugging Face CLI で (pip install huggingface_hub)",
+    "sha256Label": "期待される SHA-256",
+    "copied": "コピーしました",
+    "checkAgain": "再確認",
+    "stillMissing": "そのパスにファイルはまだありません。",
+    "loadError": "インストール手順を準備できませんでした: {{error}}"
+  },
   "settings": {
     "modelSettings": {
       "title": "{{model}} の設定"

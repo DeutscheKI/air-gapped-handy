@@ -19,7 +19,7 @@
   "onboarding": {
     "subtitle": "Wähle ein Transkriptionsmodell, um loszulegen",
     "existingModelsTitle": "Kompatible Modelle",
-    "downloadModelsTitle": "Verfügbar zum Download",
+    "downloadModelsTitle": "Verfügbar zur Installation",
     "showAllModels": "Alle {{total}} Modelle anzeigen",
     "showFewerModels": "Weniger Modelle anzeigen",
     "recommended": "Empfohlen",
@@ -136,7 +136,7 @@
     "loadingGeneric": "Wird geladen...",
     "modelError": "Modellfehler",
     "modelUnloaded": "Modell entladen",
-    "noModelDownloadRequired": "Kein Modell - Download erforderlich",
+    "noModelDownloadRequired": "Kein Modell - Installation erforderlich",
     "deleteModel": "{{modelName}} löschen",
     "downloadSpeed": "{{speed}} MB/s",
     "capabilities": {
@@ -152,14 +152,26 @@
     "cancelDownload": "Download abbrechen",
     "legacy": "Veraltet"
   },
+  "modelInstall": {
+    "title": "{{modelName}} installieren",
+    "intro": "Handy stellt nie eine Internetverbindung her. Lade die Datei auf einem Rechner mit Internetzugang herunter und kopiere sie an den Pfad unten. Handy erkennt sie ohne Neustart.",
+    "linkLabel": "Download-Link",
+    "pathLabel": "Datei speichern unter",
+    "cliLabel": "Oder mit der Hugging-Face-CLI (pip install huggingface_hub)",
+    "sha256Label": "Erwartete SHA-256-Prüfsumme",
+    "copied": "Kopiert",
+    "checkAgain": "Erneut prüfen",
+    "stillMissing": "Die Datei liegt noch nicht an diesem Pfad.",
+    "loadError": "Installationsanleitung konnte nicht erstellt werden: {{error}}"
+  },
   "settings": {
     "modelSettings": {
       "title": "{{model}}-Einstellungen"
     },
     "models": {
       "title": "Transkriptionsmodelle",
-      "description": "Wähle ein Transkriptionsmodell aus oder lade zusätzliche Modelle herunter. Verschiedene Modelle bieten unterschiedliche Genauigkeits- und Geschwindigkeitsstufen.",
-      "deleteConfirm": "Bist du sicher, dass du {{modelName}} löschen möchtest? Du musst es erneut herunterladen, um es zu verwenden.",
+      "description": "Wähle ein Transkriptionsmodell aus oder installiere zusätzliche Modelle von Hand. Verschiedene Modelle bieten unterschiedliche Genauigkeits- und Geschwindigkeitsstufen.",
+      "deleteConfirm": "Bist du sicher, dass du {{modelName}} löschen möchtest? Du musst es erneut installieren, um es zu verwenden.",
       "deleteActiveConfirm": "{{modelName}} ist dein aktives Modell. Das Löschen stoppt Transkriptionen, bis du ein neues Modell auswählst. Bist du sicher?",
       "deleteTitle": "Modell löschen",
       "filters": {
@@ -168,8 +180,8 @@
         "translation": "Modelle filtern, die Übersetzungen ins Englische unterstützen"
       },
       "noModelsMatch": "Keine Modelle entsprechen diesem Filter.",
-      "yourModels": "Heruntergeladene Modelle",
-      "availableModels": "Zum Download verfügbar",
+      "yourModels": "Installierte Modelle",
+      "availableModels": "Zur Installation verfügbar",
       "searchPlaceholder": "Modelle nach Namen suchen…",
       "rescan": {
         "label": "Neu scannen",

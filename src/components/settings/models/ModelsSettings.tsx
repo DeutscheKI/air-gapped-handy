@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import type { ModelCardStatus } from "@/components/onboarding";
 import { ModelCard } from "@/components/onboarding";
+import { ModelInstallDialog } from "@/components/shared";
 import { useModelStore } from "@/stores/modelStore";
 import {
   getLanguageLabel,
@@ -33,6 +34,7 @@ const isLegacyModel = (model: ModelInfo): boolean =>
 export const ModelsSettings: React.FC = () => {
   const { t } = useTranslation();
   const [switchingModelId, setSwitchingModelId] = useState<string | null>(null);
+  const [installModel, setInstallModel] = useState<ModelInfo | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [filterStreaming, setFilterStreaming] = useState(false);
   const [filterTranslation, setFilterTranslation] = useState(false);
@@ -51,7 +53,6 @@ export const ModelsSettings: React.FC = () => {
     extractingModels,
     loading,
     isRescanning,
-    downloadModel,
     cancelDownload,
     selectModel,
     deleteModel,
@@ -139,8 +140,15 @@ export const ModelsSettings: React.FC = () => {
     }
   };
 
-  const handleModelDownload = async (modelId: string) => {
-    await downloadModel(modelId);
+  const handleModelInstall = (modelId: string) => {
+    setInstallModel(models.find((m: ModelInfo) => m.id === modelId) ?? null);
+  };
+
+  // The file showed up on disk: behave like a finished download did and make
+  // it the active model right away.
+  const handleModelInstalled = (modelId: string) => {
+    setInstallModel(null);
+    void handleModelSelect(modelId);
   };
 
   const handleModelDelete = async (modelId: string) => {
@@ -412,7 +420,7 @@ export const ModelsSettings: React.FC = () => {
               model={model}
               status={getModelStatus(model.id)}
               onSelect={handleModelSelect}
-              onDownload={handleModelDownload}
+              onInstall={handleModelInstall}
               onDelete={handleModelDelete}
               onCancel={handleModelCancel}
               downloadProgress={getDownloadProgress(model.id)}
@@ -434,7 +442,7 @@ export const ModelsSettings: React.FC = () => {
                 model={model}
                 status={getModelStatus(model.id)}
                 onSelect={handleModelSelect}
-                onDownload={handleModelDownload}
+                onInstall={handleModelInstall}
                 onDelete={handleModelDelete}
                 onCancel={handleModelCancel}
                 downloadProgress={getDownloadProgress(model.id)}
@@ -450,6 +458,11 @@ export const ModelsSettings: React.FC = () => {
           </div>
         )}
       </div>
+      <ModelInstallDialog
+        model={installModel}
+        onClose={() => setInstallModel(null)}
+        onInstalled={handleModelInstalled}
+      />
     </div>
   );
 };

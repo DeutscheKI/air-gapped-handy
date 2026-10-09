@@ -152,6 +152,18 @@
     "cancelDownload": "Скасувати завантаження",
     "legacy": "Застаріле"
   },
+  "modelInstall": {
+    "title": "Встановити {{modelName}}",
+    "intro": "Handy ніколи не підключається до інтернету. Завантажте файл на комп'ютері з доступом до мережі та скопіюйте його за вказаним нижче шляхом. Handy виявить його без перезапуску.",
+    "linkLabel": "Посилання для завантаження",
+    "pathLabel": "Зберегти файл як",
+    "cliLabel": "Або через Hugging Face CLI (pip install huggingface_hub)",
+    "sha256Label": "Очікуваний SHA-256",
+    "copied": "Скопійовано",
+    "checkAgain": "Перевірити знову",
+    "stillMissing": "Файлу за цим шляхом ще немає.",
+    "loadError": "Не вдалося підготувати інструкцію зі встановлення: {{error}}"
+  },
   "settings": {
     "modelSettings": {
       "title": "Налаштування {{model}}"

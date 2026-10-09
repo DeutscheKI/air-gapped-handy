@@ -152,6 +152,18 @@
       "streaming": "Viser live transskription, mens du taler"
     }
   },
+  "modelInstall": {
+    "title": "Installer {{modelName}}",
+    "intro": "Handy opretter aldrig forbindelse til internettet. Download filen på en computer med netadgang, og kopier den til stien nedenfor. Handy finder den uden genstart.",
+    "linkLabel": "Downloadlink",
+    "pathLabel": "Gem filen som",
+    "cliLabel": "Eller med Hugging Face CLI (pip install huggingface_hub)",
+    "sha256Label": "Forventet SHA-256",
+    "copied": "Kopieret",
+    "checkAgain": "Tjek igen",
+    "stillMissing": "Filen ligger endnu ikke på den sti.",
+    "loadError": "Kunne ikke forberede installationsvejledningen: {{error}}"
+  },
   "settings": {
     "modelSettings": {
       "title": "{{model}}-indstillinger"

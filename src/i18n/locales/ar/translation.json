@@ -152,6 +152,18 @@
     },
     "legacy": "قديم"
   },
+  "modelInstall": {
+    "title": "تثبيت {{modelName}}",
+    "intro": "لا يتصل Handy بالإنترنت أبدًا. نزّل الملف على جهاز متصل بالشبكة ثم انسخه إلى المسار أدناه. يتعرف Handy عليه دون إعادة تشغيل.",
+    "linkLabel": "رابط التنزيل",
+    "pathLabel": "حفظ الملف باسم",
+    "cliLabel": "أو عبر Hugging Face CLI ‏(pip install huggingface_hub)",
+    "sha256Label": "SHA-256 المتوقع",
+    "copied": "تم النسخ",
+    "checkAgain": "تحقق مجددًا",
+    "stillMissing": "الملف غير موجود في هذا المسار بعد.",
+    "loadError": "تعذر تجهيز تعليمات التثبيت: {{error}}"
+  },
   "settings": {
     "general": {
       "title": "عام",

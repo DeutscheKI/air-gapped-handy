@@ -152,6 +152,18 @@
     "cancelDownload": "Hủy tải xuống",
     "legacy": "Cũ"
   },
+  "modelInstall": {
+    "title": "Cài đặt {{modelName}}",
+    "intro": "Handy không bao giờ kết nối Internet. Hãy tải tệp trên một máy có mạng rồi sao chép vào đường dẫn bên dưới. Handy nhận ra tệp mà không cần khởi động lại.",
+    "linkLabel": "Liên kết tải xuống",
+    "pathLabel": "Lưu tệp thành",
+    "cliLabel": "Hoặc dùng Hugging Face CLI (pip install huggingface_hub)",
+    "sha256Label": "SHA-256 mong đợi",
+    "copied": "Đã sao chép",
+    "checkAgain": "Kiểm tra lại",
+    "stillMissing": "Tệp chưa có ở đường dẫn đó.",
+    "loadError": "Không thể chuẩn bị hướng dẫn cài đặt: {{error}}"
+  },
   "settings": {
     "modelSettings": {
       "title": "Cài đặt {{model}}"

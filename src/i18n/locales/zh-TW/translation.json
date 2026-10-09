@@ -152,6 +152,18 @@
     },
     "legacy": "舊版"
   },
+  "modelInstall": {
+    "title": "安裝 {{modelName}}",
+    "intro": "Handy 從不連線網際網路。請在可上網的電腦上下載該檔案，然後複製到下方路徑。無需重新啟動即可辨識。",
+    "linkLabel": "下載連結",
+    "pathLabel": "檔案儲存為",
+    "cliLabel": "或使用 Hugging Face CLI (pip install huggingface_hub)",
+    "sha256Label": "預期 SHA-256",
+    "copied": "已複製",
+    "checkAgain": "再次檢查",
+    "stillMissing": "該路徑下尚無此檔案。",
+    "loadError": "無法準備安裝說明：{{error}}"
+  },
   "settings": {
     "modelSettings": {
       "title": "{{model}} 設定"
