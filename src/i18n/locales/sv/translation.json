@@ -499,11 +499,6 @@
         "lineCount": "{{count}} rader",
         "empty": "Väntar på loggar… Poster visas här när appen skickar dem."
       },
-      "updateChecks": {
-        "label": "Sök efter uppdateringar",
-        "description": "Sök automatiskt efter nya versioner av Handy",
-        "lockedDescription": "Inaktiverad av systemkonfiguration (HANDY_DISABLE_UPDATER)"
-      },
       "soundTheme": {
         "label": "Ljudtema",
         "description": "Välj ett ljudtema för återkoppling vid start och stopp av inspelning"

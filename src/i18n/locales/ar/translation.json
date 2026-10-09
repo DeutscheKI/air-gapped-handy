@@ -476,11 +476,6 @@
         "lineCount": "{{count}} سطر",
         "empty": "بانتظار السجلات… ستظهر الإدخالات هنا فور إصدار التطبيق لها."
       },
-      "updateChecks": {
-        "label": "التحقق من وجود تحديثات",
-        "description": "التحقق تلقائياً من وجود إصدارات جديدة من Handy",
-        "lockedDescription": "معطّل بواسطة إعدادات النظام (HANDY_DISABLE_UPDATER)"
-      },
       "soundTheme": {
         "label": "سمة الصوت",
         "description": "اختر سمة صوت لتنبيهات بدء وتوقف التسجيل"

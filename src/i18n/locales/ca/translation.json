@@ -499,11 +499,6 @@
         "lineCount": "{{count}} línies",
         "empty": "S'estan esperant registres… Les entrades apareixeran aquí a mesura que l'aplicació les emeti."
       },
-      "updateChecks": {
-        "label": "Comproveu si hi ha actualitzacions",
-        "description": "Comprova automàticament si hi ha versions noves del Handy",
-        "lockedDescription": "Desactivat per la configuració del sistema (HANDY_DISABLE_UPDATER)"
-      },
       "whatsNewPreview": {
         "title": "Previsualització de les novetats",
         "description": "Obre les últimes notes de la versió incloses sense marcar-les com a llegides",

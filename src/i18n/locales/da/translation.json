@@ -499,11 +499,6 @@
         "lineCount": "{{count}} linjer",
         "empty": "Venter på logs… Poster vises her, når appen udsender dem."
       },
-      "updateChecks": {
-        "label": "Tjek for opdateringer",
-        "description": "Tjek automatisk for nye versioner af Handy",
-        "lockedDescription": "Deaktiveret af systemkonfiguration (HANDY_DISABLE_UPDATER)"
-      },
       "whatsNewPreview": {
         "title": "Forhåndsvisning af nyheder",
         "description": "Åbn de seneste medfølgende udgivelsesnoter uden at markere dem som set",

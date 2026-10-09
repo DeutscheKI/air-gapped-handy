@@ -499,11 +499,6 @@
         "lineCount": "{{count}} righe",
         "empty": "In attesa di log… Le voci appariranno qui man mano che l'app le emette."
       },
-      "updateChecks": {
-        "label": "Controlla aggiornamenti",
-        "description": "Controlla automaticamente la disponibilità di nuove versioni di Handy",
-        "lockedDescription": "Disabilitato dalla configurazione di sistema (HANDY_DISABLE_UPDATER)"
-      },
       "soundTheme": {
         "label": "Tema Sonoro",
         "description": "Scegli un tema sonoro per il feedback di inizio e fine registrazione"

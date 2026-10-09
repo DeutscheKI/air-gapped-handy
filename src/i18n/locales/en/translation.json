@@ -499,11 +499,6 @@
         "lineCount": "{{count}} lines",
         "empty": "Waiting for logs… Entries appear here as the app emits them."
       },
-      "updateChecks": {
-        "label": "Check for Updates",
-        "description": "Automatically check for new versions of Handy",
-        "lockedDescription": "Disabled by system configuration (HANDY_DISABLE_UPDATER)"
-      },
       "whatsNewPreview": {
         "title": "Preview What's New",
         "description": "Open the latest bundled release note without marking it as seen",

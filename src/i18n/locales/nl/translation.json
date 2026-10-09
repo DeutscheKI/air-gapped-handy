@@ -499,11 +499,6 @@
         "lineCount": "{{count}} regels",
         "empty": "Wachten op logboeken... Meldingen verschijnen hier zodra de app ze genereert."
       },
-      "updateChecks": {
-        "label": "Controleren op updates",
-        "description": "Automatisch controleren op nieuwe versies van Handy",
-        "lockedDescription": "Uitgeschakeld door systeemconfiguratie (HANDY_DISABLE_UPDATER)"
-      },
       "whatsNewPreview": {
         "title": "Voorbeeld van release-notes",
         "description": "Open de nieuwste meegeleverde release-notes zonder deze als gelezen te markeren",

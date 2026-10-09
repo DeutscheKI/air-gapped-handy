@@ -499,11 +499,6 @@
         "lineCount": "{{count}}줄",
         "empty": "로그 대기 중… 앱이 로그를 출력하면 여기에 표시됩니다."
       },
-      "updateChecks": {
-        "label": "업데이트 확인",
-        "description": "Handy의 새 버전을 자동으로 확인합니다",
-        "lockedDescription": "시스템 구성에 의해 비활성화됨 (HANDY_DISABLE_UPDATER)"
-      },
       "soundTheme": {
         "label": "사운드 테마",
         "description": "녹음 시작 및 정지 피드백을 위한 사운드 테마를 선택하세요"

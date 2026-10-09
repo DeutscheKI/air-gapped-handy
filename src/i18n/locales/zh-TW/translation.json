@@ -499,11 +499,6 @@
         "lineCount": "{{count}} 行",
         "empty": "正在等待日誌…… 應用程式產生日誌時會顯示於此。"
       },
-      "updateChecks": {
-        "label": "檢查更新",
-        "description": "自動檢查 Handy 的新版本",
-        "lockedDescription": "已被系統設定停用 (HANDY_DISABLE_UPDATER)"
-      },
       "soundTheme": {
         "label": "聲音主題",
         "description": "選擇錄製開始和停止回饋的聲音主題"

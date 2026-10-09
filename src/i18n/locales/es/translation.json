@@ -499,11 +499,6 @@
         "lineCount": "{{count}} líneas",
         "empty": "Esperando registros… Las entradas aparecerán aquí a medida que la aplicación las emita."
       },
-      "updateChecks": {
-        "label": "Buscar actualizaciones",
-        "description": "Buscar automáticamente nuevas versiones de Handy",
-        "lockedDescription": "Deshabilitado por la configuración del sistema (HANDY_DISABLE_UPDATER)"
-      },
       "soundTheme": {
         "label": "Tema de sonido",
         "description": "Elige un tema de sonido para la retroalimentación de inicio y parada de grabación"

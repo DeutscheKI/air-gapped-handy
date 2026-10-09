@@ -499,11 +499,6 @@
         "lineCount": "{{count}} Zeilen",
         "empty": "Warte auf Logs … Einträge erscheinen hier, sobald die App sie ausgibt."
       },
-      "updateChecks": {
-        "label": "Nach Updates suchen",
-        "description": "Automatisch nach neuen Versionen von Handy suchen",
-        "lockedDescription": "Durch Systemkonfiguration deaktiviert (HANDY_DISABLE_UPDATER)"
-      },
       "soundTheme": {
         "label": "Sound-Thema",
         "description": "Sound-Thema für Aufnahme-Start und -Stop-Feedback auswählen"

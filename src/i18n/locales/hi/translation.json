@@ -499,11 +499,6 @@
         "lineCount": "{{count}} लाइनें",
         "empty": "लॉग का इंतज़ार है… ऐप से लॉग आते ही एंट्री यहां दिखेंगी."
       },
-      "updateChecks": {
-        "label": "अपडेट जांचें",
-        "description": "Handy के नए वर्शन की अपने आप जांच करें",
-        "lockedDescription": "सिस्टम कॉन्फ़िगरेशन द्वारा अक्षम (HANDY_DISABLE_UPDATER)"
-      },
       "whatsNewPreview": {
         "title": "'नया क्या है' की झलक देखें",
         "description": "बंडल की गई सबसे नई रिलीज़ नोट को 'देखा गया' मार्क किए बिना खोलें",

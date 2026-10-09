@@ -499,11 +499,6 @@
         "lineCount": "{{count}} baris",
         "empty": "Menunggu log… Entri akan muncul di sini saat aplikasi menghasilkannya."
       },
-      "updateChecks": {
-        "label": "Periksa Pembaruan",
-        "description": "Periksa versi baru Handy secara otomatis",
-        "lockedDescription": "Dinonaktifkan oleh konfigurasi sistem (HANDY_DISABLE_UPDATER)"
-      },
       "whatsNewPreview": {
         "title": "Pratinjau Yang Baru",
         "description": "Buka catatan rilis terbaru yang disertakan tanpa menandainya sebagai telah dilihat",
