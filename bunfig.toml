@@ -1,0 +1,18 @@
+# The frontend dependencies are vendored as a bun package cache in vendor/bun
+# (populate with scripts/vendor-bun.sh). bun install resolves everything from
+# that cache and the committed bun.lock.
+#
+# offline makes every install refuse the network outright: a package missing
+# from the cache fails the install with "--offline: <pkg> is not in the cache"
+# instead of being fetched, which keeps the "no network access" claim
+# testable. scripts/vendor-bun.sh swaps this file out for the one step that is
+# allowed to download.
+#
+# The registry is left at its default on purpose: bun keys cache lookups by
+# registry URL, so pointing it anywhere else makes cached packages invisible.
+[install]
+offline = true
+frozenLockfile = true
+
+[install.cache]
+dir = "vendor/bun"

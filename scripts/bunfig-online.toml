@@ -1,0 +1,4 @@
+# Online counterpart of the root bunfig.toml, used only by scripts/vendor-bun.sh
+# to populate vendor/bun. Everything else is passed on the command line.
+[install]
+frozenLockfile = true

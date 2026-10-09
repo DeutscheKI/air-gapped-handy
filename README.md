@@ -19,6 +19,11 @@ is one divergence from upstream [cjpais/Handy](https://github.com/cjpais/Handy).
   with `scripts/vendor-cargo.sh` after changing `Cargo.toml` or `Cargo.lock`. The
   directory is large because `cargo vendor` includes every platform's crates (the
   Windows bindings alone are most of it); trimming it would break lockfile resolution.
+- **The frontend packages are vendored as a bun cache in `vendor/bun`.** `bunfig.toml`
+  points bun's cache there, pins the lockfile, and sets `offline = true`, so a plain
+  `bun install` either succeeds from the cache or fails with "not in the cache"; it never
+  fetches. Regenerate with `scripts/vendor-bun.sh` after changing `package.json` or
+  `bun.lock`.
 
 [![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/invite/WVBeWsNXK4)
 
