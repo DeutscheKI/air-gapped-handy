@@ -20,5 +20,30 @@ CARGO_NET_OFFLINE=false cargo vendor \
   --versioned-dirs \
   vendor/cargo
 
+# ferrous-opencc's build script runs cbindgen, which runs `cargo metadata` on
+# the crate itself, and that obeys the Cargo.lock shipped inside the crate.
+# The shipped lock pins versions that are not in vendor/cargo (for example an
+# older anyhow), so offline builds fail to resolve. Re-lock the crate against
+# the vendored tree and update its checksum manifest so cargo still accepts it.
+#
+# The same cbindgen run rewrites the crate's opencc.h on every build (a C
+# header nothing here consumes), so that file is dropped from the checksum
+# manifest and deleted; .gitignore hides the regenerated copy.
+for crate in vendor/cargo/ferrous-opencc-*/; do
+  rm -f "$crate/Cargo.lock" "$crate/opencc.h"
+  cargo metadata --offline --format-version 1 \
+    --manifest-path "$crate/Cargo.toml" > /dev/null
+  python3 -I - "$crate" <<'PY'
+import hashlib, json, sys
+crate = sys.argv[1]
+manifest = f"{crate}/.cargo-checksum.json"
+data = json.load(open(manifest))
+data["files"]["Cargo.lock"] = hashlib.sha256(open(f"{crate}/Cargo.lock", "rb").read()).hexdigest()
+data["files"].pop("opencc.h", None)
+json.dump(data, open(manifest, "w"), separators=(",", ":"))
+PY
+  echo "Re-locked $crate against vendor/cargo"
+done
+
 echo
 echo "Vendored $(ls vendor/cargo | wc -l) crates into vendor/cargo ($(du -sh vendor/cargo | cut -f1))."
