@@ -12,7 +12,8 @@ ORT_PREFER_DYNAMIC_LINK = "1"
 # All crates, including the git dependencies, are vendored into vendor/cargo
 # (regenerate with scripts/vendor-cargo.sh). With the sources replaced below
 # cargo never contacts crates.io or GitHub; net.offline makes any gap fail
-# loudly instead of silently reaching out.
+# loudly instead of silently reaching out. The runtime has no HTTP client at
+# all: reqwest and hf-hub left with the model downloader.
 [net]
 offline = true
 
@@ -22,11 +23,6 @@ replace-with = "vendored-sources"
 [source."git+https://github.com/ahkohd/tauri-nspanel?branch=v2.1"]
 git = "https://github.com/ahkohd/tauri-nspanel"
 branch = "v2.1"
-replace-with = "vendored-sources"
-
-[source."git+https://github.com/cjpais/hf-hub?branch=cancellable-downloads"]
-git = "https://github.com/cjpais/hf-hub"
-branch = "cancellable-downloads"
 replace-with = "vendored-sources"
 
 [source."git+https://github.com/cjpais/rodio.git"]

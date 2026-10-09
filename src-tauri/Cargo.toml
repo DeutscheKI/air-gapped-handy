@@ -60,8 +60,6 @@ vad-rs = { git = "https://github.com/cjpais/vad-rs", default-features = false }
 earshot = "1.2.2"
 enigo = "0.6.1"
 rodio = { git = "https://github.com/cjpais/rodio.git" }
-reqwest = { version = "0.12", features = ["json", "stream", "gzip", "brotli", "deflate"] }
-futures-util = "0.3"
 rustfft = "6.4.0"
 strsim = "0.11.0"
 natural = "0.5.0"
@@ -72,9 +70,6 @@ whatlang = "0.16"
 isolang = "2"
 chrono = "0.4"
 rusqlite = { version = "0.37", features = ["bundled"] }
-tar = "0.4.44"
-flate2 = "1.0"
-sha2 = "0.10"
 libc = "0.2"
 # Whisper-family models run through transcribe-cpp (GGUF/ggml, native backends);
 # transcribe-rs is now ONNX-only (Parakeet, Moonshine, SenseVoice, GigaAM,
@@ -91,9 +86,6 @@ specta = "=2.0.0-rc.22"
 specta-typescript = "0.0.9"
 tauri-specta = { version = "=2.0.0-rc.21", features = ["derive", "typescript"] }
 tauri-plugin-dialog = "2.6"
-hf-hub = { git = "https://github.com/cjpais/hf-hub", branch = "cancellable-downloads", features = [
-  "tokio",
-] }
 
 [target.'cfg(unix)'.dependencies]
 signal-hook = "0.3"
@@ -193,9 +185,6 @@ tao-macros = { git = "https://github.com/cjpais/tao", rev = "c3bee28c1d446d95f08
 
 [dev-dependencies]
 tempfile = "3"
-# Test-only tokio features for the local socket servers exercising the
-# resumable HTTP downloader; normal builds keep the leaner feature set.
-tokio = { version = "1.43.0", features = ["macros", "net", "io-util", "sync", "time", "rt-multi-thread"] }
 
 [profile.release]
 lto = true

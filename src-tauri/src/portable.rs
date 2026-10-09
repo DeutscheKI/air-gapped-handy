@@ -54,16 +54,17 @@ pub fn init() {
 
 /// Return the Hugging Face home configured before portable mode redirected it.
 ///
-/// Portable releases before v0.9.6 downloaded models to this location (or to
-/// hf-hub's default cache when it is `None`). Keeping it lets the model manager
-/// recognize those downloads after an upgrade without copying multi-gigabyte
-/// files or modifying a cache shared with other applications.
+/// Upstream portable releases before v0.9.6 downloaded models to this location
+/// (or to the default `~/.cache/huggingface/hub` when it is `None`). Keeping it
+/// lets the model manager recognize those files after an upgrade without
+/// copying multi-gigabyte files or modifying a cache shared with other
+/// applications.
 pub fn previous_hf_home() -> Option<&'static PathBuf> {
     PREVIOUS_HF_HOME.get().and_then(|path| path.as_ref())
 }
 
-/// Keep hf-hub downloads inside the portable data directory. hf-hub appends
-/// its own `hub` component to `HF_HOME` for model snapshots and blobs.
+/// Keep the Hugging Face cache lookup inside the portable data directory. The
+/// cache layout appends its own `hub` component to `HF_HOME`.
 fn hugging_face_home(data_dir: &Path) -> PathBuf {
     data_dir.join("huggingface")
 }

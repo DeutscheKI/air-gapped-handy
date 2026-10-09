@@ -14,7 +14,7 @@ is one divergence from upstream [cjpais/Handy](https://github.com/cjpais/Handy).
   maps the resulting `libonnxruntime.so.1` into `/usr/lib/Handy` in the deb. Run the
   script once before `bun run tauri build --bundles deb`.
 - **All Rust crates are vendored in `vendor/cargo`.** `.cargo/config.toml` replaces
-  crates.io and the six git dependencies with that directory and sets `net.offline`, so
+  crates.io and the five git dependencies with that directory and sets `net.offline`, so
   `cargo` never reaches the network and fails loudly if anything is missing. Regenerate
   with `scripts/vendor-cargo.sh` after changing `Cargo.toml` or `Cargo.lock`. The
   directory is large because `cargo vendor` includes every platform's crates (the
@@ -48,7 +48,10 @@ is one divergence from upstream [cjpais/Handy](https://github.com/cjpais/Handy).
   `blob.handy.computer` mirror that upstream fell back to is removed from the catalog
   along with the fallback code. The pre-catalog Whisper `.bin` and ONNX models that upstream
   served from the same host keep their registry entries so files already on disk still
-  load, but they carry no URL any more and stay hidden until present.
+  load, but they carry no URL any more and stay hidden until present. With the downloader
+  gone, `reqwest`, `hf-hub`, `futures-util`, `tar`, `flate2` and `sha2` leave
+  `Cargo.toml`; the only HTTP client left in the binary is the one inside Tauri's
+  core, which serves the webview and is never pointed at the network.
 - **The Rust toolchain is pinned to 1.99.0 in `rust-toolchain.toml`.** The vendored
   crates were built against it, and an offline machine cannot download a newer stable.
   Install it once with
