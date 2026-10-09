@@ -1,0 +1,25 @@
+[package]
+name = "tauri-plugin-macos-permissions"
+version = "2.3.0"
+authors = [ "ayangweb" ]
+description = "Support for checking and requesting macos system permissions."
+repository = "https://github.com/ayangweb/tauri-plugin-macos-permissions"
+keywords = ["tauri-plugin", "macos-permissions", "accessibility", "full-disk-access", "screen-recording"]
+license = "MIT"
+edition = "2021"
+rust-version = "1.77.2"
+exclude = ["/examples", "/webview-dist", "/webview-src", "/node_modules"]
+links = "tauri-plugin-macos-permissions"
+
+[dependencies]
+tauri = { version = "2" }
+serde = "1"
+thiserror = "2"
+
+[build-dependencies]
+tauri-plugin = { version = "2", features = ["build"] }
+
+[target."cfg(target_os = \"macos\")".dependencies]
+macos-accessibility-client = "0.0.1"
+objc2 = "0.6"
+objc2-foundation = "0.3"

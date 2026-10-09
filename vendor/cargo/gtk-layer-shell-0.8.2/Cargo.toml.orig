@@ -1,0 +1,36 @@
+[package]
+name = "gtk-layer-shell"
+version = "0.8.2"
+description = "UNMAINTAINED Save gir-generated wrapper for gtk-layer-shell"
+repository = "https://github.com/pentamassiv/gtk-layer-shell-gir/tree/main/gtk-layer-shell"
+documentation = "https://docs.rs/gtk-layer-shell/"
+keywords = ["gtk", "gtk-layer-shell", "wayland", "gir", "wrapper"]
+categories = ["api-bindings", "gui"]
+exclude = ["examples"]
+authors.workspace = true
+rust-version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[package.metadata.docs.rs]
+all-features = true
+rustc-args = ["--cfg", "docsrs"]
+rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
+
+[features]
+default = []
+v0_4 = ["gtk-layer-shell-sys/v0_4"]
+v0_5 = ["gtk-layer-shell-sys/v0_5", "v0_4"]
+v0_6 = ["gtk-layer-shell-sys/v0_6", "v0_5"]
+
+[dependencies]
+libc.workspace = true
+bitflags.workspace = true
+glib.workspace = true
+glib-sys.workspace = true
+gdk.workspace = true
+gtk.workspace = true
+gtk-layer-shell-sys.workspace = true
+
+[dev-dependencies]
+gio.workspace = true

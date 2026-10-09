@@ -1,0 +1,5 @@
+"$schema" = "schemas/schema.json"
+
+[default]
+description = "Default permissions for the plugin"
+permissions = ["allow-check-accessibility-permission", "allow-request-accessibility-permission", "allow-check-full-disk-access-permission", "allow-request-full-disk-access-permission", "allow-check-screen-recording-permission", "allow-request-screen-recording-permission", "allow-check-microphone-permission", "allow-request-microphone-permission", "allow-check-camera-permission", "allow-request-camera-permission", "allow-check-input-monitoring-permission", "allow-request-input-monitoring-permission"]

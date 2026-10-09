@@ -13,6 +13,12 @@ is one divergence from upstream [cjpais/Handy](https://github.com/cjpais/Handy).
   there and sets `ORT_PREFER_DYNAMIC_LINK=1`, and `tauri.conf.json` maps the resulting
   `libonnxruntime.so.1` into `/usr/lib/Handy` in the deb. Run the script once before
   `bun run tauri build --bundles deb`.
+- **All Rust crates are vendored in `vendor/cargo`.** `.cargo/config.toml` replaces
+  crates.io and the six git dependencies with that directory and sets `net.offline`, so
+  `cargo` never reaches the network and fails loudly if anything is missing. Regenerate
+  with `scripts/vendor-cargo.sh` after changing `Cargo.toml` or `Cargo.lock`. The
+  directory is large because `cargo vendor` includes every platform's crates (the
+  Windows bindings alone are most of it); trimming it would break lockfile resolution.
 
 [![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/invite/WVBeWsNXK4)
 

@@ -8,3 +8,43 @@
 [env]
 ORT_LIB_LOCATION = { value = "src-tauri/onnxruntime/lib", relative = true }
 ORT_PREFER_DYNAMIC_LINK = "1"
+
+# All crates, including the git dependencies, are vendored into vendor/cargo
+# (regenerate with scripts/vendor-cargo.sh). With the sources replaced below
+# cargo never contacts crates.io or GitHub; net.offline makes any gap fail
+# loudly instead of silently reaching out.
+[net]
+offline = true
+
+[source.crates-io]
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/ahkohd/tauri-nspanel?branch=v2.1"]
+git = "https://github.com/ahkohd/tauri-nspanel"
+branch = "v2.1"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/cjpais/hf-hub?branch=cancellable-downloads"]
+git = "https://github.com/cjpais/hf-hub"
+branch = "cancellable-downloads"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/cjpais/rodio.git"]
+git = "https://github.com/cjpais/rodio.git"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/cjpais/tao?rev=c3bee28c1d446d95f08c95c3b6f8d4bde052b876"]
+git = "https://github.com/cjpais/tao"
+rev = "c3bee28c1d446d95f08c95c3b6f8d4bde052b876"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/cjpais/vad-rs"]
+git = "https://github.com/cjpais/vad-rs"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/rustdesk-org/rdev"]
+git = "https://github.com/rustdesk-org/rdev"
+replace-with = "vendored-sources"
+
+[source.vendored-sources]
+directory = "vendor/cargo"
