@@ -1130,7 +1130,7 @@ mod tests {
         let effect = state.on_processing_finished();
         assert!(
             effect.is_none(),
-            "two transcribe toggles net to no-op; the ignored post-process toggle must not start"
+            "two transcribe toggles net to no-op; the ignored other-binding toggle must not start"
         );
         assert_eq!(state.stage, Stage::Idle);
     }

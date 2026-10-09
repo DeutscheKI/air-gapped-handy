@@ -1055,7 +1055,7 @@ export type StreamPhase =
  */
 "listening" | 
 /**
- * Finalizing or post-processing — show a spinner.
+ * Finalizing — show a spinner.
  */
 "working"
 /**
