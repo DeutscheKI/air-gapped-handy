@@ -25,11 +25,10 @@ const modelSupportsLanguage = (model: ModelInfo, langCode: string): boolean => {
   return supportsLanguageCode(model.supported_languages, langCode);
 };
 
-// Legacy models are the blob (Url-sourced) .bin/ONNX downloads, superseded by
-// the catalog GGUFs. They stay runnable when already on disk, but we no longer
-// advertise the download.
-const isLegacyModel = (model: ModelInfo): boolean =>
-  typeof model.source === "object" && "Url" in model.source;
+// Legacy models are the pre-catalog .bin/ONNX models, superseded by the catalog
+// GGUFs. They stay runnable when already on disk, but have no source to
+// install from.
+const isLegacyModel = (model: ModelInfo): boolean => model.source === "Legacy";
 
 export const ModelsSettings: React.FC = () => {
   const { t } = useTranslation();

@@ -46,7 +46,9 @@ is one divergence from upstream [cjpais/Handy](https://github.com/cjpais/Handy).
   on a connected machine, copy it there, and press "Check again": Handy rescans and
   selects it. Files already in the shared Hugging Face cache are still picked up. The
   `blob.handy.computer` mirror that upstream fell back to is removed from the catalog
-  along with the fallback code.
+  along with the fallback code. The pre-catalog Whisper `.bin` and ONNX models that upstream
+  served from the same host keep their registry entries so files already on disk still
+  load, but they carry no URL any more and stay hidden until present.
 - **The Rust toolchain is pinned to 1.99.0 in `rust-toolchain.toml`.** The vendored
   crates were built against it, and an offline machine cannot download a newer stable.
   Install it once with
@@ -296,80 +298,47 @@ If the transcription is correct in **History** but Handy inserts text you copied
 
 If the problem persists, add your Handy version, operating system, receiving application, paste method, Reliable Paste setting, and before/after delays to the existing issue. Redact private dictated text before sharing logs.
 
-### Manual Model Installation (For Proxy Users or Network Restrictions)
+### Manual Model Installation
 
-If you're behind a proxy, firewall, or in a restricted network environment where Handy cannot download models automatically, you can manually download and install them. The URLs are publicly accessible from any browser.
+This fork never downloads anything, so every model is installed by hand. The install
+dialog (click a model in Settings → Models, or during onboarding) shows the exact values
+for the model you picked; this section explains what they mean.
 
-#### Step 1: Find Your App Data Directory
+#### Where the files go
 
-1. Open Handy settings
-2. Navigate to the **About** section
-3. Copy the "App Data Directory" path shown there, or use the shortcuts:
-   - **macOS**: `Cmd+Shift+D` to open debug menu
-   - **Windows/Linux**: `Ctrl+Shift+D` to open debug menu
+Handy looks for model files in the `models` folder of its app data directory, which is
+also shown under Settings → About:
 
-The typical paths are:
+```
+~/.local/share/com.pais.handy/models/
+```
 
-- **macOS**: `~/Library/Application Support/com.pais.handy/`
-- **Windows**: `C:\Users\{username}\AppData\Roaming\com.pais.handy\`
-- **Linux**: `~/.config/com.pais.handy/`
+Create it if it does not exist yet (`mkdir -p ~/.local/share/com.pais.handy/models`).
+Handy additionally scans the shared Hugging Face cache (`~/.cache/huggingface/hub`, or
+`$HF_HOME/hub`), so a `.gguf` that another tool already fetched is picked up without
+being moved.
 
-#### Step 2: Create Models Directory
+#### Getting the file
 
-Inside your app data directory, create a `models` folder if it doesn't already exist:
+On a machine with internet access, either open the link from the dialog in a browser (it
+points at `https://huggingface.co/<repo>/resolve/<commit>/<file>`, pinned to the commit
+the catalog was generated from), or use the Hugging Face CLI, which writes the file
+straight into a local directory:
 
 ```bash
-# macOS/Linux
-mkdir -p ~/Library/Application\ Support/com.pais.handy/models
-
-# Windows (PowerShell)
-New-Item -ItemType Directory -Force -Path "$env:APPDATA\com.pais.handy\models"
+pip install -U huggingface_hub
+hf download handy-computer/parakeet-unified-en-0.6b-gguf parakeet-unified-en-0.6b-Q8_0.gguf \
+  --revision 7e948f21b7bdbac698d3318db9d350f1096f3b6c \
+  --local-dir ~/.local/share/com.pais.handy/models
 ```
 
-#### Step 3: Download Model Files
+Copy the file into the models folder on the air-gapped machine, keeping the exact
+filename. To verify it, compare `sha256sum <file>` against the hash in the dialog.
 
-Download the models you want from below
+#### Making Handy see it
 
-**Whisper Models (single .bin files):**
-
-- Small (487 MB): `https://blob.handy.computer/ggml-small.bin`
-- Medium (492 MB): `https://blob.handy.computer/whisper-medium-q4_1.bin`
-- Turbo (1600 MB): `https://blob.handy.computer/ggml-large-v3-turbo.bin`
-- Large (1100 MB): `https://blob.handy.computer/ggml-large-v3-q5_0.bin`
-
-**Parakeet Unified EN 0.6B (single `.gguf` file, recommended):**
-
-- Q8_0 (731 MB): `https://huggingface.co/handy-computer/parakeet-unified-en-0.6b-gguf/resolve/main/parakeet-unified-en-0.6b-Q8_0.gguf`
-
-#### Step 4: Install Models
-
-**For Whisper Models (.bin files):**
-
-Simply place the `.bin` file directly into the `models` directory:
-
-```
-{app_data_dir}/models/
-├── ggml-small.bin
-├── whisper-medium-q4_1.bin
-├── ggml-large-v3-turbo.bin
-└── ggml-large-v3-q5_0.bin
-```
-
-**For GGUF Models (.gguf files):**
-
-Place the `.gguf` file directly into the `models` directory, exactly like the Whisper `.bin` files above. Handy also picks up models already present in the shared Hugging Face cache (`~/.cache/huggingface/hub`), so a copy downloaded by another tool works without being moved.
-
-**Important Notes:**
-
-- Do not rename the `.bin` or `.gguf` files—use the exact filenames from the download URLs
-- After placing the files, restart Handy to detect the new models
-
-#### Step 5: Verify Installation
-
-1. Restart Handy
-2. Open Settings → Models
-3. Your manually installed models should now appear as "Downloaded"
-4. Select the model you want to use and test transcription
+Press "Check again" in the dialog, or the rescan button in Settings → Models; no restart
+is needed. The model appears under "Installed Models" and the dialog selects it for you.
 
 ### Custom Whisper Models
 

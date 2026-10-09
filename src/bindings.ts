@@ -973,22 +973,20 @@ hf_cli_command: string;
 sha256: string | null }
 export type ModelLoadStatus = { is_loaded: boolean; current_model: string | null }
 /**
- * Where a model comes from and how Handy obtains it — the routing discriminant
- * for downloading and on-disk resolution.
+ * Where a model comes from — the routing discriminant for on-disk resolution
+ * and for whether install instructions can be offered.
  */
 export type ModelSource = 
 /**
- * Direct HTTP download from a URL (current blob.handy.computer hosting).
+ * A pre-catalog Whisper `.bin` or ONNX model that upstream downloaded from
+ * blob.handy.computer. This fork offers no source for it: the entry only
+ * keeps an already-present file in the models directory runnable.
  */
-{ Url: { url: string; 
+"Legacy" | 
 /**
- * Expected SHA-256 for integrity verification; `None` skips it.
- */
-sha256: string | null } } | 
-/**
- * A file inside a Hugging Face Hub repo, fetched via hf-hub into the shared
- * HF cache (so other tools reuse it). The file within the repo is
- * [`ModelInfo::filename`].
+ * A file inside a Hugging Face Hub repo, found in the shared HF cache or
+ * copied into the models directory by hand (the install dialog shows the
+ * pinned link). The file within the repo is [`ModelInfo::filename`].
  */
 { HuggingFace: { repo_id: string; revision: string } } | 
 /**

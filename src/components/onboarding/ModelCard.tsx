@@ -40,10 +40,10 @@ const getLanguageDisplayText = (
   });
 };
 
-// Legacy = a blob (Url-sourced) .bin/ONNX model, kept runnable but no longer the
-// advertised download (catalog GGUFs supersede it).
+// Legacy = a pre-catalog .bin/ONNX model with no source to install from; it is
+// kept runnable when its file is already on disk (catalog GGUFs supersede it).
 export const isLegacySource = (model: ModelInfo): boolean =>
-  typeof model.source === "object" && "Url" in model.source;
+  model.source === "Legacy";
 
 // Extract a GGUF quantization label from a filename, if present (e.g. "Q8_0").
 const getQuantLabel = (filename: string): string | null => {
