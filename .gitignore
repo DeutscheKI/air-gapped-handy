@@ -45,3 +45,6 @@ result
 
 # Python bytecode (scripts/)
 __pycache__/
+
+# ONNX Runtime fetched by scripts/fetch-onnxruntime.sh
+/src-tauri/onnxruntime/

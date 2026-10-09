@@ -47,7 +47,8 @@
       "deb": {
         "depends": ["libgtk-layer-shell0", "libopenblas0"],
         "files": {
-          "/usr/lib/Handy": "transcribe-libs"
+          "/usr/lib/Handy": "transcribe-libs",
+          "/usr/lib/Handy/libonnxruntime.so.1": "onnxruntime/lib/libonnxruntime.so.1"
         }
       },
       "rpm": {

@@ -1,5 +1,19 @@
 # Handy
 
+## Changes in this Repo to make things work for Hajo's air-gapped env
+
+This fork targets Linux only (Pop!\_OS, Debian, Ubuntu) and ships as a `.deb` that must
+not only work with no network access at all, but to make the 100% privacy claim testable,
+it also is not even allowed to attempt any network access during runtime. Each entry below
+is one divergence from upstream [cjpais/Handy](https://github.com/cjpais/Handy).
+
+- **ONNX Runtime comes from a pinned local copy, not a compile-time download.**
+  `scripts/fetch-onnxruntime.sh` unpacks a hash-checked ONNX Runtime 1.24.2 into
+  `src-tauri/onnxruntime/` (gitignored). `.cargo/config.toml` points `ORT_LIB_LOCATION`
+  there and sets `ORT_PREFER_DYNAMIC_LINK=1`, and `tauri.conf.json` maps the resulting
+  `libonnxruntime.so.1` into `/usr/lib/Handy` in the deb. Run the script once before
+  `bun run tauri build --bundles deb`.
+
 [![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/invite/WVBeWsNXK4)
 
 **A free, open source, and extensible speech-to-text application that works completely offline.**
