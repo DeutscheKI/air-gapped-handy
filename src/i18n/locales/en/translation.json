@@ -559,6 +559,12 @@
         "title": "App Data Directory",
         "description": "Location where Handy stores its data"
       },
+      "fork": {
+        "title": "Air-gapped fork",
+        "description": "This is the air-gapped fork of Handy. It never attempts any network access.",
+        "sourceLabel": "Source code",
+        "branchLabel": "Branch"
+      },
       "sourceCode": {
         "title": "Source Code",
         "description": "View source code and contribute"

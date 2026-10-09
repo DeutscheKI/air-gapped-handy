@@ -555,6 +555,12 @@
         "title": "Adresář dat aplikace",
         "description": "Umístění, kde Handy ukládá data"
       },
+      "fork": {
+        "title": "Odpojený fork",
+        "description": "Toto je fork Handy odpojený od sítě. Nikdy se nepokouší o přístup k síti.",
+        "sourceLabel": "Zdrojový kód",
+        "branchLabel": "Větev"
+      },
       "sourceCode": {
         "title": "Zdrojový kód",
         "description": "Zobrazit zdrojový kód a přispět"

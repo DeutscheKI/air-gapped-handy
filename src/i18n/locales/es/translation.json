@@ -555,6 +555,12 @@
         "title": "Directorio de datos de la aplicación",
         "description": "Ubicación donde Handy almacena sus datos"
       },
+      "fork": {
+        "title": "Fork aislado de la red",
+        "description": "Este es el fork de Handy aislado de la red. Nunca intenta acceder a la red.",
+        "sourceLabel": "Código fuente",
+        "branchLabel": "Rama"
+      },
       "sourceCode": {
         "title": "Código fuente",
         "description": "Ver código fuente y contribuir"

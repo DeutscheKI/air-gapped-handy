@@ -559,6 +559,12 @@
         "title": "Directori de dades de l'aplicació",
         "description": "Ubicació on el Handy desa les dades"
       },
+      "fork": {
+        "title": "Fork aïllat de la xarxa",
+        "description": "Aquest és el fork de Handy aïllat de la xarxa. Mai intenta accedir a la xarxa.",
+        "sourceLabel": "Codi font",
+        "branchLabel": "Branca"
+      },
       "sourceCode": {
         "title": "Codi font",
         "description": "Consulta el codi font i col·laboreu-hi"

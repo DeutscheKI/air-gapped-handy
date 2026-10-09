@@ -555,6 +555,12 @@
         "title": "Mapp för appdata",
         "description": "Plats där Handy lagrar sina data"
       },
+      "fork": {
+        "title": "Nätverksisolerad fork",
+        "description": "Detta är den nätverksisolerade forken av Handy. Den försöker aldrig nå nätverket.",
+        "sourceLabel": "Källkod",
+        "branchLabel": "Gren"
+      },
       "sourceCode": {
         "title": "Källkod",
         "description": "Visa källkod och bidra"

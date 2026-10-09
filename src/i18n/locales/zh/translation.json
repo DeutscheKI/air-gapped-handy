@@ -555,6 +555,12 @@
         "title": "应用数据目录",
         "description": "Handy 存储数据的位置"
       },
+      "fork": {
+        "title": "离线隔离分支版本",
+        "description": "这是 Handy 的离线隔离分支版本。它从不尝试访问网络。",
+        "sourceLabel": "源代码",
+        "branchLabel": "分支"
+      },
       "sourceCode": {
         "title": "源代码",
         "description": "查看源代码并贡献"

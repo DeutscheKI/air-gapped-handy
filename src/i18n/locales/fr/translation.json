@@ -555,6 +555,12 @@
         "title": "Emplacement des données de l'application",
         "description": "Emplacement où Handy stocke ses données"
       },
+      "fork": {
+        "title": "Fork isolé du réseau",
+        "description": "Ceci est le fork de Handy isolé du réseau. Il ne tente jamais d'accéder au réseau.",
+        "sourceLabel": "Code source",
+        "branchLabel": "Branche"
+      },
       "sourceCode": {
         "title": "Code source",
         "description": "Voir le code source et contribuer"

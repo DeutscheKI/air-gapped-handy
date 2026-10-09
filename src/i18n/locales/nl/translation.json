@@ -559,6 +559,12 @@
         "title": "App-datamap",
         "description": "Locatie waar Handy de gegevens opslaat"
       },
+      "fork": {
+        "title": "Air-gapped fork",
+        "description": "Dit is de air-gapped fork van Handy. Hij probeert nooit toegang tot het netwerk te krijgen.",
+        "sourceLabel": "Broncode",
+        "branchLabel": "Branch"
+      },
       "sourceCode": {
         "title": "Broncode",
         "description": "Bekijk de broncode en draag bij"

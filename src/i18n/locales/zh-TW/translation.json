@@ -555,6 +555,12 @@
         "title": "應用程式資料目錄",
         "description": "Handy 儲存資料的位置"
       },
+      "fork": {
+        "title": "離線隔離分支版本",
+        "description": "這是 Handy 的離線隔離分支版本。它從不嘗試存取網路。",
+        "sourceLabel": "原始碼",
+        "branchLabel": "分支"
+      },
       "sourceCode": {
         "title": "原始碼",
         "description": "檢視原始碼並參與貢獻"

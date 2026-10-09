@@ -555,6 +555,12 @@
         "title": "앱 데이터 디렉토리",
         "description": "Handy가 데이터를 저장하는 위치"
       },
+      "fork": {
+        "title": "에어갭 포크",
+        "description": "이것은 네트워크와 격리된 Handy 포크입니다. 네트워크 접근을 전혀 시도하지 않습니다.",
+        "sourceLabel": "소스 코드",
+        "branchLabel": "브랜치"
+      },
       "sourceCode": {
         "title": "소스 코드",
         "description": "소스 코드 보기 및 기여"

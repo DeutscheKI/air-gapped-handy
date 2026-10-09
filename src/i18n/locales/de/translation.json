@@ -555,6 +555,12 @@
         "title": "App-Datenverzeichnis",
         "description": "Speicherort der Handy-Daten"
       },
+      "fork": {
+        "title": "Air-Gapped-Fork",
+        "description": "Dies ist der Air-Gapped-Fork von Handy. Er versucht nie, auf das Netzwerk zuzugreifen.",
+        "sourceLabel": "Quellcode",
+        "branchLabel": "Branch"
+      },
       "sourceCode": {
         "title": "Quellcode",
         "description": "Quellcode ansehen und beitragen"

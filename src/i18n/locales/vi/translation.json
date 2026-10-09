@@ -555,6 +555,12 @@
         "title": "Thư mục dữ liệu ứng dụng",
         "description": "Vị trí Handy lưu trữ dữ liệu"
       },
+      "fork": {
+        "title": "Bản fork cách ly mạng",
+        "description": "Đây là bản fork Handy được cách ly khỏi mạng. Nó không bao giờ cố gắng truy cập mạng.",
+        "sourceLabel": "Mã nguồn",
+        "branchLabel": "Nhánh"
+      },
       "sourceCode": {
         "title": "Mã nguồn",
         "description": "Xem mã nguồn và đóng góp"

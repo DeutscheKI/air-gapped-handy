@@ -555,6 +555,12 @@
         "title": "Uygulama Veri Dizini",
         "description": "Handy'nin verilerini sakladığı konum"
       },
+      "fork": {
+        "title": "Ağdan yalıtılmış çatal",
+        "description": "Bu, Handy'nin ağdan yalıtılmış çatalıdır. Hiçbir zaman ağa erişmeyi denemez.",
+        "sourceLabel": "Kaynak kodu",
+        "branchLabel": "Dal"
+      },
       "sourceCode": {
         "title": "Kaynak Kodu",
         "description": "Kaynak kodunu görüntüle ve katkıda bulun"

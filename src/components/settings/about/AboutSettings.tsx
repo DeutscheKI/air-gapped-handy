@@ -32,6 +32,8 @@ export const AboutSettings: React.FC = () => {
   // user carries them to a machine that is online.
   const DONATE_URL = "https://handy.computer/donate";
   const SOURCE_URL = "https://github.com/cjpais/Handy";
+  const FORK_URL = "https://github.com/DeutscheKI/air-gapped-handy";
+  const FORK_BRANCH = "air-gapped";
 
   return (
     <div className="max-w-3xl w-full mx-auto space-y-6">
@@ -56,6 +58,24 @@ export const AboutSettings: React.FC = () => {
           layout="stacked"
         >
           <CopyField value={DONATE_URL} />
+        </SettingContainer>
+
+        <SettingContainer
+          title={t("settings.about.fork.title")}
+          description={t("settings.about.fork.description")}
+          grouped={true}
+          layout="stacked"
+        >
+          <div className="space-y-2">
+            <CopyField
+              label={t("settings.about.fork.sourceLabel")}
+              value={FORK_URL}
+            />
+            <CopyField
+              label={t("settings.about.fork.branchLabel")}
+              value={FORK_BRANCH}
+            />
+          </div>
         </SettingContainer>
 
         <SettingContainer

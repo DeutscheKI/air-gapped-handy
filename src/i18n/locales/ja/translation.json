@@ -555,6 +555,12 @@
         "title": "アプリデータディレクトリ",
         "description": "Handy がデータを保存する場所"
       },
+      "fork": {
+        "title": "エアギャップ版フォーク",
+        "description": "これはネットワークから隔離された Handy のフォークです。ネットワークへのアクセスを一切試みません。",
+        "sourceLabel": "ソースコード",
+        "branchLabel": "ブランチ"
+      },
       "sourceCode": {
         "title": "ソースコード",
         "description": "ソースコードを見て貢献する"

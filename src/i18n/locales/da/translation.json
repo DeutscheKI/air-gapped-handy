@@ -559,6 +559,12 @@
         "title": "Appdatamappe",
         "description": "Placering, hvor Handy gemmer sine data"
       },
+      "fork": {
+        "title": "Netværksisoleret fork",
+        "description": "Dette er den netværksisolerede fork af Handy. Den forsøger aldrig at få adgang til netværket.",
+        "sourceLabel": "Kildekode",
+        "branchLabel": "Gren"
+      },
       "sourceCode": {
         "title": "Kildekode",
         "description": "Se kildekode og bidrag"

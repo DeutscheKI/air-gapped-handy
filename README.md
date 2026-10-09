@@ -71,6 +71,9 @@ is one divergence from upstream [cjpais/Handy](https://github.com/cjpais/Handy).
   `@tauri-apps/plugin-opener` leaves `package.json`, `bun.lock`, the nix mirror and the
   bun vendor cache. The Rust side keeps `tauri-plugin-opener` only to open local folders
   (recordings, logs, app data) from its own commands.
+- **The About page names the fork.** A row above upstream's source link shows the fork's
+  repository (`https://github.com/DeutscheKI/air-gapped-handy`) and branch (`air-gapped`)
+  as copy fields, so a user can tell at a glance which build they are running.
 
 [![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/invite/WVBeWsNXK4)
 

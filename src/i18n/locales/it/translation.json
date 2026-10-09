@@ -555,6 +555,12 @@
         "title": "Cartella Dati App",
         "description": "Cartella in cui Handy salva i dati"
       },
+      "fork": {
+        "title": "Fork isolato dalla rete",
+        "description": "Questo è il fork di Handy isolato dalla rete. Non tenta mai di accedere alla rete.",
+        "sourceLabel": "Codice sorgente",
+        "branchLabel": "Branch"
+      },
       "sourceCode": {
         "title": "Codice Sorgente",
         "description": "Vedi e contribuisci al codice sorgente"
