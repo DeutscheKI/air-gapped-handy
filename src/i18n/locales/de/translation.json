@@ -624,7 +624,6 @@
   },
   "overlay": {
     "transcribing": "Transkribiere...",
-    "processing": "Verarbeite...",
     "loadingModel": "Modell wird geladen..."
   },
   "whatsNew": {

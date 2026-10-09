@@ -624,7 +624,6 @@
   },
   "overlay": {
     "transcribing": "جاري التفريغ...",
-    "processing": "جاري المعالجة...",
     "loadingModel": "جارٍ تحميل النموذج..."
   },
   "whatsNew": {

@@ -627,7 +627,6 @@
   },
   "overlay": {
     "transcribing": "S'està transcrivint...",
-    "processing": "S'està processant...",
     "loadingModel": "S'està carregant el model..."
   },
   "secureInput": {

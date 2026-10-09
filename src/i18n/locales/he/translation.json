@@ -624,7 +624,6 @@
   },
   "overlay": {
     "transcribing": "מתמלל...",
-    "processing": "מעבד...",
     "loadingModel": "טוען מודל..."
   },
   "whatsNew": {

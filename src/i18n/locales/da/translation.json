@@ -627,7 +627,6 @@
   },
   "overlay": {
     "transcribing": "Transskriberer...",
-    "processing": "Behandler...",
     "loadingModel": "Indlæser model..."
   },
   "secureInput": {

@@ -627,7 +627,6 @@
   },
   "overlay": {
     "transcribing": "Mentranskripsikan...",
-    "processing": "Memproses...",
     "loadingModel": "Memuat model..."
   },
   "secureInput": {

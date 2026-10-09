@@ -627,7 +627,6 @@
   },
   "overlay": {
     "transcribing": "Transcriberen...",
-    "processing": "Verwerken...",
     "loadingModel": "Model laden..."
   },
   "secureInput": {

@@ -624,7 +624,6 @@
   },
   "overlay": {
     "transcribing": "Обробка...",
-    "processing": "Постобробка...",
     "loadingModel": "Завантаження моделі..."
   },
   "whatsNew": {

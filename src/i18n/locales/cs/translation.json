@@ -624,7 +624,6 @@
   },
   "overlay": {
     "transcribing": "Přepisuji...",
-    "processing": "Zpracovávám...",
     "loadingModel": "Načítání modelu..."
   },
   "whatsNew": {

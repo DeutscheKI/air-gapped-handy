@@ -3,7 +3,6 @@ use crate::audio_toolkit::{is_microphone_access_denied, is_no_input_device_error
 use crate::managers::audio::AudioRecordingManager;
 use crate::managers::history::HistoryManager;
 use crate::managers::model::ModelManager;
-use crate::managers::transcription::StreamWorkKind;
 use crate::managers::transcription::TranscriptionManager;
 use crate::settings::{get_settings, OverlayStyle};
 use crate::shortcut;
@@ -257,7 +256,7 @@ impl ShortcutAction for TranscribeAction {
         // targets the same overlay that was shown for this transcription.
         let use_streaming_overlay = should_use_streaming_overlay(style, tm.is_streaming());
         if use_streaming_overlay {
-            tm.emit_stream_working(StreamWorkKind::Transcribing);
+            tm.emit_stream_working();
         } else {
             show_transcribing_overlay(app);
         }

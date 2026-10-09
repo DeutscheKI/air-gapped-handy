@@ -1068,11 +1068,7 @@ export type StreamPhase =
 /**
  * Emitted to switch the streaming overlay to a working spinner.
  */
-export type StreamPhaseEvent = { phase: StreamPhase; 
-/**
- * Present only when `phase` is `Working`.
- */
-kind?: StreamWorkKind | null }
+export type StreamPhaseEvent = { phase: StreamPhase }
 /**
  * Live transcription snapshot emitted to the overlay during a streaming run.
  * `committed` is the append-only, flicker-free prefix; `tentative` is the
@@ -1082,7 +1078,6 @@ export type StreamTextEvent = { committed: string; tentative: string }
 /**
  * Semantic kind of "working" phase, used to localize the spinner label.
  */
-export type StreamWorkKind = "transcribing" | "polishing"
 /**
  * UI appearance mode. `System` follows the OS `prefers-color-scheme`; `Light`
  * and `Dark` force one of the two palettes Handy already ships.

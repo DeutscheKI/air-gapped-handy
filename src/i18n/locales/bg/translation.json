@@ -624,7 +624,6 @@
   },
   "overlay": {
     "transcribing": "Транскрибиране...",
-    "processing": "Обработка...",
     "loadingModel": "Зареждане на модела..."
   },
   "whatsNew": {

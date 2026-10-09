@@ -624,7 +624,6 @@
   },
   "overlay": {
     "transcribing": "Transkribe ediliyor...",
-    "processing": "İşleniyor...",
     "loadingModel": "Model yükleniyor..."
   },
   "whatsNew": {

@@ -53,7 +53,7 @@
   --ov-rest-w: 172px; /* resting compact pill (minimal, recording) -- roomy enough
                          for the English working label before the grow starts */
   --ov-pill-w: 184px; /* base width / Live pill before it opens or collapses */
-  --ov-work-w: 216px; /* working pill (transcribing / polishing) -- wide enough to
+  --ov-work-w: 216px; /* working pill (transcribing) -- wide enough to
                          center longer labels; shared by Live (collapsed) + minimal */
   --ov-open-w: 392px; /* Live panel, expanded */
   --ov-base-h: 40px; /* control-row height (.sbase) */
@@ -444,7 +444,7 @@
   transform: scale(0.95);
 }
 
-/* working state (transcribing / polishing) — spinner + label */
+/* working state (transcribing) — spinner + label */
 .sspinner {
   width: 13px;
   height: 13px;

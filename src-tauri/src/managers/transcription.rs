@@ -75,25 +75,14 @@ pub enum StreamPhase {
     /// does not emit this today; the frontend starts in this phase and Rust only
     /// emits transitions away from it.
     Listening,
-    /// Finalizing or post-processing — show a spinner.
+    /// Finalizing — show a spinner.
     Working,
-}
-
-/// Semantic kind of "working" phase, used to localize the spinner label.
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize, Type)]
-#[serde(rename_all = "lowercase")]
-pub enum StreamWorkKind {
-    Transcribing,
-    Polishing,
 }
 
 /// Emitted to switch the streaming overlay to a working spinner.
 #[derive(Clone, Debug, Serialize, Deserialize, Type, tauri_specta::Event)]
 pub struct StreamPhaseEvent {
     pub phase: StreamPhase,
-    /// Present only when `phase` is `Working`.
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub kind: Option<StreamWorkKind>,
 }
 
 /// Commands sent to the streaming worker thread. Audio frames and the finalize
@@ -1117,10 +1106,9 @@ impl TranscriptionManager {
     }
 
     /// Emit a working-phase event to the streaming overlay (spinner + label).
-    pub fn emit_stream_working(&self, kind: StreamWorkKind) {
+    pub fn emit_stream_working(&self) {
         let _ = StreamPhaseEvent {
             phase: StreamPhase::Working,
-            kind: Some(kind),
         }
         .emit(&self.app_handle);
     }

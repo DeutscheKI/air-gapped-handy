@@ -627,7 +627,6 @@
   },
   "overlay": {
     "transcribing": "ट्रान्सक्राइब गरिँदैछ...",
-    "processing": "प्रशोधन गरिँदैछ...",
     "loadingModel": "मोडेल लोड गरिँदैछ..."
   },
   "secureInput": {
