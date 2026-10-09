@@ -374,13 +374,7 @@ impl ShortcutAction for TranscribeAction {
 
                             // Save to history if WAV was saved
                             if wav_saved {
-                                if let Err(err) = hm.save_entry(
-                                    file_name,
-                                    transcription.clone(),
-                                    false,
-                                    None,
-                                    None,
-                                ) {
+                                if let Err(err) = hm.save_entry(file_name, transcription.clone()) {
                                     error!("Failed to save history entry: {}", err);
                                 }
                             }
@@ -437,9 +431,7 @@ impl ShortcutAction for TranscribeAction {
                             let _ = ah.emit("transcription-error", err.to_string());
                             // Save entry with empty text so user can retry
                             if wav_saved {
-                                if let Err(save_err) =
-                                    hm.save_entry(file_name, String::new(), false, None, None)
-                                {
+                                if let Err(save_err) = hm.save_entry(file_name, String::new()) {
                                     error!("Failed to save failed history entry: {}", save_err);
                                 }
                             }
