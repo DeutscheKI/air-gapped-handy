@@ -891,26 +891,6 @@ pub fn get_default_settings() -> AppSettings {
             current_binding: default_shortcut.to_string(),
         },
     );
-    #[cfg(target_os = "windows")]
-    let default_post_process_shortcut = "ctrl+shift+space";
-    #[cfg(target_os = "macos")]
-    let default_post_process_shortcut = "option+shift+space";
-    #[cfg(target_os = "linux")]
-    let default_post_process_shortcut = "ctrl+shift+space";
-    #[cfg(not(any(target_os = "windows", target_os = "macos", target_os = "linux")))]
-    let default_post_process_shortcut = "alt+shift+space";
-
-    bindings.insert(
-        "transcribe_with_post_process".to_string(),
-        ShortcutBinding {
-            id: "transcribe_with_post_process".to_string(),
-            name: "Transcribe with Post-Processing".to_string(),
-            description: "Converts your speech into text and applies AI post-processing."
-                .to_string(),
-            default_binding: default_post_process_shortcut.to_string(),
-            current_binding: default_post_process_shortcut.to_string(),
-        },
-    );
     bindings.insert(
         "cancel".to_string(),
         ShortcutBinding {
@@ -1144,6 +1124,17 @@ fn apply_settings_migrations(
         updated = true;
     }
 
+    // The post-processing hotkey was removed with the LLM client. A persisted
+    // binding for it would otherwise be registered at startup and fire into a
+    // binding id no action handles.
+    if settings
+        .bindings
+        .remove("transcribe_with_post_process")
+        .is_some()
+    {
+        updated = true;
+    }
+
     let stored_schema_version = settings_value
         .get("settings_schema_version")
         .and_then(|v| v.as_u64())
@@ -1295,13 +1286,6 @@ mod tests {
                     "description": "Converts your speech into text.",
                     "default_binding": "option+space",
                     "current_binding": "f13"
-                },
-                "transcribe_with_post_process": {
-                    "id": "transcribe_with_post_process",
-                    "name": "Transcribe with Post-Processing",
-                    "description": "Converts your speech into text and applies AI post-processing.",
-                    "default_binding": "option+shift+space",
-                    "current_binding": "option+shift+space"
                 },
                 "cancel": {
                     "id": "cancel",

@@ -47,9 +47,7 @@ pub trait ShortcutAction: Send + Sync {
 }
 
 // Transcribe Action
-struct TranscribeAction {
-    post_process: bool,
-}
+struct TranscribeAction;
 
 fn should_use_streaming_overlay(style: OverlayStyle, is_streaming: bool) -> bool {
     style == OverlayStyle::Live && is_streaming
@@ -271,7 +269,6 @@ impl ShortcutAction for TranscribeAction {
         play_feedback_sound(app, SoundType::Stop);
 
         let binding_id = binding_id.to_string(); // Clone binding_id for the async task
-        let post_process = self.post_process;
         let cancel_generation = rm.cancel_generation();
 
         tauri::async_runtime::spawn(async move {
@@ -381,7 +378,7 @@ impl ShortcutAction for TranscribeAction {
                                 if let Err(err) = hm.save_entry(
                                     file_name,
                                     transcription.clone(),
-                                    post_process,
+                                    false,
                                     None,
                                     None,
                                 ) {
@@ -441,13 +438,9 @@ impl ShortcutAction for TranscribeAction {
                             let _ = ah.emit("transcription-error", err.to_string());
                             // Save entry with empty text so user can retry
                             if wav_saved {
-                                if let Err(save_err) = hm.save_entry(
-                                    file_name,
-                                    String::new(),
-                                    post_process,
-                                    None,
-                                    None,
-                                ) {
+                                if let Err(save_err) =
+                                    hm.save_entry(file_name, String::new(), false, None, None)
+                                {
                                     error!("Failed to save failed history entry: {}", save_err);
                                 }
                             }
@@ -513,13 +506,7 @@ pub static ACTION_MAP: Lazy<HashMap<String, Arc<dyn ShortcutAction>>> = Lazy::ne
     let mut map = HashMap::new();
     map.insert(
         "transcribe".to_string(),
-        Arc::new(TranscribeAction {
-            post_process: false,
-        }) as Arc<dyn ShortcutAction>,
-    );
-    map.insert(
-        "transcribe_with_post_process".to_string(),
-        Arc::new(TranscribeAction { post_process: true }) as Arc<dyn ShortcutAction>,
+        Arc::new(TranscribeAction) as Arc<dyn ShortcutAction>,
     );
     map.insert(
         "cancel".to_string(),

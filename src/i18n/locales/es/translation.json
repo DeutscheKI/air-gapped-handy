@@ -193,10 +193,6 @@
           "cancel": {
             "name": "Atajo de cancelar",
             "description": "El atajo de teclado para cancelar la grabación actual."
-          },
-          "transcribe_with_post_process": {
-            "name": "Tecla de post procesamiento",
-            "description": "Opcional: Una tecla de acceso rápido dedicada que siempre aplica post procesamiento con IA a tu transcripción."
           }
         },
         "errors": {

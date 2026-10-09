@@ -173,10 +173,6 @@
           "cancel": {
             "name": "Annulleringsgenvej",
             "description": "Tastaturgenvejen til at annullere den aktuelle optagelse."
-          },
-          "transcribe_with_post_process": {
-            "name": "Genvej til efterbehandling",
-            "description": "Valgfrit: En dedikeret genvej, der altid anvender AI-efterbehandling på din transskription."
           }
         },
         "errors": {

@@ -173,10 +173,6 @@
           "cancel": {
             "name": "Kortkommando för att avbryta",
             "description": "Kortkommandot för att avbryta den aktuella inspelningen."
-          },
-          "transcribe_with_post_process": {
-            "name": "Snabbkommando för efterbearbetning",
-            "description": "Valfritt: En dedikerad snabbknapp som alltid tillämpar AI-efterbearbetning på din transkription."
           }
         },
         "errors": {

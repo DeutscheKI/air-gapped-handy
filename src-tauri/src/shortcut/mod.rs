@@ -303,9 +303,6 @@ pub fn resume_all_shortcuts(app: &AppHandle) {
         if id == "cancel" {
             continue;
         }
-        if id == "transcribe_with_post_process" && !settings.post_process_enabled {
-            continue;
-        }
         if let Err(e) = register_shortcut(app, binding.clone()) {
             debug!("resume_all_shortcuts: could not register '{}': {}", id, e);
         }
@@ -491,11 +488,6 @@ fn register_all_shortcuts_for_implementation(
     for (id, default_binding) in &default_bindings {
         // Skip cancel shortcut as it's dynamically registered
         if id == "cancel" {
-            continue;
-        }
-
-        // Skip post-processing shortcut when the feature is disabled
-        if id == "transcribe_with_post_process" && !current_settings.post_process_enabled {
             continue;
         }
 
