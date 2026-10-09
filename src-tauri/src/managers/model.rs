@@ -3,7 +3,6 @@ use super::model_capabilities::{
 };
 use crate::settings::{get_settings, write_settings};
 use anyhow::Result;
-use hf_hub::{Cache, Repo, RepoType};
 use log::{debug, info, warn};
 use serde::{Deserialize, Serialize};
 use specta::Type;
@@ -321,18 +320,62 @@ fn shell_quote(arg: &str) -> String {
     }
 }
 
+/// A Hugging Face hub cache root (`<root>/models--org--name/...`), the layout
+/// `huggingface_hub` and hf-hub share. Only lookups are implemented: this fork
+/// never writes to the cache, it just finds files other tools fetched.
+#[derive(Debug, Clone, PartialEq)]
+struct HfCache {
+    path: PathBuf,
+}
+
+impl HfCache {
+    fn new(path: PathBuf) -> Self {
+        Self { path }
+    }
+
+    /// `$HF_HOME/hub` when set, else `~/.cache/huggingface/hub` — the same
+    /// resolution hf-hub used, so caches populated by other tools are found.
+    fn from_env() -> Self {
+        if let Some(home) = std::env::var_os("HF_HOME") {
+            return Self::new(PathBuf::from(home).join("hub"));
+        }
+        let home = std::env::var_os("HOME")
+            .map(PathBuf::from)
+            .unwrap_or_default();
+        Self::new(home.join(".cache").join("huggingface").join("hub"))
+    }
+
+    fn path(&self) -> &Path {
+        &self.path
+    }
+
+    /// The snapshot copy of `filename` at `revision`, if the cache has it:
+    /// `refs/<revision>` names the commit and `snapshots/<commit>/<filename>`
+    /// is the file (usually a symlink into `blobs/`).
+    fn get(&self, repo_id: &str, revision: &str, filename: &str) -> Option<PathBuf> {
+        let repo_dir = self
+            .path
+            .join(format!("models--{}", repo_id.replace('/', "--")));
+        let commit = fs::read_to_string(repo_dir.join("refs").join(revision)).ok()?;
+        let pointer = repo_dir
+            .join("snapshots")
+            .join(commit.trim())
+            .join(filename);
+        pointer.exists().then_some(pointer)
+    }
+}
+
 /// Return the active HF cache followed by the pre-v0.9.6 cache for portable
-/// upgrades. Downloads still use `Cache::from_env()` and therefore only write
-/// to the active portable cache.
-fn hf_caches() -> Vec<Cache> {
-    let current = Cache::from_env();
+/// upgrades (`portable::init` redirects `HF_HOME` into the data directory).
+fn hf_caches() -> Vec<HfCache> {
+    let current = HfCache::from_env();
     let mut caches = vec![current.clone()];
 
     if crate::portable::is_portable() {
         let legacy = crate::portable::previous_hf_home()
-            .map(|home| Cache::new(home.join("hub")))
-            .unwrap_or_default();
-        if legacy.path() != current.path() {
+            .map(|home| HfCache::new(home.join("hub")))
+            .unwrap_or_else(HfCache::from_env);
+        if legacy != current {
             caches.push(legacy);
         }
     }
@@ -346,27 +389,22 @@ fn hf_cached_path(repo_id: &str, revision: &str, filename: &str) -> Option<PathB
 
 /// Resolve a Hugging Face model file in the supplied caches, if already present.
 ///
-/// hf-hub resolves purely through `refs/<revision>`. Pinned downloads write
-/// `refs/<commit-sha>`, but caches populated before pinning — or by other
-/// tools, which download via `main` — only have `refs/main`, so lookup falls
-/// back to it. Grandfathered `main` copies may predate the pin; per policy a
-/// working local model is never invalidated by routine catalog regeneration.
+/// The cache resolves purely through `refs/<revision>`. Upstream's pinned
+/// downloads wrote `refs/<commit-sha>`, but caches populated before pinning —
+/// or by other tools, which download via `main` — only have `refs/main`, so
+/// lookup falls back to it. Grandfathered `main` copies may predate the pin;
+/// per policy a working local model is never invalidated by routine catalog
+/// regeneration.
 fn hf_cached_path_in(
-    caches: &[Cache],
+    caches: &[HfCache],
     repo_id: &str,
     revision: &str,
     filename: &str,
 ) -> Option<PathBuf> {
     let get = |rev: &str| {
-        caches.iter().find_map(|cache| {
-            cache
-                .repo(Repo::with_revision(
-                    repo_id.to_string(),
-                    RepoType::Model,
-                    rev.to_string(),
-                ))
-                .get(filename)
-        })
+        caches
+            .iter()
+            .find_map(|cache| cache.get(repo_id, rev, filename))
     };
     get(revision).or_else(|| (revision != "main").then(|| get("main")).flatten())
 }
@@ -1891,8 +1929,8 @@ mod tests {
             "model.gguf",
         );
         let caches = vec![
-            Cache::new(active.path().to_path_buf()),
-            Cache::new(legacy.path().to_path_buf()),
+            HfCache::new(active.path().to_path_buf()),
+            HfCache::new(legacy.path().to_path_buf()),
         ];
 
         assert_eq!(
@@ -1923,8 +1961,8 @@ mod tests {
             "model.gguf",
         );
         let caches = vec![
-            Cache::new(active.path().to_path_buf()),
-            Cache::new(legacy.path().to_path_buf()),
+            HfCache::new(active.path().to_path_buf()),
+            HfCache::new(legacy.path().to_path_buf()),
         ];
 
         assert_eq!(
