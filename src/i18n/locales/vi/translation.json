@@ -151,7 +151,17 @@
     "sha256Label": "SHA-256 mong đợi",
     "checkAgain": "Kiểm tra lại",
     "stillMissing": "Tệp chưa có ở đường dẫn đó.",
-    "loadError": "Không thể chuẩn bị hướng dẫn cài đặt: {{error}}"
+    "loadError": "Không thể chuẩn bị hướng dẫn cài đặt: {{error}}",
+    "details": "Chi tiết",
+    "detailsTitle": "Tệp của {{modelName}}",
+    "onDiskLabel": "Tệp tìm thấy trên đĩa",
+    "sizeOk": "Kích thước khớp với danh mục ({{size}}).",
+    "sizeMismatch": "Kích thước không khớp: {{actual}} trên đĩa, dự kiến {{expected}}. Quá trình tải bị gián đoạn; hãy xóa tệp và tải lại.",
+    "verify": "Xác minh checksum",
+    "verifying": "Đang băm tệp…",
+    "actualSha256Label": "SHA-256 của tệp trên đĩa",
+    "checksumOk": "Checksum khớp. Tệp chính xác là bản phát hành đã ghim.",
+    "checksumMismatch": "Checksum không khớp. Tệp bị hỏng hoặc thuộc bản sửa đổi khác; hãy xóa và tải lại từ liên kết đã ghim."
   },
   "settings": {
     "modelSettings": {

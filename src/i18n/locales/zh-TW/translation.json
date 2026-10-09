@@ -151,7 +151,17 @@
     "sha256Label": "預期 SHA-256",
     "checkAgain": "再次檢查",
     "stillMissing": "該路徑下尚無此檔案。",
-    "loadError": "無法準備安裝說明：{{error}}"
+    "loadError": "無法準備安裝說明：{{error}}",
+    "details": "詳細資料",
+    "detailsTitle": "{{modelName}} 檔案",
+    "onDiskLabel": "在磁碟上找到的檔案",
+    "sizeOk": "大小與目錄一致（{{size}}）。",
+    "sizeMismatch": "大小不一致：磁碟上為 {{actual}}，預期為 {{expected}}。下載中途被中斷；請刪除該檔案並重新下載。",
+    "verify": "驗證雜湊值",
+    "verifying": "正在計算檔案雜湊…",
+    "actualSha256Label": "磁碟上檔案的 SHA-256",
+    "checksumOk": "雜湊值一致。該檔案正是固定版本。",
+    "checksumMismatch": "雜湊值不一致。檔案已損毀或來自其他修訂版；請刪除後重新從固定連結下載。"
   },
   "settings": {
     "modelSettings": {

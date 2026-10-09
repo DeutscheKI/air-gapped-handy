@@ -151,7 +151,17 @@
     "sha256Label": "期待される SHA-256",
     "checkAgain": "再確認",
     "stillMissing": "そのパスにファイルはまだありません。",
-    "loadError": "インストール手順を準備できませんでした: {{error}}"
+    "loadError": "インストール手順を準備できませんでした: {{error}}",
+    "details": "詳細",
+    "detailsTitle": "{{modelName}} のファイル",
+    "onDiskLabel": "ディスク上で見つかったファイル",
+    "sizeOk": "サイズはカタログと一致しています（{{size}}）。",
+    "sizeMismatch": "サイズが一致しません: ディスク上 {{actual}}、期待値 {{expected}}。ダウンロードが途中で切れています。ファイルを削除して再取得してください。",
+    "verify": "チェックサムを検証",
+    "verifying": "ファイルをハッシュ化しています…",
+    "actualSha256Label": "ディスク上のファイルの SHA-256",
+    "checksumOk": "チェックサムが一致しました。ファイルは固定されたリリースそのものです。",
+    "checksumMismatch": "チェックサムが一致しません。ファイルが破損しているか別のリビジョンです。削除して固定リンクから再ダウンロードしてください。"
   },
   "settings": {
     "modelSettings": {

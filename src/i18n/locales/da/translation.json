@@ -151,7 +151,17 @@
     "sha256Label": "Forventet SHA-256",
     "checkAgain": "Tjek igen",
     "stillMissing": "Filen ligger endnu ikke på den sti.",
-    "loadError": "Kunne ikke forberede installationsvejledningen: {{error}}"
+    "loadError": "Kunne ikke forberede installationsvejledningen: {{error}}",
+    "details": "Detaljer",
+    "detailsTitle": "Fil for {{modelName}}",
+    "onDiskLabel": "Fil fundet på disken",
+    "sizeOk": "Størrelsen matcher kataloget ({{size}}).",
+    "sizeMismatch": "Størrelsen matcher ikke: {{actual}} på disken, {{expected}} forventet. Downloadet blev afbrudt; slet filen og hent den igen.",
+    "verify": "Verificer kontrolsum",
+    "verifying": "Hasher filen…",
+    "actualSha256Label": "SHA-256 for filen på disken",
+    "checksumOk": "Kontrolsummen matcher. Filen er præcis den fastlåste udgave.",
+    "checksumMismatch": "Kontrolsummen matcher ikke. Filen er beskadiget eller fra en anden revision; slet den og hent det fastlåste link igen."
   },
   "settings": {
     "modelSettings": {

@@ -151,7 +151,17 @@
     "sha256Label": "SHA-256 esperat",
     "checkAgain": "Comprova de nou",
     "stillMissing": "El fitxer encara no és en aquest camí.",
-    "loadError": "No s'han pogut preparar les instruccions d'instal·lació: {{error}}"
+    "loadError": "No s'han pogut preparar les instruccions d'instal·lació: {{error}}",
+    "details": "Detalls",
+    "detailsTitle": "Fitxer de {{modelName}}",
+    "onDiskLabel": "Fitxer trobat al disc",
+    "sizeOk": "La mida coincideix amb el catàleg ({{size}}).",
+    "sizeMismatch": "La mida no coincideix: {{actual}} al disc, {{expected}} esperats. La baixada es va interrompre; suprimiu el fitxer i torneu-lo a baixar.",
+    "verify": "Verifica la suma de comprovació",
+    "verifying": "S'està calculant el hash del fitxer…",
+    "actualSha256Label": "SHA-256 del fitxer al disc",
+    "checksumOk": "La suma de comprovació coincideix. El fitxer és exactament la versió fixada.",
+    "checksumMismatch": "La suma de comprovació no coincideix. El fitxer està malmès o és d'una altra revisió; suprimiu-lo i torneu a baixar l'enllaç fixat."
   },
   "settings": {
     "modelSettings": {

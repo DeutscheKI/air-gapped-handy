@@ -151,7 +151,17 @@
     "sha256Label": "SHA-256 esperado",
     "checkAgain": "Verificar novamente",
     "stillMissing": "O arquivo ainda não está nesse caminho.",
-    "loadError": "Não foi possível preparar as instruções de instalação: {{error}}"
+    "loadError": "Não foi possível preparar as instruções de instalação: {{error}}",
+    "details": "Detalhes",
+    "detailsTitle": "Arquivo de {{modelName}}",
+    "onDiskLabel": "Arquivo encontrado no disco",
+    "sizeOk": "O tamanho corresponde ao catálogo ({{size}}).",
+    "sizeMismatch": "Tamanho diferente: {{actual}} no disco, {{expected}} esperados. O download foi interrompido; exclua o arquivo e baixe-o novamente.",
+    "verify": "Verificar checksum",
+    "verifying": "Calculando o hash do arquivo…",
+    "actualSha256Label": "SHA-256 do arquivo no disco",
+    "checksumOk": "O checksum corresponde. O arquivo é exatamente a versão fixada.",
+    "checksumMismatch": "O checksum não corresponde. O arquivo está danificado ou é de outra revisão; exclua-o e baixe o link fixado novamente."
   },
   "settings": {
     "modelSettings": {

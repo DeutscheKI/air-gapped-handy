@@ -151,7 +151,17 @@
     "sha256Label": "Očekávaný SHA-256",
     "checkAgain": "Zkontrolovat znovu",
     "stillMissing": "Soubor v této cestě zatím není.",
-    "loadError": "Nepodařilo se připravit pokyny k instalaci: {{error}}"
+    "loadError": "Nepodařilo se připravit pokyny k instalaci: {{error}}",
+    "details": "Podrobnosti",
+    "detailsTitle": "Soubor modelu {{modelName}}",
+    "onDiskLabel": "Soubor nalezený na disku",
+    "sizeOk": "Velikost odpovídá katalogu ({{size}}).",
+    "sizeMismatch": "Velikost nesouhlasí: {{actual}} na disku, očekáváno {{expected}}. Stahování bylo přerušeno; soubor smažte a stáhněte znovu.",
+    "verify": "Ověřit kontrolní součet",
+    "verifying": "Počítá se hash souboru…",
+    "actualSha256Label": "SHA-256 souboru na disku",
+    "checksumOk": "Kontrolní součet souhlasí. Soubor je přesně připnutá verze.",
+    "checksumMismatch": "Kontrolní součet nesouhlasí. Soubor je poškozený nebo z jiné revize; smažte ho a stáhněte připnutý odkaz znovu."
   },
   "settings": {
     "modelSettings": {

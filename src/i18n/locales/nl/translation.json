@@ -151,7 +151,17 @@
     "sha256Label": "Verwachte SHA-256",
     "checkAgain": "Opnieuw controleren",
     "stillMissing": "Het bestand staat nog niet op dat pad.",
-    "loadError": "Kon de installatie-instructies niet voorbereiden: {{error}}"
+    "loadError": "Kon de installatie-instructies niet voorbereiden: {{error}}",
+    "details": "Details",
+    "detailsTitle": "Bestand van {{modelName}}",
+    "onDiskLabel": "Bestand gevonden op schijf",
+    "sizeOk": "Grootte komt overeen met de catalogus ({{size}}).",
+    "sizeMismatch": "Grootte komt niet overeen: {{actual}} op schijf, {{expected}} verwacht. De download is afgebroken; verwijder het bestand en haal het opnieuw op.",
+    "verify": "Controlesom verifiëren",
+    "verifying": "Bestand wordt gehasht…",
+    "actualSha256Label": "SHA-256 van het bestand op schijf",
+    "checksumOk": "Controlesom komt overeen. Het bestand is precies de vastgezette release.",
+    "checksumMismatch": "Controlesom komt niet overeen. Het bestand is beschadigd of van een andere revisie; verwijder het en download de vastgezette link opnieuw."
   },
   "settings": {
     "modelSettings": {

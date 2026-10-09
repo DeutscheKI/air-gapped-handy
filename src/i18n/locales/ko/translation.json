@@ -151,7 +151,17 @@
     "sha256Label": "예상 SHA-256",
     "checkAgain": "다시 확인",
     "stillMissing": "아직 해당 경로에 파일이 없습니다.",
-    "loadError": "설치 안내를 준비할 수 없습니다: {{error}}"
+    "loadError": "설치 안내를 준비할 수 없습니다: {{error}}",
+    "details": "세부 정보",
+    "detailsTitle": "{{modelName}} 파일",
+    "onDiskLabel": "디스크에서 찾은 파일",
+    "sizeOk": "크기가 카탈로그와 일치합니다({{size}}).",
+    "sizeMismatch": "크기가 일치하지 않습니다: 디스크 {{actual}}, 예상 {{expected}}. 다운로드가 중단되었습니다. 파일을 삭제하고 다시 받으세요.",
+    "verify": "체크섬 확인",
+    "verifying": "파일 해시 계산 중…",
+    "actualSha256Label": "디스크에 있는 파일의 SHA-256",
+    "checksumOk": "체크섬이 일치합니다. 파일은 고정된 릴리스와 정확히 같습니다.",
+    "checksumMismatch": "체크섬이 일치하지 않습니다. 파일이 손상되었거나 다른 리비전입니다. 삭제한 뒤 고정된 링크에서 다시 다운로드하세요."
   },
   "settings": {
     "modelSettings": {

@@ -151,7 +151,17 @@
     "sha256Label": "SHA-256 yang diharapkan",
     "checkAgain": "Periksa lagi",
     "stillMissing": "Berkas belum ada di jalur tersebut.",
-    "loadError": "Tidak dapat menyiapkan petunjuk pemasangan: {{error}}"
+    "loadError": "Tidak dapat menyiapkan petunjuk pemasangan: {{error}}",
+    "details": "Detail",
+    "detailsTitle": "Berkas {{modelName}}",
+    "onDiskLabel": "Berkas ditemukan di disk",
+    "sizeOk": "Ukuran sesuai dengan katalog ({{size}}).",
+    "sizeMismatch": "Ukuran tidak sesuai: {{actual}} di disk, {{expected}} diharapkan. Unduhan terputus; hapus berkas dan unduh lagi.",
+    "verify": "Verifikasi checksum",
+    "verifying": "Menghitung hash berkas…",
+    "actualSha256Label": "SHA-256 berkas di disk",
+    "checksumOk": "Checksum cocok. Berkas ini persis rilis yang disematkan.",
+    "checksumMismatch": "Checksum tidak cocok. Berkas rusak atau dari revisi lain; hapus dan unduh lagi tautan yang disematkan."
   },
   "settings": {
     "modelSettings": {

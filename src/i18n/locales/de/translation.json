@@ -151,7 +151,17 @@
     "sha256Label": "Erwartete SHA-256-Prüfsumme",
     "checkAgain": "Erneut prüfen",
     "stillMissing": "Die Datei liegt noch nicht an diesem Pfad.",
-    "loadError": "Installationsanleitung konnte nicht erstellt werden: {{error}}"
+    "loadError": "Installationsanleitung konnte nicht erstellt werden: {{error}}",
+    "details": "Details",
+    "detailsTitle": "Datei von {{modelName}}",
+    "onDiskLabel": "Gefundene Datei",
+    "sizeOk": "Größe stimmt mit dem Katalog überein ({{size}}).",
+    "sizeMismatch": "Größe stimmt nicht: {{actual}} auf der Festplatte, {{expected}} erwartet. Der Download wurde abgebrochen; Datei löschen und erneut laden.",
+    "verify": "Prüfsumme prüfen",
+    "verifying": "Datei wird gehasht…",
+    "actualSha256Label": "SHA-256 der Datei auf der Festplatte",
+    "checksumOk": "Prüfsumme stimmt. Die Datei entspricht genau der festgelegten Version.",
+    "checksumMismatch": "Prüfsumme stimmt nicht. Die Datei ist beschädigt oder stammt aus einer anderen Revision; löschen und den festgelegten Link erneut laden."
   },
   "settings": {
     "modelSettings": {

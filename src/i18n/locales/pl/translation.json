@@ -151,7 +151,17 @@
     "sha256Label": "Oczekiwany SHA-256",
     "checkAgain": "Sprawdź ponownie",
     "stillMissing": "Pliku nie ma jeszcze w tej ścieżce.",
-    "loadError": "Nie udało się przygotować instrukcji instalacji: {{error}}"
+    "loadError": "Nie udało się przygotować instrukcji instalacji: {{error}}",
+    "details": "Szczegóły",
+    "detailsTitle": "Plik modelu {{modelName}}",
+    "onDiskLabel": "Plik znaleziony na dysku",
+    "sizeOk": "Rozmiar zgadza się z katalogiem ({{size}}).",
+    "sizeMismatch": "Rozmiar się nie zgadza: {{actual}} na dysku, oczekiwano {{expected}}. Pobieranie zostało przerwane; usuń plik i pobierz go ponownie.",
+    "verify": "Zweryfikuj sumę kontrolną",
+    "verifying": "Obliczanie skrótu pliku…",
+    "actualSha256Label": "SHA-256 pliku na dysku",
+    "checksumOk": "Suma kontrolna się zgadza. Plik to dokładnie przypięte wydanie.",
+    "checksumMismatch": "Suma kontrolna się nie zgadza. Plik jest uszkodzony lub pochodzi z innej rewizji; usuń go i pobierz przypięty link ponownie."
   },
   "settings": {
     "modelSettings": {

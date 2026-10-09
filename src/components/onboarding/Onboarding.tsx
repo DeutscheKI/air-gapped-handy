@@ -137,6 +137,7 @@ const Onboarding: React.FC<OnboardingProps> = ({
                     status={getExistingModelStatus(model.id)}
                     disabled={isBusy}
                     onSelect={handleSelectExistingModel}
+                    onInstall={handleInstallModel}
                     showRecommended={false}
                   />
                 ))}

@@ -151,7 +151,17 @@
     "sha256Label": "SHA-256 atteso",
     "checkAgain": "Controlla di nuovo",
     "stillMissing": "Il file non è ancora in quel percorso.",
-    "loadError": "Impossibile preparare le istruzioni di installazione: {{error}}"
+    "loadError": "Impossibile preparare le istruzioni di installazione: {{error}}",
+    "details": "Dettagli",
+    "detailsTitle": "File di {{modelName}}",
+    "onDiskLabel": "File trovato su disco",
+    "sizeOk": "La dimensione corrisponde al catalogo ({{size}}).",
+    "sizeMismatch": "Dimensione diversa: {{actual}} su disco, {{expected}} attesi. Il download si è interrotto; elimina il file e scaricalo di nuovo.",
+    "verify": "Verifica checksum",
+    "verifying": "Calcolo dell'hash del file…",
+    "actualSha256Label": "SHA-256 del file su disco",
+    "checksumOk": "Il checksum corrisponde. Il file è esattamente la versione fissata.",
+    "checksumMismatch": "Il checksum non corrisponde. Il file è danneggiato o proviene da un'altra revisione; eliminalo e scarica di nuovo il link fissato."
   },
   "settings": {
     "modelSettings": {

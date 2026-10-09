@@ -151,7 +151,17 @@
     "sha256Label": "Expected SHA-256",
     "checkAgain": "Check again",
     "stillMissing": "The file is not at that path yet.",
-    "loadError": "Could not prepare install instructions: {{error}}"
+    "loadError": "Could not prepare install instructions: {{error}}",
+    "details": "Details",
+    "detailsTitle": "{{modelName}} file",
+    "onDiskLabel": "File found on disk",
+    "sizeOk": "Size matches the catalog ({{size}}).",
+    "sizeMismatch": "Size mismatch: {{actual}} on disk, {{expected}} expected. The download was cut short; delete the file and fetch it again.",
+    "verify": "Verify checksum",
+    "verifying": "Hashing the file…",
+    "actualSha256Label": "SHA-256 of the file on disk",
+    "checksumOk": "Checksum matches. The file is exactly the pinned release.",
+    "checksumMismatch": "Checksum does not match. The file is damaged or from a different revision; delete it and download the pinned link again."
   },
   "settings": {
     "modelSettings": {

@@ -151,7 +151,17 @@
     "sha256Label": "Förväntad SHA-256",
     "checkAgain": "Kontrollera igen",
     "stillMissing": "Filen finns inte på den sökvägen ännu.",
-    "loadError": "Kunde inte förbereda installationsanvisningarna: {{error}}"
+    "loadError": "Kunde inte förbereda installationsanvisningarna: {{error}}",
+    "details": "Detaljer",
+    "detailsTitle": "Fil för {{modelName}}",
+    "onDiskLabel": "Fil hittad på disken",
+    "sizeOk": "Storleken matchar katalogen ({{size}}).",
+    "sizeMismatch": "Storleken matchar inte: {{actual}} på disken, {{expected}} förväntat. Nedladdningen avbröts; ta bort filen och hämta den igen.",
+    "verify": "Verifiera kontrollsumma",
+    "verifying": "Hashar filen…",
+    "actualSha256Label": "SHA-256 för filen på disken",
+    "checksumOk": "Kontrollsumman matchar. Filen är exakt den fastlåsta utgåvan.",
+    "checksumMismatch": "Kontrollsumman matchar inte. Filen är skadad eller från en annan revision; ta bort den och hämta den fastlåsta länken igen."
   },
   "settings": {
     "modelSettings": {

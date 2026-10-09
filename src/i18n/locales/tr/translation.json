@@ -151,7 +151,17 @@
     "sha256Label": "Beklenen SHA-256",
     "checkAgain": "Tekrar kontrol et",
     "stillMissing": "Dosya henüz bu yolda değil.",
-    "loadError": "Yükleme talimatları hazırlanamadı: {{error}}"
+    "loadError": "Yükleme talimatları hazırlanamadı: {{error}}",
+    "details": "Ayrıntılar",
+    "detailsTitle": "{{modelName}} dosyası",
+    "onDiskLabel": "Diskte bulunan dosya",
+    "sizeOk": "Boyut katalogla eşleşiyor ({{size}}).",
+    "sizeMismatch": "Boyut eşleşmiyor: diskte {{actual}}, beklenen {{expected}}. İndirme yarıda kesildi; dosyayı silip yeniden indirin.",
+    "verify": "Sağlama toplamını doğrula",
+    "verifying": "Dosyanın karması hesaplanıyor…",
+    "actualSha256Label": "Diskteki dosyanın SHA-256 değeri",
+    "checksumOk": "Sağlama toplamı eşleşiyor. Dosya tam olarak sabitlenmiş sürüm.",
+    "checksumMismatch": "Sağlama toplamı eşleşmiyor. Dosya bozuk ya da başka bir revizyondan; silip sabitlenmiş bağlantıyı yeniden indirin."
   },
   "settings": {
     "modelSettings": {

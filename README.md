@@ -74,6 +74,11 @@ is one divergence from upstream [cjpais/Handy](https://github.com/cjpais/Handy).
 - **The About page names the fork.** A row above upstream's source link shows the fork's
   repository (`https://github.com/DeutscheKI/air-gapped-handy`) and branch (`air-gapped`)
   as copy fields, so a user can tell at a glance which build they are running.
+- **Installed models can be inspected and verified.** A "Details" button on every
+  installed catalog model reopens the install dialog, which now shows the file Handy found,
+  flags a size that differs from the catalog (a cut-short download), and has a "Verify
+  checksum" button that hashes the file with SHA-256 and compares it with the catalog. A
+  hand-copied file that fails to load is diagnosed in the app instead of by guesswork.
 
 [![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/invite/WVBeWsNXK4)
 

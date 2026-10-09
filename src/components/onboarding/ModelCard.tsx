@@ -6,6 +6,7 @@ import {
   Download,
   Globe,
   HardDrive,
+  Info,
   Languages,
   Loader2,
   Trash2,
@@ -45,6 +46,11 @@ const getLanguageDisplayText = (
 export const isLegacySource = (model: ModelInfo): boolean =>
   model.source === "Legacy";
 
+// Catalog models have a pinned upstream file, so their install details (link,
+// expected size and SHA-256) stay useful after the file is on disk.
+const hasInstallSource = (model: ModelInfo): boolean =>
+  typeof model.source === "object" && "HuggingFace" in model.source;
+
 // Extract a GGUF quantization label from a filename, if present (e.g. "Q8_0").
 const getQuantLabel = (filename: string): string | null => {
   const match = filename.match(
@@ -64,7 +70,10 @@ interface ModelCardProps {
   disabled?: boolean;
   className?: string;
   onSelect: (modelId: string) => void;
-  /** Opens the manual install instructions; this fork never downloads. */
+  /**
+   * Opens the manual install instructions; this fork never downloads. For an
+   * installed catalog model the same dialog shows the file and verifies it.
+   */
   onInstall?: (modelId: string) => void;
   onDelete?: (modelId: string) => void;
   showRecommended?: boolean;
@@ -133,6 +142,15 @@ const ModelCard: React.FC<ModelCardProps> = ({
     e.stopPropagation();
     onDelete?.(model.id);
   };
+
+  const handleDetails = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onInstall?.(model.id);
+  };
+  const showDetails =
+    onInstall !== undefined &&
+    (status === "available" || status === "active") &&
+    hasInstallSource(model);
 
   return (
     <div
@@ -263,6 +281,18 @@ const ModelCard: React.FC<ModelCardProps> = ({
               <span className="text-text/40">{quantLabel}</span>
             )}
           </span>
+        )}
+        {showDetails && (
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={handleDetails}
+            title={t("modelInstall.details")}
+            className="flex items-center gap-1.5 text-text/60 hover:text-text hover:bg-mid-gray/10"
+          >
+            <Info className="w-3.5 h-3.5" />
+            <span>{t("modelInstall.details")}</span>
+          </Button>
         )}
         {onDelete && (status === "available" || status === "active") && (
           <Button

@@ -151,7 +151,17 @@
     "sha256Label": "SHA-256 attendu",
     "checkAgain": "Vérifier à nouveau",
     "stillMissing": "Le fichier n'est pas encore à cet emplacement.",
-    "loadError": "Impossible de préparer les instructions d'installation : {{error}}"
+    "loadError": "Impossible de préparer les instructions d'installation : {{error}}",
+    "details": "Détails",
+    "detailsTitle": "Fichier de {{modelName}}",
+    "onDiskLabel": "Fichier trouvé sur le disque",
+    "sizeOk": "La taille correspond au catalogue ({{size}}).",
+    "sizeMismatch": "Taille différente : {{actual}} sur le disque, {{expected}} attendus. Le téléchargement a été interrompu ; supprimez le fichier et récupérez-le à nouveau.",
+    "verify": "Vérifier la somme de contrôle",
+    "verifying": "Calcul du hachage du fichier…",
+    "actualSha256Label": "SHA-256 du fichier sur le disque",
+    "checksumOk": "La somme de contrôle correspond. Le fichier est exactement la version épinglée.",
+    "checksumMismatch": "La somme de contrôle ne correspond pas. Le fichier est endommagé ou provient d'une autre révision ; supprimez-le et retéléchargez le lien épinglé."
   },
   "settings": {
     "modelSettings": {
