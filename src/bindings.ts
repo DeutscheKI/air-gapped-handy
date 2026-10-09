@@ -550,6 +550,17 @@ async getModelInfo(modelId: string) : Promise<Result<ModelInfo | null, string>> 
     else return { status: "error", error: e  as any };
 }
 },
+/**
+ * How to put a catalog model on disk by hand; this fork never downloads.
+ */
+async getModelInstallInstructions(modelId: string) : Promise<Result<ModelInstallInstructions, string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("get_model_install_instructions", { modelId }) };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
+},
 async downloadModel(modelId: string) : Promise<Result<null, string>> {
     try {
     return { status: "ok", data: await TAURI_INVOKE("download_model", { modelId }) };
@@ -953,6 +964,29 @@ key_down: number; key_up: number; flags_changed: number; mouse: number; duration
 export type KeyboardImplementation = "tauri" | "handy_keys"
 export type LogLevel = "trace" | "debug" | "info" | "warn" | "error"
 export type ModelInfo = { id: string; name: string; description: string; filename: string; source: ModelSource; size_mb: number; is_downloaded: boolean; is_downloading: boolean; partial_size: number; is_directory: boolean; engine_type: EngineType; accuracy_score: number; speed_score: number; supports_translation: boolean; is_recommended: boolean; supported_languages: string[]; supports_language_selection: boolean; is_custom: boolean; supports_streaming: boolean; supports_language_detection: boolean }
+/**
+ * Everything a user needs to put a catalog model on disk by hand. This fork
+ * never opens a network connection, so instead of downloading, Handy shows
+ * where the file lives upstream and where it has to end up locally.
+ */
+export type ModelInstallInstructions = { 
+/**
+ * Direct link to the exact pinned file on Hugging Face.
+ */
+url: string; 
+/**
+ * Absolute path the file must be saved as for Handy to find it.
+ */
+target_path: string; 
+/**
+ * Equivalent `hf download` invocation that writes the file to
+ * `target_path`'s directory under the same name.
+ */
+hf_cli_command: string; 
+/**
+ * Expected SHA-256 of the file, when the catalog records one.
+ */
+sha256: string | null }
 export type ModelLoadStatus = { is_loaded: boolean; current_model: string | null }
 /**
  * Where a model comes from and how Handy obtains it — the routing discriminant

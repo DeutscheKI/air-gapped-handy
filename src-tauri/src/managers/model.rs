@@ -311,6 +311,33 @@ pub fn effective_language(
     recognition_language(&supported_languages[0]).to_string()
 }
 
+/// Everything a user needs to put a catalog model on disk by hand. This fork
+/// never opens a network connection, so instead of downloading, Handy shows
+/// where the file lives upstream and where it has to end up locally.
+#[derive(Debug, Clone, Serialize, Deserialize, Type)]
+pub struct ModelInstallInstructions {
+    /// Direct link to the exact pinned file on Hugging Face.
+    pub url: String,
+    /// Absolute path the file must be saved as for Handy to find it.
+    pub target_path: String,
+    /// Equivalent `hf download` invocation that writes the file to
+    /// `target_path`'s directory under the same name.
+    pub hf_cli_command: String,
+    /// Expected SHA-256 of the file, when the catalog records one.
+    pub sha256: Option<String>,
+}
+
+/// Quote `arg` for a POSIX shell only when it needs it, so the common
+/// space-free path stays readable.
+fn shell_quote(arg: &str) -> String {
+    let is_safe = |c: char| c.is_ascii_alphanumeric() || "-_./~:=".contains(c);
+    if !arg.is_empty() && arg.chars().all(is_safe) {
+        arg.to_string()
+    } else {
+        format!("'{}'", arg.replace('\'', "'\\''"))
+    }
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize, Type)]
 pub struct DownloadProgress {
     pub model_id: String,
@@ -1288,6 +1315,40 @@ impl ModelManager {
     pub fn get_model_info(&self, model_id: &str) -> Option<ModelInfo> {
         let models = self.available_models.lock().unwrap();
         models.get(model_id).cloned()
+    }
+
+    /// Manual install instructions for a catalog model (see
+    /// [`ModelInstallInstructions`]). The target is the models directory, not
+    /// the Hugging Face cache: a plain file copy is all an air-gapped user can
+    /// do, and the `hf` CLI's `--local-dir` lands the file at the same path.
+    pub fn install_instructions(&self, model_id: &str) -> Result<ModelInstallInstructions> {
+        let model_info = self
+            .get_model_info(model_id)
+            .ok_or_else(|| anyhow::anyhow!("Model not found: {}", model_id))?;
+        let ModelSource::HuggingFace { repo_id, revision } = &model_info.source else {
+            return Err(anyhow::anyhow!(
+                "Model {} has no upstream source to install from",
+                model_id
+            ));
+        };
+        let filename = &model_info.filename;
+        let models_dir = self.models_dir.to_string_lossy();
+        Ok(ModelInstallInstructions {
+            url: format!(
+                "https://huggingface.co/{}/resolve/{}/{}",
+                repo_id, revision, filename
+            ),
+            target_path: self.models_dir.join(filename).to_string_lossy().to_string(),
+            hf_cli_command: format!(
+                "hf download {} {} --revision {} --local-dir {}",
+                repo_id,
+                shell_quote(filename),
+                revision,
+                shell_quote(&models_dir)
+            ),
+            sha256: crate::catalog::file_in_catalog(filename, Some(repo_id))
+                .and_then(|(_, file)| file.sha256.clone()),
+        })
     }
 
     /// Reconcile a model's advertised capabilities with the ground truth from the
@@ -2767,6 +2828,16 @@ mod tests {
             ),
             Some(expected)
         );
+    }
+
+    #[test]
+    fn test_shell_quote_only_quotes_when_needed() {
+        assert_eq!(
+            shell_quote("/home/me/.local/share/x"),
+            "/home/me/.local/share/x"
+        );
+        assert_eq!(shell_quote("/home/my name/x"), "'/home/my name/x'");
+        assert_eq!(shell_quote("it's"), "'it'\\''s'");
     }
 
     #[test]

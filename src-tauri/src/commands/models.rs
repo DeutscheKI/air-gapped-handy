@@ -1,4 +1,4 @@
-use crate::managers::model::{ModelInfo, ModelManager};
+use crate::managers::model::{ModelInfo, ModelInstallInstructions, ModelManager};
 use crate::managers::transcription::{ModelStateEvent, TranscriptionManager};
 use crate::settings::{get_settings, write_settings, ModelUnloadTimeout};
 use log::error;
@@ -20,6 +20,18 @@ pub async fn get_model_info(
     model_id: String,
 ) -> Result<Option<ModelInfo>, String> {
     Ok(model_manager.get_model_info(&model_id))
+}
+
+/// How to put a catalog model on disk by hand; this fork never downloads.
+#[tauri::command]
+#[specta::specta]
+pub async fn get_model_install_instructions(
+    model_manager: State<'_, Arc<ModelManager>>,
+    model_id: String,
+) -> Result<ModelInstallInstructions, String> {
+    model_manager
+        .install_instructions(&model_id)
+        .map_err(|e| e.to_string())
 }
 
 /// Re-scan local sources (custom models dir + shared HF cache) for models added
