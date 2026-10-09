@@ -1,7 +1,7 @@
 [build]
 
-# Link ONNX Runtime dynamically from the copy that scripts/fetch-onnxruntime.sh
-# unpacks into src-tauri/onnxruntime, instead of letting ort-sys download its
+# Link ONNX Runtime dynamically from the copy that scripts/unpack-onnxruntime.sh
+# unpacks from vendor/onnxruntime, instead of letting ort-sys download its
 # own prebuilt runtime at compile time. The deb ships the same .so (see
 # bundle.linux.deb.files in tauri.conf.json), so the build and the package
 # always agree on the runtime version.

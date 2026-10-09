@@ -46,7 +46,7 @@ result
 # Python bytecode (scripts/)
 __pycache__/
 
-# ONNX Runtime fetched by scripts/fetch-onnxruntime.sh
+# ONNX Runtime unpacked from vendor/ by scripts/unpack-onnxruntime.sh
 /src-tauri/onnxruntime/
 
 # bun scratch space inside the vendored package cache

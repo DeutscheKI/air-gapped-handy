@@ -7,12 +7,12 @@ not only work with no network access at all, but to make the 100% privacy claim 
 it also is not even allowed to attempt any network access during runtime. Each entry below
 is one divergence from upstream [cjpais/Handy](https://github.com/cjpais/Handy).
 
-- **ONNX Runtime comes from a pinned local copy, not a compile-time download.**
-  `scripts/fetch-onnxruntime.sh` unpacks a hash-checked ONNX Runtime 1.24.2 into
-  `src-tauri/onnxruntime/` (gitignored). `.cargo/config.toml` points `ORT_LIB_LOCATION`
-  there and sets `ORT_PREFER_DYNAMIC_LINK=1`, and `tauri.conf.json` maps the resulting
-  `libonnxruntime.so.1` into `/usr/lib/Handy` in the deb. Run the script once before
-  `bun run tauri build --bundles deb`.
+- **ONNX Runtime is vendored, not downloaded at compile time.** The ONNX Runtime 1.24.2
+  tarball lives in `vendor/onnxruntime/`; `scripts/unpack-onnxruntime.sh` hash-checks and
+  unpacks it into `src-tauri/onnxruntime/` (gitignored). `.cargo/config.toml` points
+  `ORT_LIB_LOCATION` there and sets `ORT_PREFER_DYNAMIC_LINK=1`, and `tauri.conf.json`
+  maps the resulting `libonnxruntime.so.1` into `/usr/lib/Handy` in the deb. Run the
+  script once before `bun run tauri build --bundles deb`.
 - **All Rust crates are vendored in `vendor/cargo`.** `.cargo/config.toml` replaces
   crates.io and the six git dependencies with that directory and sets `net.offline`, so
   `cargo` never reaches the network and fails loudly if anything is missing. Regenerate
