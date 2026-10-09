@@ -56,6 +56,10 @@ is one divergence from upstream [cjpais/Handy](https://github.com/cjpais/Handy).
   crates were built against it, and an offline machine cannot download a newer stable.
   Install it once with
   `rustup toolchain install 1.99.0 --profile minimal -c rust-src,rustfmt,clippy`.
+- **The `.github` directory is gone.** Upstream's nine Actions workflows built, tested and
+  released Handy on hosted runners and fetched ONNX Runtime from `blob.handy.computer` on
+  the way. This fork is built locally and offline, so none of that runs here; the issue
+  and PR templates and the funding file went with it.
 
 [![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/invite/WVBeWsNXK4)
 

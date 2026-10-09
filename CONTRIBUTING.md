@@ -114,7 +114,7 @@ When creating a bug report, please include:
 - Screenshots or logs if applicable
 - Information from debug mode if relevant
 
-Use the [Bug Report template](.github/ISSUE_TEMPLATE/bug_report.md) when creating an issue.
+Use upstream's [Bug Report template](https://github.com/cjpais/Handy/blob/main/.github/ISSUE_TEMPLATE/bug_report.md) when creating an issue there.
 
 ## 💡 Suggesting Features
 
