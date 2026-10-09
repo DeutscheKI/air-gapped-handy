@@ -32,7 +32,8 @@ is one divergence from upstream [cjpais/Handy](https://github.com/cjpais/Handy).
   signed with Tauri's updater key.
 - **The Rust toolchain is pinned to 1.99.0 in `rust-toolchain.toml`.** The vendored
   crates were built against it, and an offline machine cannot download a newer stable.
-  Install it once with `rustup toolchain install 1.99.0 --profile minimal -c rust-src`.
+  Install it once with
+  `rustup toolchain install 1.99.0 --profile minimal -c rust-src,rustfmt,clippy`.
 
 [![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/invite/WVBeWsNXK4)
 
