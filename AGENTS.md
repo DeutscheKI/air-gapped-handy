@@ -40,12 +40,9 @@ bun run format:frontend   # Prettier only
 bun run format:backend    # cargo fmt only
 ```
 
-**Model Setup (Required for Development):**
-
-```bash
-mkdir -p src-tauri/resources/models
-curl -o src-tauri/resources/models/silero_vad_v4.onnx https://blob.handy.computer/silero_vad_v4.onnx
-```
+**Model Setup:** the Silero VAD model (`src-tauri/resources/models/silero_vad_v4.onnx`) is
+committed; nothing is downloaded at build time. Transcription models are installed by hand
+(see "Manual Model Installation" in README.md).
 
 For detailed platform-specific build setup, see [BUILD.md](BUILD.md).
 
@@ -58,7 +55,7 @@ Handy is a cross-platform desktop speech-to-text application built with Tauri 2.
 - `lib.rs` - Main entry point, Tauri setup, manager initialization
 - `managers/` - Core business logic:
   - `audio.rs` - Audio recording and device management
-  - `model.rs` - Model downloading and management
+  - `model.rs` - Model registry, on-disk discovery and install instructions
   - `transcription.rs` - Speech-to-text processing pipeline
   - `history.rs` - Transcription history storage
 - `audio_toolkit/` - Low-level audio processing:
@@ -80,7 +77,6 @@ Handy is a cross-platform desktop speech-to-text application built with Tauri 2.
   - `model-selector/` - Model management interface
   - `onboarding/` - First-run experience
   - `overlay/` - Recording overlay UI
-  - `update-checker/` - App update notifications
   - `shared/`, `ui/`, `icons/`, `footer/` - Shared components
 - `hooks/useSettings.ts` - Settings state management hook
 - `stores/settingsStore.ts` - Zustand store for settings
@@ -113,7 +109,7 @@ Handy is a cross-platform desktop speech-to-text application built with Tauri 2.
 ### Application Flow
 
 1. **Initialization:** App starts minimized to tray, loads settings, initializes managers
-2. **Model Setup:** First-run downloads preferred Whisper model (Small/Medium/Turbo/Large)
+2. **Model Setup:** First run shows install instructions for a catalog model; the user copies the file into the models directory
 3. **Recording:** Global shortcut triggers audio recording with VAD filtering
 4. **Processing:** Audio sent to Whisper model for transcription
 5. **Output:** Text pasted to active application via system clipboard

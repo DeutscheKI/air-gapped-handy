@@ -50,12 +50,9 @@ Before you begin, ensure you have the following installed:
    bun install
    ```
 
-5. **Download required models**:
-
-   ```bash
-   mkdir -p src-tauri/resources/models
-   curl -o src-tauri/resources/models/silero_vad_v4.onnx https://blob.handy.computer/silero_vad_v4.onnx
-   ```
+5. **Models**: the Silero VAD model is committed under `src-tauri/resources/models/`;
+   transcription models are installed by hand (see "Manual Model Installation" in
+   README.md). Nothing is downloaded.
 
 6. **Run in development mode**:
    ```bash
