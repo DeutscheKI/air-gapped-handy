@@ -44,7 +44,9 @@ is one divergence from upstream [cjpais/Handy](https://github.com/cjpais/Handy).
   models directory (`~/.local/share/com.pais.handy/models/<file>`) to save it as, an
   equivalent `hf download --local-dir` command, and the catalog's SHA-256. Fetch the file
   on a connected machine, copy it there, and press "Check again": Handy rescans and
-  selects it. Files already in the shared Hugging Face cache are still picked up.
+  selects it. Files already in the shared Hugging Face cache are still picked up. The
+  `blob.handy.computer` mirror that upstream fell back to is removed from the catalog
+  along with the fallback code.
 - **The Rust toolchain is pinned to 1.99.0 in `rust-toolchain.toml`.** The vendored
   crates were built against it, and an offline machine cannot download a newer stable.
   Install it once with

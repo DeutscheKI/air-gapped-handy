@@ -25,11 +25,6 @@ use crate::managers::model_capabilities::{CapabilityProbe, Compatibility};
 
 #[derive(Deserialize)]
 struct CatalogRoot {
-    /// Base URLs tried in order when the Hugging Face download fails. The full
-    /// file URL is `{mirror}/{repo_id}/{revision}/{filename}` — the same three
-    /// values that form the HF resolve URL, so a mirror is a plain static host.
-    #[serde(default)]
-    mirrors: Vec<String>,
     models: Vec<CatalogModel>,
 }
 
@@ -39,11 +34,10 @@ struct CatalogRoot {
 struct CatalogModel {
     /// HF repo id, e.g. `handy-computer/whisper-small-gguf`.
     id: String,
-    /// Commit sha the catalog's sizes/hashes were generated from. Both HF
-    /// acquisition and mirror keys use it, so downloaded bytes provably match
-    /// the hashes regardless of source. Cache *lookup* additionally falls back
-    /// to `main` (see `hf_cached_path`) so downloads that predate pinning keep
-    /// resolving.
+    /// Commit sha the catalog's sizes/hashes were generated from. The install
+    /// link pins it, so a file fetched from that link provably matches the
+    /// hashes. Cache *lookup* additionally falls back to `main` (see
+    /// `hf_cached_path`) so downloads that predate pinning keep resolving.
     revision: Option<String>,
     name: String,
     description: String,
@@ -112,66 +106,12 @@ impl From<&CatalogModel> for ModelDescriptor {
     }
 }
 
-/// The raw parsed catalog. Kept alive (not consumed) so mirror metadata that
-/// deliberately stays out of [`ModelDescriptor`] can be looked up separately.
-static ROOT: Lazy<CatalogRoot> = Lazy::new(|| {
-    serde_json::from_str(include_str!("catalog.json"))
-        .expect("bundled catalog.json is valid JSON matching the catalog schema")
-});
-
 /// The bundled catalog, parsed once and normalised into descriptors.
-pub static CATALOG: Lazy<Vec<ModelDescriptor>> =
-    Lazy::new(|| ROOT.models.iter().map(ModelDescriptor::from).collect());
-
-/// A mirror copy of a catalog model's default file, with the expected content
-/// hash for end-to-end verification. Mirrors are untrusted bit-pipes: the
-/// sha256 here (from the catalog compiled into the binary) is the trust anchor,
-/// which is why it is mandatory — a file without one is never offered from a
-/// mirror at all.
-pub struct MirrorFile {
-    pub url: String,
-    pub sha256: String,
-    /// Catalog size — drives progress totals and resume sanity checks.
-    pub size_bytes: u64,
-}
-
-/// Ordered mirror URLs for a catalog model's file — any listed quant, not just
-/// the default — or empty when the model isn't from the catalog / no mirrors
-/// are configured. `model_id` is the registry id (`"{repo_id}/{filename}"`).
-/// (The mirror may only host default quants; a miss there just 404s and the
-/// caller reports it, so listing every quant here costs nothing.)
-pub fn mirror_fallbacks(model_id: &str) -> Vec<MirrorFile> {
-    let Some((m, file)) = ROOT.models.iter().find_map(|m| {
-        m.files
-            .iter()
-            .find(|f| format!("{}/{}", m.id, f.filename) == model_id)
-            .map(|f| (m, f))
-    }) else {
-        return Vec::new();
-    };
-    let Some(revision) = m.revision.as_deref() else {
-        return Vec::new();
-    };
-    // No hash means no verification means no mirror: never fetch from an
-    // untrusted host without the catalog trust anchor.
-    let Some(sha256) = file.sha256.as_deref() else {
-        return Vec::new();
-    };
-    ROOT.mirrors
-        .iter()
-        .map(|base| MirrorFile {
-            url: format!(
-                "{}/{}/{}/{}",
-                base.trim_end_matches('/'),
-                m.id,
-                revision,
-                file.filename
-            ),
-            sha256: sha256.to_string(),
-            size_bytes: file.size_bytes,
-        })
-        .collect()
-}
+pub static CATALOG: Lazy<Vec<ModelDescriptor>> = Lazy::new(|| {
+    let root: CatalogRoot = serde_json::from_str(include_str!("catalog.json"))
+        .expect("bundled catalog.json is valid JSON matching the catalog schema");
+    root.models.iter().map(ModelDescriptor::from).collect()
+});
 
 /// The catalog descriptor + specific `files[]` entry owning `filename`,
 /// matched across every listed quant (not just the default). `repo_id`, when
@@ -250,21 +190,24 @@ mod tests {
     }
 
     #[test]
-    fn every_catalog_model_has_mirror_fallbacks_with_hashes() {
-        // The mirror fallback is the safety net for HF outages and blocked
-        // networks; a catalog entry without one (missing revision, missing
-        // sha256, empty mirrors) silently loses that net.
+    fn every_catalog_file_is_pinned_and_hashed() {
+        // The install dialog hands users a revision-pinned link and a SHA-256
+        // to verify the hand-copied file against; a catalog entry missing
+        // either silently loses that safety net.
         for d in CATALOG.iter() {
-            let mirrors = mirror_fallbacks(&d.id);
-            assert!(!mirrors.is_empty(), "{}: no mirror fallbacks", d.id);
-            for m in &mirrors {
+            assert!(
+                matches!(&d.source, ModelSource::HuggingFace { revision, .. } if revision != "main"),
+                "{}: revision is not pinned",
+                d.id
+            );
+            for f in &d.files {
                 assert!(
-                    m.sha256.len() == 64,
-                    "{}: mirror entry lacks a sha256",
-                    d.id
+                    f.sha256.as_deref().is_some_and(|h| h.len() == 64),
+                    "{}: {} lacks a sha256",
+                    d.id,
+                    f.filename
                 );
-                assert!(m.size_bytes > 0, "{}: mirror entry lacks a size", d.id);
-                assert!(m.url.starts_with("https://"), "{}: bad url {}", d.id, m.url);
+                assert!(f.size_bytes > 0, "{}: {} lacks a size", d.id, f.filename);
             }
         }
     }

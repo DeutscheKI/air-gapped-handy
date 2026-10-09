@@ -20,13 +20,6 @@ from huggingface_hub import HfApi, HfFileSystem
 ORG = "handy-computer"
 CATALOG_VERSION = 2
 
-# Download sources tried in order after Hugging Face itself. Each entry is a
-# base URL; the full file URL is `{mirror}/{repo_id}/{revision}/{filename}`
-# (the same three values that form the HF resolve URL, so a mirror is a plain
-# static file host). Mirrors are untrusted: every download is verified against
-# the per-file `sha256` below, so listing one only affects availability.
-MIRRORS = ["https://blob.handy.computer"]
-
 # ───────────────────────── scoring (one constant each) ──────────────────────
 SPEED_SCALE = 8.0    # speed = 100·(1 − e^(−rtf/8))     grows toward 100
 ACC_SCALE   = 15.0   # accuracy = 100·e^(−wer/15)        decays from 100
@@ -177,8 +170,8 @@ def gguf_files(repo, siblings):
     keeps a transient/malformed HF listing from producing a catalog that panics
     at app startup when deserialized by `include_str!("catalog.json")`.
 
-    `sha256` is the trust anchor for downloads (HF or mirror alike), so it is
-    equally mandatory. Every GGUF is LFS/Xet-tracked; a missing hash means the
+    `sha256` is what the install dialog shows users to verify a hand-copied
+    file against, so it is equally mandatory. Every GGUF is LFS/Xet-tracked; a missing hash means the
     listing is broken, not that the file is small.
     """
     files = []
@@ -280,7 +273,6 @@ def main():
     catalog = {
         "catalog_version": CATALOG_VERSION,
         "generated_at": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
-        "mirrors": MIRRORS,
         "models": models,
     }
     text = json.dumps(catalog, indent=2, ensure_ascii=False)

@@ -120,8 +120,8 @@ pub struct QuantFile {
     pub filename: String,
     pub quant: String,
     pub size_bytes: u64,
-    /// Content sha256 — the trust anchor for downloads from any source (HF or
-    /// mirror). `None` only for catalogs predating the field.
+    /// Content sha256, shown in the install dialog so a hand-copied file can
+    /// be verified. `None` only for catalogs predating the field.
     #[serde(default)]
     pub sha256: Option<String>,
 }
@@ -1323,8 +1323,8 @@ impl ModelManager {
 
         for model in models.values_mut() {
             if let ModelSource::HuggingFace { repo_id, revision } = &model.source {
-                // A models-dir copy counts too: mirror-fallback downloads land
-                // there, and it makes manual drop-ins of catalog files work.
+                // A models-dir copy counts too: that is where the install
+                // dialog tells users to put the file.
                 let local_path = self.models_dir.join(&model.filename);
                 let partial_path = self.models_dir.join(format!("{}.partial", &model.filename));
                 model.is_downloaded = hf_cached_path(repo_id, revision, &model.filename).is_some()
@@ -1847,8 +1847,8 @@ impl ModelManager {
                     }
                 }
             }
-            // Also remove a models-dir copy (mirror fallback / manual drop-in)
-            // and any resumable partial next to it.
+            // Also remove a models-dir copy (a manual drop-in) and any
+            // leftover partial next to it.
             for path in [
                 self.models_dir.join(&model_info.filename),
                 self.models_dir
@@ -1996,9 +1996,8 @@ impl ModelManager {
             if let Some(path) = hf_cached_path(repo_id, revision, &model_info.filename) {
                 return Ok(path);
             }
-            // Mirror-fallback download or manual drop-in in the models dir.
-            // The complete file only ever appears after verification, so a
-            // stale `.partial` alongside it is leftover noise, not a veto —
+            // Manual drop-in in the models dir. A stale `.partial` alongside
+            // it is leftover noise from an upstream download, not a veto —
             // clear it rather than declaring the model missing.
             let local_path = self.models_dir.join(&model_info.filename);
             if local_path.exists() {

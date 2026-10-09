@@ -1,9 +1,6 @@
 {
   "catalog_version": 2,
   "generated_at": "2026-08-17T11:27:14+00:00",
-  "mirrors": [
-    "https://blob.handy.computer"
-  ],
   "models": [
     {
       "id": "handy-computer/parakeet-unified-en-0.6b-gguf",
